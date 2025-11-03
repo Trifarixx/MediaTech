@@ -1,14 +1,14 @@
-using System;
+ï»¿using System;
 using System.Data;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using System.Drawing;
 
 namespace WinFormsmedia_tech
 {
     public partial class AccueilForm : Form
     {
         private MediaTechRepository repo;
-        private string filtreActif = "Tous"; // Pour garder trace du filtre actif
+        private string filtreActif = "Tous";
 
         public AccueilForm()
         {
@@ -18,15 +18,15 @@ namespace WinFormsmedia_tech
 
         private void AccueilForm_Load(object sender, EventArgs e)
         {
-            // Vérifier la connexion à la base de données
+            // VÃ©rifier la connexion Ã  la base de donnÃ©es
             if (!repo.TestConnection())
             {
-                MessageBox.Show("Erreur de connexion à la base de données. Vérifiez votre configuration.",
+                MessageBox.Show("Erreur de connexion Ã  la base de donnÃ©es. VÃ©rifiez votre configuration.",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Charger tous les contenus au démarrage
+            // Charger tous les contenus au dÃ©marrage
             ChargerTousLesContenus();
 
             // Configurer le DataGridView
@@ -36,7 +36,7 @@ namespace WinFormsmedia_tech
             ChargerComboBoxGenres();
             ChargerComboBoxTri();
 
-            // Définir le bouton "Tous" comme actif par défaut
+            // DÃ©finir le bouton "Tous" comme actif par dÃ©faut
             DefinirBoutonActif(btn_filter1);
         }
 
@@ -50,8 +50,11 @@ namespace WinFormsmedia_tech
             dataGridViewCatalogue.AllowUserToAddRows = false;
             dataGridViewCatalogue.RowHeadersVisible = false;
 
-            // Adapter la taille du DataGridView si nécessaire
+            // Adapter la taille du DataGridView
             dataGridViewCatalogue.Size = new Size(1400, 600);
+
+            // Style alternance de lignes
+            dataGridViewCatalogue.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
         }
 
         private void ChargerComboBoxGenres()
@@ -68,6 +71,7 @@ namespace WinFormsmedia_tech
                 }
 
                 box_genre.SelectedIndex = 0;
+                box_genre.SelectedIndexChanged += box_genre_SelectedIndexChanged;
             }
             catch (Exception ex)
             {
@@ -82,8 +86,9 @@ namespace WinFormsmedia_tech
             box_trier.Items.Add("Titre (A-Z)");
             box_trier.Items.Add("Titre (Z-A)");
             box_trier.Items.Add("Auteur (A-Z)");
-            box_trier.Items.Add("Date de publication");
-            box_trier.Items.Add("Disponibilité");
+            box_trier.Items.Add("Date de publication (rÃ©cent)");
+            box_trier.Items.Add("Date de publication (ancien)");
+            box_trier.Items.Add("DisponibilitÃ©");
 
             box_trier.SelectedIndex = 0;
             box_trier.SelectedIndexChanged += box_trier_SelectedIndexChanged;
@@ -96,19 +101,10 @@ namespace WinFormsmedia_tech
                 DataTable contenus = repo.GetAllContenus();
                 dataGridViewCatalogue.DataSource = contenus;
 
-                // Personnaliser les en-têtes de colonnes
-                if (dataGridViewCatalogue.Columns.Count > 0)
-                {
-                    dataGridViewCatalogue.Columns["id"].HeaderText = "ID";
-                    dataGridViewCatalogue.Columns["titre"].HeaderText = "Titre";
-                    dataGridViewCatalogue.Columns["auteur"].HeaderText = "Auteur";
-                    dataGridViewCatalogue.Columns["editeur"].HeaderText = "Éditeur";
-                    dataGridViewCatalogue.Columns["date_publication"].HeaderText = "Date de publication";
-                    dataGridViewCatalogue.Columns["quantite"].HeaderText = "Quantité disponible";
-                    dataGridViewCatalogue.Columns["categorie"].HeaderText = "Catégorie";
-                }
+                PersonnaliserColonnes();
 
                 filtreActif = "Tous";
+                this.Text = $"MÃ©dia-Tech - {contenus.Rows.Count} contenu(s)";
             }
             catch (Exception ex)
             {
@@ -117,9 +113,49 @@ namespace WinFormsmedia_tech
             }
         }
 
+        private void PersonnaliserColonnes()
+        {
+            if (dataGridViewCatalogue.Columns.Count > 0)
+            {
+                // Personnaliser les en-tÃªtes
+                if (dataGridViewCatalogue.Columns.Contains("id"))
+                    dataGridViewCatalogue.Columns["id"].HeaderText = "ID";
+
+                if (dataGridViewCatalogue.Columns.Contains("titre"))
+                    dataGridViewCatalogue.Columns["titre"].HeaderText = "Titre";
+
+                if (dataGridViewCatalogue.Columns.Contains("auteur"))
+                    dataGridViewCatalogue.Columns["auteur"].HeaderText = "Auteur";
+
+                if (dataGridViewCatalogue.Columns.Contains("editeur"))
+                    dataGridViewCatalogue.Columns["editeur"].HeaderText = "Ã‰diteur";
+
+                if (dataGridViewCatalogue.Columns.Contains("date_publication"))
+                {
+                    dataGridViewCatalogue.Columns["date_publication"].HeaderText = "Date de publication";
+                    dataGridViewCatalogue.Columns["date_publication"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                }
+
+                if (dataGridViewCatalogue.Columns.Contains("quantite"))
+                    dataGridViewCatalogue.Columns["quantite"].HeaderText = "QuantitÃ©";
+
+                if (dataGridViewCatalogue.Columns.Contains("categories"))
+                    dataGridViewCatalogue.Columns["categories"].HeaderText = "CatÃ©gories";
+
+                if (dataGridViewCatalogue.Columns.Contains("nombre_page"))
+                    dataGridViewCatalogue.Columns["nombre_page"].HeaderText = "Nb Pages";
+
+                if (dataGridViewCatalogue.Columns.Contains("nombre_morceau"))
+                    dataGridViewCatalogue.Columns["nombre_morceau"].HeaderText = "Nb Morceaux";
+
+                if (dataGridViewCatalogue.Columns.Contains("duree_minutes"))
+                    dataGridViewCatalogue.Columns["duree_minutes"].HeaderText = "DurÃ©e (min)";
+            }
+        }
+
         private void DefinirBoutonActif(Button boutonActif)
         {
-            // Réinitialiser tous les boutons de filtre
+            // RÃ©initialiser tous les boutons de filtre
             btn_filter1.BackColor = SystemColors.Control;
             btn_filter1.ForeColor = SystemColors.ControlText;
             btn_filter2.BackColor = SystemColors.Control;
@@ -129,7 +165,7 @@ namespace WinFormsmedia_tech
             btn_filter4.BackColor = SystemColors.Control;
             btn_filter4.ForeColor = SystemColors.ControlText;
 
-            // Mettre en évidence le bouton actif
+            // Mettre en Ã©vidence le bouton actif
             boutonActif.BackColor = Color.Black;
             boutonActif.ForeColor = Color.White;
         }
@@ -139,6 +175,7 @@ namespace WinFormsmedia_tech
         {
             ChargerTousLesContenus();
             DefinirBoutonActif(btn_filter1);
+            filtreActif = "Tous";
         }
 
         // Bouton "Livres"
@@ -148,11 +185,11 @@ namespace WinFormsmedia_tech
             {
                 DataTable livres = repo.GetLivres();
                 dataGridViewCatalogue.DataSource = livres;
+                PersonnaliserColonnes();
                 filtreActif = "Livres";
                 DefinirBoutonActif(btn_filter2);
 
-                MessageBox.Show($"{livres.Rows.Count} livre(s) trouvé(s)",
-                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Text = $"MÃ©dia-Tech - {livres.Rows.Count} livre(s)";
             }
             catch (Exception ex)
             {
@@ -168,11 +205,11 @@ namespace WinFormsmedia_tech
             {
                 DataTable cds = repo.GetCDAudio();
                 dataGridViewCatalogue.DataSource = cds;
+                PersonnaliserColonnes();
                 filtreActif = "CD Audio";
                 DefinirBoutonActif(btn_filter3);
 
-                MessageBox.Show($"{cds.Rows.Count} CD Audio trouvé(s)",
-                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Text = $"MÃ©dia-Tech - {cds.Rows.Count} CD Audio trouvÃ©(s)";
             }
             catch (Exception ex)
             {
@@ -188,11 +225,11 @@ namespace WinFormsmedia_tech
             {
                 DataTable dvds = repo.GetDVD();
                 dataGridViewCatalogue.DataSource = dvds;
+                PersonnaliserColonnes();
                 filtreActif = "DVD";
                 DefinirBoutonActif(btn_filter4);
 
-                MessageBox.Show($"{dvds.Rows.Count} DVD/Blu-Ray trouvé(s)",
-                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Text = $"MÃ©dia-Tech - {dvds.Rows.Count} DVD/Blu-Ray trouvÃ©(s)";
             }
             catch (Exception ex)
             {
@@ -201,26 +238,27 @@ namespace WinFormsmedia_tech
             }
         }
 
-        // Bouton "Découvrir la Bibliothèque"
+        // Bouton "DÃ©couvrir la BibliothÃ¨que"
         private void btn_decouverte(object sender, EventArgs e)
         {
-            // Faire défiler vers le catalogue
+            // Faire dÃ©filer vers le catalogue
             dataGridViewCatalogue.Focus();
             ChargerTousLesContenus();
         }
 
-        // Bouton "Créer un compte"
+        // Bouton "CrÃ©er un compte"
         private void btn_creer_compte(object sender, EventArgs e)
         {
-            MessageBox.Show("Fonctionnalité de création de compte à venir !",
+            MessageBox.Show("FonctionnalitÃ© de crÃ©ation de compte Ã  venir !\n\n" +
+                          "Vous pourrez bientÃ´t :\n" +
+                          "- CrÃ©er votre compte membre\n" +
+                          "- Emprunter jusqu'Ã  5 contenus\n" +
+                          "- Consulter votre historique\n" +
+                          "- Laisser des avis",
                 "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // TODO: Ouvrir un formulaire d'inscription
-            // InscriptionForm inscriptionForm = new InscriptionForm();
-            // inscriptionForm.ShowDialog();
         }
 
-        // Recherche en temps réel
+        // Recherche en temps rÃ©el
         private void txtRecherche_TextChanged(object sender, EventArgs e)
         {
             string recherche = txtRecherche.Text.Trim();
@@ -246,7 +284,6 @@ namespace WinFormsmedia_tech
             }
             else
             {
-                // Effectuer la recherche
                 RechercherContenu(recherche);
             }
         }
@@ -257,9 +294,9 @@ namespace WinFormsmedia_tech
             {
                 DataTable resultats = repo.SearchContenu(recherche);
                 dataGridViewCatalogue.DataSource = resultats;
+                PersonnaliserColonnes();
 
-                // Afficher le nombre de résultats dans la barre de titre ou un label
-                this.Text = $"Média-Tech - {resultats.Rows.Count} résultat(s) trouvé(s)";
+                this.Text = $"MÃ©dia-Tech - {resultats.Rows.Count} rÃ©sultat(s) pour '{recherche}'";
             }
             catch (Exception ex)
             {
@@ -268,34 +305,45 @@ namespace WinFormsmedia_tech
             }
         }
 
-        // Tri des résultats
+        // Tri des rÃ©sultats
         private void box_trier_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dataGridViewCatalogue.DataSource == null)
                 return;
 
-            DataTable dt = (DataTable)dataGridViewCatalogue.DataSource;
-
-            switch (box_trier.SelectedIndex)
+            try
             {
-                case 0: // Titre (A-Z)
-                    dt.DefaultView.Sort = "titre ASC";
-                    break;
-                case 1: // Titre (Z-A)
-                    dt.DefaultView.Sort = "titre DESC";
-                    break;
-                case 2: // Auteur (A-Z)
-                    dt.DefaultView.Sort = "auteur ASC";
-                    break;
-                case 3: // Date de publication
-                    dt.DefaultView.Sort = "date_publication DESC";
-                    break;
-                case 4: // Disponibilité
-                    dt.DefaultView.Sort = "quantite DESC";
-                    break;
-            }
+                DataTable dt = (DataTable)dataGridViewCatalogue.DataSource;
 
-            dataGridViewCatalogue.DataSource = dt;
+                switch (box_trier.SelectedIndex)
+                {
+                    case 0: // Titre (A-Z)
+                        dt.DefaultView.Sort = "titre ASC";
+                        break;
+                    case 1: // Titre (Z-A)
+                        dt.DefaultView.Sort = "titre DESC";
+                        break;
+                    case 2: // Auteur (A-Z)
+                        dt.DefaultView.Sort = "auteur ASC";
+                        break;
+                    case 3: // Date de publication (rÃ©cent)
+                        dt.DefaultView.Sort = "date_publication DESC";
+                        break;
+                    case 4: // Date de publication (ancien)
+                        dt.DefaultView.Sort = "date_publication ASC";
+                        break;
+                    case 5: // DisponibilitÃ©
+                        dt.DefaultView.Sort = "quantite DESC";
+                        break;
+                }
+
+                dataGridViewCatalogue.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors du tri : {ex.Message}",
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Filtre par genre via ComboBox
@@ -312,6 +360,9 @@ namespace WinFormsmedia_tech
                     string genre = box_genre.SelectedItem.ToString();
                     DataTable resultats = repo.GetContenusByCategorie(genre);
                     dataGridViewCatalogue.DataSource = resultats;
+                    PersonnaliserColonnes();
+
+                    this.Text = $"MÃ©dia-Tech - {resultats.Rows.Count} contenu(s) dans '{genre}'";
                 }
                 catch (Exception ex)
                 {
@@ -323,7 +374,7 @@ namespace WinFormsmedia_tech
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            // Méthode générée par le designer - peut rester vide ou être supprimée
+            // MÃ©thode gÃ©nÃ©rÃ©e par le designer
         }
 
         private void ImageAccueil1_Click(object sender, EventArgs e)
@@ -333,21 +384,47 @@ namespace WinFormsmedia_tech
 
         private void label4_Click(object sender, EventArgs e)
         {
-            // Méthode générée par le designer - peut rester vide
+            // MÃ©thode gÃ©nÃ©rÃ©e par le designer
         }
 
         private void dataGridViewCatalogue_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Optionnel : Afficher les détails du contenu sélectionné
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = dataGridViewCatalogue.Rows[e.RowIndex];
-                string titre = row.Cells["titre"].Value?.ToString();
-                string auteur = row.Cells["auteur"].Value?.ToString();
-                string categorie = row.Cells["categorie"].Value?.ToString();
+                try
+                {
+                    DataGridViewRow row = dataGridViewCatalogue.Rows[e.RowIndex];
+                    int idContenu = Convert.ToInt32(row.Cells["id"].Value);
+                    string titre = row.Cells["titre"].Value?.ToString() ?? "N/A";
+                    string auteur = row.Cells["auteur"].Value?.ToString() ?? "N/A";
+                    string editeur = row.Cells["editeur"].Value?.ToString() ?? "N/A";
+                    string categories = row.Cells["categories"].Value?.ToString() ?? "Non catÃ©gorisÃ©";
+                    int quantite = Convert.ToInt32(row.Cells["quantite"].Value);
+                    string datePubli = row.Cells["date_publication"].Value != DBNull.Value
+                        ? Convert.ToDateTime(row.Cells["date_publication"].Value).ToString("dd/MM/yyyy")
+                        : "N/A";
 
-                MessageBox.Show($"Titre : {titre}\nAuteur : {auteur}\nCatégorie : {categorie}",
-                    "Détails du contenu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // VÃ©rifier la disponibilitÃ©
+                    bool disponible = repo.IsContenuDisponible(idContenu);
+                    string statutDispo = disponible ? "âœ“ Disponible" : "âœ— Non disponible";
+
+                    string message = $"ðŸ“š DÃ‰TAILS DU CONTENU\n\n" +
+                                   $"Titre : {titre}\n" +
+                                   $"Auteur : {auteur}\n" +
+                                   $"Ã‰diteur : {editeur}\n" +
+                                   $"CatÃ©gories : {categories}\n" +
+                                   $"Date de publication : {datePubli}\n" +
+                                   $"QuantitÃ© en stock : {quantite}\n" +
+                                   $"Statut : {statutDispo}";
+
+                    MessageBox.Show(message, "DÃ©tails du contenu",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors de l'affichage des dÃ©tails : {ex.Message}",
+                        "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
