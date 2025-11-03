@@ -1,5 +1,5 @@
-﻿
-namespace WinFormsmedia_tech
+﻿namespace WinFormsmedia_tech
+
 {
     partial class AccueilForm
     {
