@@ -194,6 +194,7 @@
             linkLabelConnexion.TabStop = true;
             linkLabelConnexion.Text = "Connectez-vous !";
             linkLabelConnexion.VisitedLinkColor = Color.Red;
+            linkLabelConnexion.LinkClicked += linkLabelConnexion_LinkClicked;
             // 
             // InscriptionForm
             // 

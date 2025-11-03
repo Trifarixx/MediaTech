@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace WinFormsmedia_tech
 {
@@ -20,6 +21,13 @@ namespace WinFormsmedia_tech
         private void InscriptionForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabelConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ConnexionForm Connexion = new ConnexionForm();
+            Connexion.Show();
+            this.Hide();
         }
     }
 }

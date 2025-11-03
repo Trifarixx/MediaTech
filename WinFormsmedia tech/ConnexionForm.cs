@@ -16,7 +16,7 @@ namespace WinFormsmedia_tech
         {
             InitializeComponent();
 
-             
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -37,6 +37,13 @@ namespace WinFormsmedia_tech
         private void label1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabelInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            InscriptionForm Inscription = new InscriptionForm();
+            Inscription.Show();
+            this.Hide();
         }
     }
 }
