@@ -27,11 +27,6 @@ namespace WinFormsmedia_tech
 
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Disponible_Click(object sender, EventArgs e)
         {
 
@@ -66,66 +61,126 @@ namespace WinFormsmedia_tech
         {
         }
 
+        private void label7_Click(object sender, EventArgs e)
+        {
 
-            private void label1_Click(object sender, EventArgs e)
-            {
+        }
 
-            }
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-            private void label2_Click(object sender, EventArgs e)
-            {
+        }
 
-            }
+        private void ImageLivre_Click(object sender, EventArgs e)
+        {
 
-            private void label5_Click(object sender, EventArgs e)
-            {
+        }
 
-            }
+        private void InfoGeneral_Click(object sender, EventArgs e)
+        {
 
-            private void label3_Click(object sender, EventArgs e)
-            {
+        }
 
-            }
+        private void Auteur_Click(object sender, EventArgs e)
+        {
 
-            private void label7_Click(object sender, EventArgs e)
-            {
+        }
+        private void txtAuteur(object sender, EventArgs e)
+        {
 
-            }
+        }
 
-            private void label6_Click(object sender, EventArgs e)
-            {
+        private void Editeur(object sender, EventArgs e)
+        {
 
-            }
+        }
+        private void txtEditeur(object sender, EventArgs e)
 
-            private void label8_Click(object sender, EventArgs e)
-            {
+        {
 
-            }
 
-            private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-            {
+        }
 
-            }
+        private void Langue_Click(object sender, EventArgs e)
+        {
 
-            private void label9_Click(object sender, EventArgs e)
-            {
+        }
+        private void txtLangue(object sender, EventArgs e)
+        {
 
-            }
+        }
 
-            private void label10_Click(object sender, EventArgs e)
-            {
 
-            }
+        private void DateSortie_Click(object sender, EventArgs e)
+        {
 
-            private void label11_Click(object sender, EventArgs e)
-            {
+        }
+        private void txtDateSortie(object sender, EventArgs e)
+        {
 
-            }
+        }
 
-            private void label12_Click(object sender, EventArgs e)
-            {
+        private void ISBN(object sender, EventArgs e)
+        {
 
-            }
+        }
+        private void txtISBN(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Genre(object sender, EventArgs e)
+        {
+
+        }
+        private void txtGenre(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InfoLivre_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NbPages_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void txtNbPages(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Format_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void txtFormat(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Collection_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void txtCollection(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Resume_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtResume(object sender, EventArgs e)
+        {
+
         }
     }
+
+
+}
 

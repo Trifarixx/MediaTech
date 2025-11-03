@@ -79,6 +79,7 @@ namespace WinFormsmedia_tech
         private void btnSeConnecter_Click(object sender, EventArgs e)
         {
 
+
         }
         private void btnAccueil_Click(object sender, EventArgs e)
         {
