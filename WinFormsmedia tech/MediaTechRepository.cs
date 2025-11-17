@@ -2,12 +2,58 @@
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace WinFormsmedia_tech
 {
     internal class MediaTechRepository
     {
         private readonly string connectionString = "Data Source=localhost;Initial Catalog=MediaTech;Integrated Security=True;TrustServerCertificate=True;";
+
+        private const int SaltSize = 16; // 16 octets = 128 bits
+        private const int HashSize = 32; // 32 octets = 256 bits (pour SHA256)
+        private const int Iterations = 10000; // Nombre d'itérations pour PBKDF2
+
+        private byte[] GenerateSalt()
+        {
+            byte[] salt = new byte[SaltSize];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+            return salt;
+        }
+
+        private bool VerifyPassword(string password, byte[] storedHash, byte[] storedSalt)
+        {
+            // Hache le mot de passe fourni avec le *même* sel
+            byte[] newHash = HashPassword(password, storedSalt);
+
+            // Compare les deux hachages en temps constant pour éviter les attaques temporelles
+            if (newHash.Length != storedHash.Length)
+            {
+                return false;
+            }
+
+            uint diff = (uint)newHash.Length ^ (uint)storedHash.Length;
+            for (int i = 0; i < newHash.Length; i++)
+            {
+                diff |= (uint)(newHash[i] ^ storedHash[i]);
+            }
+            return diff == 0;
+        }
+
+
+        private byte[] HashPassword(string password, byte[] salt)
+        {
+            // Utilise PBKDF2 avec SHA-256
+            using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256))
+            {
+                return pbkdf2.GetBytes(HashSize);
+            }
+        }
+
 
         // Récupérer tous les contenus avec leurs catégories
         public DataTable GetAllContenus()
@@ -393,6 +439,12 @@ namespace WinFormsmedia_tech
                 return false;
             }
 
+            // 1. Générer le sel et le hachage
+            byte[] salt = GenerateSalt();
+            byte[] hash = HashPassword(motDePasse, salt);
+
+
+
             // Créer d'abord un avis lié à un contenu existant
             string idAvis = Guid.NewGuid().ToString();
             string queryAvis = @"
@@ -400,7 +452,7 @@ namespace WinFormsmedia_tech
                 VALUES (@idAvis, 'Profil créé', 'Compte membre', 0, @idContenu)";
 
             string queryMembre = @"
-                INSERT INTO Membre (id, nom, prenom, email, date_inscription, id_1, mot_de_passe)
+                INSERT INTO Membre (id, nom, prenom, email, date_inscription, id_1, PasswordHash, PasswordSalt)
                 VALUES (
                     (SELECT ISNULL(MAX(id), 0) + 1 FROM Membre),
                     @nom,
@@ -408,7 +460,8 @@ namespace WinFormsmedia_tech
                     @email,
                     @dateInscription,
                     @idAvis,
-                    @motDePasse 
+                    @PasswordHash, 
+                    @PasswordSalt
                 )";
 
             try
@@ -436,7 +489,8 @@ namespace WinFormsmedia_tech
                                 cmdMembre.Parameters.AddWithValue("@email", email);
                                 cmdMembre.Parameters.AddWithValue("@dateInscription", DateTime.Now.Date);
                                 cmdMembre.Parameters.AddWithValue("@idAvis", idAvis);
-                                cmdMembre.Parameters.AddWithValue("@motDePasse", motDePasse);
+                                cmdMembre.Parameters.AddWithValue("@PasswordHash", hash);
+                                cmdMembre.Parameters.AddWithValue("@PasswordSalt", salt);
                                 cmdMembre.ExecuteNonQuery();
                             }
 
@@ -488,10 +542,11 @@ namespace WinFormsmedia_tech
             prenom = "";
             message = "";
 
+            // 1. Mettre à jour la requête (remplacer mot_de_passe par les nouvelles colonnes)
             string query = @"
-        SELECT id, nom, prenom, mot_de_passe
-        FROM Membre 
-        WHERE email = @email";
+                SELECT id, nom, prenom, PasswordHash, PasswordSalt
+                FROM Membre 
+                WHERE email = @email";
 
             try
             {
@@ -505,13 +560,24 @@ namespace WinFormsmedia_tech
                     {
                         if (reader.Read())
                         {
+                            // 2. Récupérer les informations
                             int id = reader.GetInt32(0);
                             nom = reader.GetString(1);
                             prenom = reader.GetString(2);
-                            string motDePasseStocke = reader.IsDBNull(3) ? "" : reader.GetString(3);
 
-                            // Vérifier le mot de passe
-                            if (motDePasseStocke == motDePasse)
+                            // Gérer les cas où les colonnes sont NULL (pour les anciens comptes)
+                            if (reader.IsDBNull(3) || reader.IsDBNull(4))
+                            {
+                                message = "Erreur de configuration du compte (hachage manquant).";
+                                return 0;
+                            }
+
+                            // LIRE EN TANT QUE byte[] (ET NON GetString)
+                            byte[] storedHash = (byte[])reader["PasswordHash"];
+                            byte[] storedSalt = (byte[])reader["PasswordSalt"];
+
+                            // 3. Vérifier le mot de passe
+                            if (VerifyPassword(motDePasse, storedHash, storedSalt))
                             {
                                 message = "Connexion réussie !";
                                 return id;
@@ -532,6 +598,8 @@ namespace WinFormsmedia_tech
             }
             catch (Exception ex)
             {
+                // Si vous avez encore une erreur de "cast" ici,
+                // vérifiez que vos colonnes s'appellent bien PasswordHash et PasswordSalt
                 message = $"Erreur de connexion : {ex.Message}";
                 return 0;
             }

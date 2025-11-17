@@ -48,6 +48,7 @@
             box_genre = new ComboBox();
             box_trier = new ComboBox();
             dataGridViewCatalogue = new DataGridView();
+            boutonLireDVD = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).BeginInit();
             panel2.SuspendLayout();
@@ -275,11 +276,22 @@
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
             // 
+            // boutonLireDVD
+            // 
+            boutonLireDVD.Location = new Point(166, 713);
+            boutonLireDVD.Name = "boutonLireDVD";
+            boutonLireDVD.Size = new Size(75, 23);
+            boutonLireDVD.TabIndex = 12;
+            boutonLireDVD.Text = "dvd";
+            boutonLireDVD.UseVisualStyleBackColor = true;
+            boutonLireDVD.Click += boutonLireDVD_Click;
+            // 
             // AccueilForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2547, 1159);
+            Controls.Add(boutonLireDVD);
             Controls.Add(dataGridViewCatalogue);
             Controls.Add(panel2);
             Controls.Add(btn_filter4);
@@ -326,5 +338,6 @@
         private TextBox txtRecherche;
         private Button button2;
         private DataGridView dataGridViewCatalogue;
+        private Button boutonLireDVD;
     }
 }
