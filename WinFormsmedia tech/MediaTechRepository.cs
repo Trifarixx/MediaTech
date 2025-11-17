@@ -480,16 +480,16 @@ namespace WinFormsmedia_tech
         }
 
         // Connecter un membre (retourne l'ID du membre si succès, 0 sinon)
-        public int ConnecterMembre(string email, out string nom, out string prenom, out string message)
+        public int ConnecterMembre(string email, string motDePasse, out string nom, out string prenom, out string message)
         {
             nom = "";
             prenom = "";
             message = "";
 
             string query = @"
-                SELECT id, nom, prenom 
-                FROM Membre 
-                WHERE email = @email";
+        SELECT id, nom, prenom, mot_de_passe
+        FROM Membre 
+        WHERE email = @email";
 
             try
             {
@@ -506,8 +506,19 @@ namespace WinFormsmedia_tech
                             int id = reader.GetInt32(0);
                             nom = reader.GetString(1);
                             prenom = reader.GetString(2);
-                            message = "Connexion réussie !";
-                            return id;
+                            string motDePasseStocke = reader.IsDBNull(3) ? "" : reader.GetString(3);
+
+                            // Vérifier le mot de passe
+                            if (motDePasseStocke == motDePasse)
+                            {
+                                message = "Connexion réussie !";
+                                return id;
+                            }
+                            else
+                            {
+                                message = "Mot de passe incorrect.";
+                                return 0;
+                            }
                         }
                         else
                         {
@@ -548,4 +559,4 @@ namespace WinFormsmedia_tech
             }
         }
     }
-}
+}   
