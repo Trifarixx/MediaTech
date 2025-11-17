@@ -10,6 +10,10 @@ namespace WinFormsmedia_tech
         private MediaTechRepository repo;
         private string filtreActif = "Tous";
 
+        public int IdMembreConnecte { get; internal set; }
+        public string NomMembreConnecte { get; internal set; }
+        public string PrenomMembreConnecte { get; internal set; }
+
         public AccueilForm()
         {
             InitializeComponent();

@@ -99,7 +99,7 @@
             textBoxNom.Name = "textBoxNom";
             textBoxNom.Size = new Size(256, 46);
             textBoxNom.TabIndex = 12;
-            textBoxNom.UseSystemPasswordChar = true;
+            textBoxNom.UseSystemPasswordChar = false;
             // 
             // textBoxPrenom
             // 
@@ -194,7 +194,6 @@
             linkLabelConnexion.TabStop = true;
             linkLabelConnexion.Text = "Connectez-vous !";
             linkLabelConnexion.VisitedLinkColor = Color.Red;
-            linkLabelConnexion.LinkClicked += linkLabelConnexion_LinkClicked;
             // 
             // InscriptionForm
             // 

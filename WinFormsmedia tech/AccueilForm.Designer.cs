@@ -48,12 +48,10 @@
             box_genre = new ComboBox();
             box_trier = new ComboBox();
             dataGridViewCatalogue = new DataGridView();
-            videoView1 = new LibVLCSharp.WinForms.VideoView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCatalogue).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)videoView1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -277,22 +275,11 @@
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
             // 
-            // videoView1
-            // 
-            videoView1.BackColor = Color.Black;
-            videoView1.Location = new Point(170, 92);
-            videoView1.MediaPlayer = null;
-            videoView1.Name = "videoView1";
-            videoView1.Size = new Size(75, 23);
-            videoView1.TabIndex = 12;
-            videoView1.Text = "videoView1";
-            // 
             // AccueilForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2547, 1159);
-            Controls.Add(videoView1);
             Controls.Add(dataGridViewCatalogue);
             Controls.Add(panel2);
             Controls.Add(btn_filter4);
@@ -314,7 +301,6 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCatalogue).EndInit();
-            ((System.ComponentModel.ISupportInitialize)videoView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -340,6 +326,5 @@
         private TextBox txtRecherche;
         private Button button2;
         private DataGridView dataGridViewCatalogue;
-        private LibVLCSharp.WinForms.VideoView videoView1;
     }
 }

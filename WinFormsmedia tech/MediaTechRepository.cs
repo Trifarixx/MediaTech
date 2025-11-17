@@ -7,7 +7,7 @@ namespace WinFormsmedia_tech
 {
     internal class MediaTechRepository
     {
-        string connectionString = @"Server=172.16.119.32,1433;Database=MediaTech;User Id=tho;Password=chpuk;Encrypt=False;";
+        private readonly string connectionString = "Data Source=localhost;Initial Catalog=MediaTech;Integrated Security=True;TrustServerCertificate=True;";
 
         // Récupérer tous les contenus avec leurs catégories
         public DataTable GetAllContenus()
@@ -344,6 +344,207 @@ namespace WinFormsmedia_tech
             catch
             {
                 return false;
+            }
+        }
+
+        // ===== GESTION DES MEMBRES =====
+
+        // Créer un nouveau membre
+        public bool CreerMembre(string nom, string prenom, string email, string motDePasse, out string message)
+        {
+            message = "";
+
+            // Vérifier si l'email existe déjà
+            if (EmailExiste(email))
+            {
+                message = "Cet email est déjà utilisé.";
+                return false;
+            }
+
+            // Vérifier qu'il existe au moins un contenu dans la base
+            string queryCheckContenu = "SELECT TOP 1 id FROM Contenu";
+            int? premierContenuId = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(queryCheckContenu, connection))
+                    {
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            premierContenuId = Convert.ToInt32(result);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                message = "Erreur lors de la vérification de la base de données.";
+                return false;
+            }
+
+            // Si aucun contenu n'existe, on ne peut pas créer de membre à cause de la contrainte
+            if (!premierContenuId.HasValue)
+            {
+                message = "Impossible de créer un compte : la base de données doit contenir au moins un contenu.";
+                return false;
+            }
+
+            // Créer d'abord un avis lié à un contenu existant
+            string idAvis = Guid.NewGuid().ToString();
+            string queryAvis = @"
+                INSERT INTO Avis (id, titre, commentaire, note, id_1)
+                VALUES (@idAvis, 'Profil créé', 'Compte membre', 0, @idContenu)";
+
+            string queryMembre = @"
+                INSERT INTO Membre (id, nom, prenom, email, date_inscription, id_1)
+                VALUES (
+                    (SELECT ISNULL(MAX(id), 0) + 1 FROM Membre),
+                    @nom,
+                    @prenom,
+                    @email,
+                    @dateInscription,
+                    @idAvis
+                )";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Créer l'avis
+                            using (SqlCommand cmdAvis = new SqlCommand(queryAvis, connection, transaction))
+                            {
+                                cmdAvis.Parameters.AddWithValue("@idAvis", idAvis);
+                                cmdAvis.Parameters.AddWithValue("@idContenu", premierContenuId.Value);
+                                cmdAvis.ExecuteNonQuery();
+                            }
+
+                            // Créer le membre
+                            using (SqlCommand cmdMembre = new SqlCommand(queryMembre, connection, transaction))
+                            {
+                                cmdMembre.Parameters.AddWithValue("@nom", nom);
+                                cmdMembre.Parameters.AddWithValue("@prenom", prenom);
+                                cmdMembre.Parameters.AddWithValue("@email", email);
+                                cmdMembre.Parameters.AddWithValue("@dateInscription", DateTime.Now.Date);
+                                cmdMembre.Parameters.AddWithValue("@idAvis", idAvis);
+                                cmdMembre.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                            message = "Compte créé avec succès !";
+                            return true;
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                message = $"Erreur lors de la création du compte : {ex.Message}";
+                return false;
+            }
+        }
+
+        // Vérifier si un email existe déjà
+        public bool EmailExiste(string email)
+        {
+            string query = "SELECT COUNT(*) FROM Membre WHERE email = @email";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+                    connection.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Connecter un membre (retourne l'ID du membre si succès, 0 sinon)
+        public int ConnecterMembre(string email, out string nom, out string prenom, out string message)
+        {
+            nom = "";
+            prenom = "";
+            message = "";
+
+            string query = @"
+                SELECT id, nom, prenom 
+                FROM Membre 
+                WHERE email = @email";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+                    connection.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            nom = reader.GetString(1);
+                            prenom = reader.GetString(2);
+                            message = "Connexion réussie !";
+                            return id;
+                        }
+                        else
+                        {
+                            message = "Email non trouvé.";
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                message = $"Erreur de connexion : {ex.Message}";
+                return 0;
+            }
+        }
+
+        // Récupérer les informations d'un membre
+        public DataTable GetMembreInfo(int idMembre)
+        {
+            string query = @"
+                SELECT 
+                    id,
+                    nom,
+                    prenom,
+                    email,
+                    date_inscription
+                FROM Membre
+                WHERE id = @idMembre";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@idMembre", idMembre);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
             }
         }
     }
