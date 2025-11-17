@@ -400,14 +400,15 @@ namespace WinFormsmedia_tech
                 VALUES (@idAvis, 'Profil créé', 'Compte membre', 0, @idContenu)";
 
             string queryMembre = @"
-                INSERT INTO Membre (id, nom, prenom, email, date_inscription, id_1)
+                INSERT INTO Membre (id, nom, prenom, email, date_inscription, id_1, mot_de_passe)
                 VALUES (
                     (SELECT ISNULL(MAX(id), 0) + 1 FROM Membre),
                     @nom,
                     @prenom,
                     @email,
                     @dateInscription,
-                    @idAvis
+                    @idAvis,
+                    @motDePasse 
                 )";
 
             try
@@ -435,6 +436,7 @@ namespace WinFormsmedia_tech
                                 cmdMembre.Parameters.AddWithValue("@email", email);
                                 cmdMembre.Parameters.AddWithValue("@dateInscription", DateTime.Now.Date);
                                 cmdMembre.Parameters.AddWithValue("@idAvis", idAvis);
+                                cmdMembre.Parameters.AddWithValue("@motDePasse", motDePasse);
                                 cmdMembre.ExecuteNonQuery();
                             }
 
