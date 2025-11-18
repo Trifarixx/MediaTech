@@ -45,14 +45,16 @@
             videoView1.Location = new Point(0, 0);
             videoView1.MediaPlayer = null;
             videoView1.Name = "videoView1";
-            videoView1.Size = new Size(1738, 933);
+            videoView1.Size = new Size(1738, 973);
             videoView1.TabIndex = 0;
             videoView1.Text = "videoView1";
             // 
             // btn_PlayPause
             // 
+            btn_PlayPause.Anchor = AnchorStyles.Bottom;
             btn_PlayPause.FlatStyle = FlatStyle.Flat;
-            btn_PlayPause.Location = new Point(849, 28);
+            btn_PlayPause.Image = Properties.Resources.Play;
+            btn_PlayPause.Location = new Point(800, 0);
             btn_PlayPause.Name = "btn_PlayPause";
             btn_PlayPause.Size = new Size(40, 40);
             btn_PlayPause.TabIndex = 1;
@@ -63,7 +65,8 @@
             // 
             btn_stop.Anchor = AnchorStyles.Bottom;
             btn_stop.FlatStyle = FlatStyle.Flat;
-            btn_stop.Location = new Point(895, 28);
+            btn_stop.Image = Properties.Resources.Stop;
+            btn_stop.Location = new Point(900, 0);
             btn_stop.Name = "btn_stop";
             btn_stop.Size = new Size(40, 40);
             btn_stop.TabIndex = 3;
@@ -79,9 +82,9 @@
             panelControls.Controls.Add(btn_stop);
             panelControls.Controls.Add(btn_PlayPause);
             panelControls.Dock = DockStyle.Bottom;
-            panelControls.Location = new Point(0, 933);
+            panelControls.Location = new Point(0, 973);
             panelControls.Name = "panelControls";
-            panelControls.Size = new Size(1738, 80);
+            panelControls.Size = new Size(1738, 40);
             panelControls.TabIndex = 4;
             // 
             // LecteurVideoForm

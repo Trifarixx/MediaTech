@@ -29,7 +29,7 @@ namespace WinFormsmedia_tech
             timerInactivite.Tick += TimerInactivite_Tick;
 
             timerSurveillanceSouris = new System.Windows.Forms.Timer();
-            timerSurveillanceSouris.Interval = 100; // Vérifie 10 fois par seconde
+            timerSurveillanceSouris.Interval = 100;
             timerSurveillanceSouris.Tick += TimerSurveillanceSouris_Tick;
 
             this.Load += LecteurVideoForm_Load;
@@ -46,7 +46,7 @@ namespace WinFormsmedia_tech
             // 2. Correction du style "S'affiche mal"
             // On ne met PAS le parent à videoView1 (ça cause des bugs graphiques)
             // On utilise une couleur unie propre
-            panelControls.BackColor = Color.FromArgb(30, 30, 30); // Gris très foncé
+            panelControls.BackColor = Color.FromArgb(15, 15, 15); 
 
             // S'assurer que le panel est bien au-dessus de la vidéo
             panelControls.BringToFront();
@@ -67,7 +67,6 @@ namespace WinFormsmedia_tech
             AfficherInterface();
         }
 
-        // --- SURVEILLANCE INTELLIGENTE DE LA SOURIS ---
 
         private void TimerSurveillanceSouris_Tick(object sender, EventArgs e)
         {
@@ -146,9 +145,9 @@ namespace WinFormsmedia_tech
         private void UpdateIcons()
         {
             if (_mediaPlayer.IsPlaying)
-                btn_PlayPause.Image = Properties.Resources.btn_pause;
+                btn_PlayPause.Image = Properties.Resources.Pause;
             else
-                btn_PlayPause.Image = Properties.Resources.btn_play;
+                btn_PlayPause.Image = Properties.Resources.Play;
         }
 
         // --- CHARGEMENT ET NETTOYAGE ---
