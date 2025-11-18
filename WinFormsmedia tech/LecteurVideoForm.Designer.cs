@@ -28,73 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             videoView1 = new LibVLCSharp.WinForms.VideoView();
-            btn_play = new Button();
+            btn_PlayPause = new Button();
             btn_stop = new Button();
-            btn_exit = new Button();
+            timerAutoHide = new System.Windows.Forms.Timer(components);
+            panelControls = new Panel();
             ((System.ComponentModel.ISupportInitialize)videoView1).BeginInit();
+            panelControls.SuspendLayout();
             SuspendLayout();
             // 
             // videoView1
             // 
             videoView1.BackColor = Color.Black;
-            videoView1.Location = new Point(-2, -1);
+            videoView1.Dock = DockStyle.Fill;
+            videoView1.Location = new Point(0, 0);
             videoView1.MediaPlayer = null;
             videoView1.Name = "videoView1";
-            videoView1.Size = new Size(2560, 1440);
+            videoView1.Size = new Size(1738, 933);
             videoView1.TabIndex = 0;
             videoView1.Text = "videoView1";
             // 
-            // btn_play
+            // btn_PlayPause
             // 
-            btn_play.Location = new Point(806, 978);
-            btn_play.Name = "btn_play";
-            btn_play.Size = new Size(75, 23);
-            btn_play.TabIndex = 1;
-            btn_play.Text = "Play";
-            btn_play.UseVisualStyleBackColor = true;
-            btn_play.Click += btn_play_Click;
+            btn_PlayPause.FlatStyle = FlatStyle.Flat;
+            btn_PlayPause.Image = Properties.Resources.btn_play;
+            btn_PlayPause.Location = new Point(849, 28);
+            btn_PlayPause.Name = "btn_PlayPause";
+            btn_PlayPause.Size = new Size(40, 40);
+            btn_PlayPause.TabIndex = 1;
+            btn_PlayPause.UseVisualStyleBackColor = true;
             // 
             // btn_stop
             // 
-            btn_stop.Location = new Point(606, 978);
+            btn_stop.Anchor = AnchorStyles.Bottom;
+            btn_stop.FlatStyle = FlatStyle.Flat;
+            btn_stop.Image = Properties.Resources.btn_stop;
+            btn_stop.Location = new Point(895, 28);
             btn_stop.Name = "btn_stop";
-            btn_stop.Size = new Size(75, 23);
-            btn_stop.TabIndex = 2;
-            btn_stop.Text = "Pause";
+            btn_stop.Size = new Size(40, 40);
+            btn_stop.TabIndex = 3;
             btn_stop.UseVisualStyleBackColor = true;
-            btn_stop.Click += btn_stop_Click;
             // 
-            // btn_exit
+            // timerAutoHide
             // 
-            btn_exit.Location = new Point(1651, 12);
-            btn_exit.Name = "btn_exit";
-            btn_exit.Size = new Size(75, 23);
-            btn_exit.TabIndex = 3;
-            btn_exit.Text = "Quitter";
-            btn_exit.UseVisualStyleBackColor = true;
-            btn_exit.Click += btn_exit_Click;
+            timerAutoHide.Interval = 3000;
+            // 
+            // panelControls
+            // 
+            panelControls.Controls.Add(btn_stop);
+            panelControls.Controls.Add(btn_PlayPause);
+            panelControls.Dock = DockStyle.Bottom;
+            panelControls.Location = new Point(0, 933);
+            panelControls.Name = "panelControls";
+            panelControls.Size = new Size(1738, 80);
+            panelControls.TabIndex = 4;
             // 
             // LecteurVideoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1738, 1013);
-            Controls.Add(btn_exit);
-            Controls.Add(btn_stop);
-            Controls.Add(btn_play);
             Controls.Add(videoView1);
+            Controls.Add(panelControls);
             Name = "LecteurVideoForm";
             Text = "LecteurVideoForm";
             ((System.ComponentModel.ISupportInitialize)videoView1).EndInit();
+            panelControls.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private LibVLCSharp.WinForms.VideoView videoView1;
-        private Button btn_play;
+        private Button btn_PlayPause;
         private Button btn_stop;
-        private Button btn_exit;
+        private System.Windows.Forms.Timer timerAutoHide;
+        private Panel panelControls;
     }
 }
