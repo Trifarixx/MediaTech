@@ -52,22 +52,22 @@
             // btn_PlayPause
             // 
             btn_PlayPause.FlatStyle = FlatStyle.Flat;
-            btn_PlayPause.Image = Properties.Resources.btn_play;
             btn_PlayPause.Location = new Point(849, 28);
             btn_PlayPause.Name = "btn_PlayPause";
             btn_PlayPause.Size = new Size(40, 40);
             btn_PlayPause.TabIndex = 1;
+            btn_PlayPause.TextImageRelation = TextImageRelation.ImageAboveText;
             btn_PlayPause.UseVisualStyleBackColor = true;
             // 
             // btn_stop
             // 
             btn_stop.Anchor = AnchorStyles.Bottom;
             btn_stop.FlatStyle = FlatStyle.Flat;
-            btn_stop.Image = Properties.Resources.btn_stop;
             btn_stop.Location = new Point(895, 28);
             btn_stop.Name = "btn_stop";
             btn_stop.Size = new Size(40, 40);
             btn_stop.TabIndex = 3;
+            btn_stop.TextImageRelation = TextImageRelation.ImageAboveText;
             btn_stop.UseVisualStyleBackColor = true;
             // 
             // timerAutoHide
