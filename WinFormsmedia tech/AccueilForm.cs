@@ -18,6 +18,15 @@ namespace WinFormsmedia_tech
         {
             InitializeComponent();
             repo = new MediaTechRepository();
+
+            HeaderControl header = new HeaderControl();
+            header.Dock = DockStyle.Top;
+            this.Controls.Add(header);
+            this.Controls.SetChildIndex(header, 0); // S'assurer que le header est au-dessus des autres contrôles
+            
+
+
+
         }
 
         private void AccueilForm_Load(object sender, EventArgs e)

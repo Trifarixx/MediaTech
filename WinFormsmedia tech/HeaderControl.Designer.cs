@@ -42,7 +42,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ControlDark;
+            panel1.BackColor = Color.FromArgb(75, 86, 93);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(Se_Connecter);
             panel1.Controls.Add(pictureBox1);
@@ -69,12 +69,12 @@
             // 
             // Se_Connecter
             // 
-            Se_Connecter.Location = new Point(2227, 2);
+            Se_Connecter.Location = new Point(2236, 6);
             Se_Connecter.Margin = new Padding(3, 2, 3, 2);
             Se_Connecter.Name = "Se_Connecter";
-            Se_Connecter.Size = new Size(215, 53);
+            Se_Connecter.Size = new Size(205, 45);
             Se_Connecter.TabIndex = 4;
-            Se_Connecter.Text = "Se_Connecter";
+            Se_Connecter.Text = "Se Connecter";
             Se_Connecter.UseVisualStyleBackColor = true;
             Se_Connecter.Click += btnSeConnecter_Click;
             // 
@@ -97,7 +97,7 @@
             A_propos.Name = "A_propos";
             A_propos.Size = new Size(152, 36);
             A_propos.TabIndex = 3;
-            A_propos.Text = "A_propos";
+            A_propos.Text = "A propos";
             A_propos.TextImageRelation = TextImageRelation.TextBeforeImage;
             A_propos.UseVisualStyleBackColor = true;
             A_propos.Click += btnApropos_Click;

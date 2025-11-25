@@ -9,7 +9,7 @@ namespace WinFormsmedia_tech
 {
     internal class MediaTechRepository
     {
-        private readonly string connectionString = "Data Source=localhost;Initial Catalog=MediaTech;Integrated Security=True;TrustServerCertificate=True;";
+        string connectionString = @"Server=172.16.119.32,1433;Database=MediaTech;User Id=flav;Password=chpuk;Encrypt=False;";
 
         private const int SaltSize = 16; // 16 octets = 128 bits
         private const int HashSize = 32; // 32 octets = 256 bits (pour SHA256)

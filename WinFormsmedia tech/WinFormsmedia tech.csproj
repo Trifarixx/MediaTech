@@ -17,6 +17,9 @@
     <PackageReference Include="LibVLCSharp" Version="3.9.4" />
     <PackageReference Include="LibVLCSharp.WinForms" Version="3.9.4" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0-preview2.25289.6" />
+    <PackageReference Include="IronPdf" Version="2025.11.12" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+    <PackageReference Include="Syncfusion.PdfViewer.Windows" Version="31.2.10" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     <PackageReference Include="MySql.Data" Version="9.5.0" />
     <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
