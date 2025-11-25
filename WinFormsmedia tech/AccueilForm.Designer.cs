@@ -59,7 +59,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.SkyBlue;
+            label1.BackColor = Color.FromArgb(61, 173, 213);
             label1.Font = new Font("DM Sans 14pt SemiBold", 50.2499924F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(159, 11);
             label1.Name = "label1";
@@ -69,7 +69,7 @@
             // 
             // label2
             // 
-            label2.BackColor = Color.SkyBlue;
+            label2.BackColor = Color.FromArgb(61, 173, 213);
             label2.Font = new Font("DM Sans 14pt", 20F, FontStyle.Italic);
             label2.Location = new Point(163, 100);
             label2.Name = "label2";
@@ -94,7 +94,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = Color.SkyBlue;
+            panel1.BackColor = Color.FromArgb(61, 173, 213);
             panel1.Controls.Add(ImageAccueil1);
             panel1.Controls.Add(btn_compte);
             panel1.Controls.Add(btn_decouvrir);

@@ -67,6 +67,7 @@ namespace WinFormsmedia_tech
                     c.date_publication,
                     c.quantite,
                     c.image_url,
+                    c.url_fichier,
                     l.nombre_page,        
                     cd.nombre_morceau,
                     cd.durée AS duree_cd,   
@@ -78,7 +79,7 @@ namespace WinFormsmedia_tech
                 LEFT JOIN DVD d ON c.id = d.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, 
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier,
                          l.nombre_page, cd.nombre_morceau, cd.durée, d.duree
                 ORDER BY c.titre";
 

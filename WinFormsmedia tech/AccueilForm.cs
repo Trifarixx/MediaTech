@@ -448,6 +448,11 @@ namespace WinFormsmedia_tech
                     string urlImage = "";
                     if (dataGridViewCatalogue.Columns.Contains("image_url"))
                         urlImage = row.Cells["image_url"].Value?.ToString();
+                    string urlFichier = "";
+                    if (dataGridViewCatalogue.Columns.Contains("url_fichier"))
+                    {
+                        urlFichier = row.Cells["url_fichier"].Value?.ToString();
+                    }
 
                     int? nbPages = null;
                     if (dataGridViewCatalogue.Columns.Contains("nombre_page") && row.Cells["nombre_page"].Value != DBNull.Value)
@@ -470,7 +475,7 @@ namespace WinFormsmedia_tech
 
                     PageArticleForm pageArticle = new PageArticleForm();
 
-                    pageArticle.ChargerDonnees(titre, auteur, editeur, categories, datePubli, urlImage, nbPages, nbMorceaux, dureeCd, dureeDvd);
+                    pageArticle.ChargerDonnees(titre, auteur, editeur, categories, datePubli, urlFichier, urlImage,nbPages, nbMorceaux, dureeCd, dureeDvd);
 
                     pageArticle.ShowDialog();
                 }
