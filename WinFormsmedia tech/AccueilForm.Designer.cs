@@ -61,7 +61,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.SkyBlue;
             label1.Font = new Font("DM Sans 14pt SemiBold", 50.2499924F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(149, 241);
+            label1.Location = new Point(159, 11);
             label1.Name = "label1";
             label1.Size = new Size(900, 89);
             label1.TabIndex = 0;
@@ -71,7 +71,7 @@
             // 
             label2.BackColor = Color.SkyBlue;
             label2.Font = new Font("DM Sans 14pt", 20F, FontStyle.Italic);
-            label2.Location = new Point(163, 330);
+            label2.Location = new Point(163, 100);
             label2.Name = "label2";
             label2.Size = new Size(838, 179);
             label2.TabIndex = 1;
@@ -83,7 +83,7 @@
             btn_decouvrir.FlatAppearance.BorderColor = Color.White;
             btn_decouvrir.Font = new Font("DM Sans 14pt Medium", 15F, FontStyle.Bold | FontStyle.Italic);
             btn_decouvrir.ForeColor = SystemColors.ButtonHighlight;
-            btn_decouvrir.Location = new Point(159, 291);
+            btn_decouvrir.Location = new Point(159, 263);
             btn_decouvrir.Name = "btn_decouvrir";
             btn_decouvrir.Size = new Size(346, 60);
             btn_decouvrir.TabIndex = 2;
@@ -98,7 +98,9 @@
             panel1.Controls.Add(ImageAccueil1);
             panel1.Controls.Add(btn_compte);
             panel1.Controls.Add(btn_decouvrir);
-            panel1.Location = new Point(-4, 231);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(0, 114);
             panel1.Name = "panel1";
             panel1.Size = new Size(2558, 366);
             panel1.TabIndex = 3;
@@ -120,7 +122,7 @@
             // btn_compte
             // 
             btn_compte.Font = new Font("DM Sans 14pt Medium", 15F, FontStyle.Italic);
-            btn_compte.Location = new Point(525, 291);
+            btn_compte.Location = new Point(511, 263);
             btn_compte.Name = "btn_compte";
             btn_compte.Size = new Size(311, 60);
             btn_compte.TabIndex = 3;
@@ -133,7 +135,7 @@
             label3.Anchor = AnchorStyles.Top;
             label3.AutoSize = true;
             label3.Font = new Font("DM Sans 14pt SemiBold", 50.2499924F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.Location = new Point(1045, 622);
+            label3.Location = new Point(1055, 534);
             label3.Name = "label3";
             label3.Size = new Size(568, 89);
             label3.TabIndex = 4;
@@ -143,7 +145,7 @@
             // 
             label4.Anchor = AnchorStyles.Top;
             label4.Font = new Font("DM Sans 14pt", 20F, FontStyle.Italic);
-            label4.Location = new Point(832, 711);
+            label4.Location = new Point(833, 642);
             label4.Name = "label4";
             label4.Size = new Size(1000, 76);
             label4.TabIndex = 5;
@@ -156,7 +158,7 @@
             btn_filter1.BackColor = SystemColors.ActiveCaptionText;
             btn_filter1.Font = new Font("DM Sans 14pt Medium", 15F, FontStyle.Bold | FontStyle.Italic);
             btn_filter1.ForeColor = SystemColors.ButtonHighlight;
-            btn_filter1.Location = new Point(872, 817);
+            btn_filter1.Location = new Point(877, 756);
             btn_filter1.Name = "btn_filter1";
             btn_filter1.Size = new Size(177, 48);
             btn_filter1.TabIndex = 6;
@@ -168,7 +170,7 @@
             // 
             btn_filter2.Anchor = AnchorStyles.Top;
             btn_filter2.Font = new Font("DM Sans 14pt Medium", 14.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_filter2.Location = new Point(1055, 817);
+            btn_filter2.Location = new Point(1055, 756);
             btn_filter2.Name = "btn_filter2";
             btn_filter2.Size = new Size(182, 48);
             btn_filter2.TabIndex = 7;
@@ -180,7 +182,7 @@
             // 
             btn_filter3.Anchor = AnchorStyles.Top;
             btn_filter3.Font = new Font("DM Sans 14pt Medium", 14.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_filter3.Location = new Point(1243, 817);
+            btn_filter3.Location = new Point(1243, 756);
             btn_filter3.Name = "btn_filter3";
             btn_filter3.Size = new Size(182, 48);
             btn_filter3.TabIndex = 8;
@@ -192,7 +194,7 @@
             // 
             btn_filter4.Anchor = AnchorStyles.Top;
             btn_filter4.Font = new Font("DM Sans 14pt Medium", 14.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_filter4.Location = new Point(1431, 817);
+            btn_filter4.Location = new Point(1431, 756);
             btn_filter4.Name = "btn_filter4";
             btn_filter4.Size = new Size(182, 48);
             btn_filter4.TabIndex = 9;
@@ -209,7 +211,7 @@
             panel2.Controls.Add(btn_filter);
             panel2.Controls.Add(box_genre);
             panel2.Controls.Add(box_trier);
-            panel2.Location = new Point(329, 915);
+            panel2.Location = new Point(332, 832);
             panel2.Name = "panel2";
             panel2.Size = new Size(1967, 105);
             panel2.TabIndex = 10;
@@ -301,8 +303,6 @@
             Controls.Add(btn_filter1);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(panel1);
             Font = new Font("DM Sans 14pt", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             Margin = new Padding(3, 2, 3, 2);
@@ -310,6 +310,7 @@
             Text = "Média_Tech";
             Load += AccueilForm_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

@@ -132,6 +132,7 @@
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top;
+            dataGridView1.BackgroundColor = Color.FromArgb(75, 86, 93);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);

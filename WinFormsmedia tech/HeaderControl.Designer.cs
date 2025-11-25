@@ -53,15 +53,15 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(2574, 55);
+            panel1.Size = new Size(2574, 87);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint_2;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(477, 18);
+            textBox1.Location = new Point(405, 38);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(965, 23);
+            textBox1.Size = new Size(1026, 23);
             textBox1.TabIndex = 5;
             textBox1.Click += btnSearch_Click;
             textBox1.TextChanged += textBox1_TextChanged_1;
@@ -69,7 +69,7 @@
             // 
             // Se_Connecter
             // 
-            Se_Connecter.Location = new Point(2236, 6);
+            Se_Connecter.Location = new Point(2184, 26);
             Se_Connecter.Margin = new Padding(3, 2, 3, 2);
             Se_Connecter.Name = "Se_Connecter";
             Se_Connecter.Size = new Size(205, 45);
@@ -81,10 +81,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(20, 0);
+            pictureBox1.Location = new Point(24, 0);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(232, 67);
+            pictureBox1.Size = new Size(263, 104);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -92,7 +92,7 @@
             // 
             // A_propos
             // 
-            A_propos.Location = new Point(1810, 10);
+            A_propos.Location = new Point(1795, 30);
             A_propos.Margin = new Padding(3, 2, 3, 2);
             A_propos.Name = "A_propos";
             A_propos.Size = new Size(152, 36);
@@ -106,7 +106,7 @@
             // 
             Accueil.BackColor = SystemColors.ActiveCaptionText;
             Accueil.ForeColor = SystemColors.ButtonHighlight;
-            Accueil.Location = new Point(1490, 10);
+            Accueil.Location = new Point(1490, 30);
             Accueil.Margin = new Padding(3, 2, 3, 2);
             Accueil.Name = "Accueil";
             Accueil.Size = new Size(156, 36);
@@ -117,7 +117,7 @@
             // 
             // Catalogue
             // 
-            Catalogue.Location = new Point(1652, 10);
+            Catalogue.Location = new Point(1652, 30);
             Catalogue.Margin = new Padding(3, 2, 3, 2);
             Catalogue.Name = "Catalogue";
             Catalogue.Size = new Size(137, 36);

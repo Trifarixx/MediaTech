@@ -67,8 +67,8 @@ namespace WinFormsmedia_tech
                     c.date_publication,
                     c.quantite,
                     c.image_url,
-                    l.nombre_page,          
-                    cd.nombre_morceau,      
+                    l.nombre_page,        
+                    cd.nombre_morceau,
                     cd.durée AS duree_cd,   
                     d.duree AS duree_dvd,
                     ISNULL(STRING_AGG(cat.nom_categorie, ', '), 'Non catégorisé') AS categories
