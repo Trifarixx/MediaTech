@@ -13,8 +13,9 @@ namespace WinFormsmedia_tech
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AccueilForm());
-
+            PageArticleForm page = new PageArticleForm();
+            page.Show();
+          
         }
     }
 }

@@ -59,5 +59,15 @@ namespace WinFormsmedia_tech.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap affiche__1_ {
+            get {
+                object obj = ResourceManager.GetObject("affiche (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
