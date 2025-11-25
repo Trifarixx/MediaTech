@@ -16,7 +16,7 @@ namespace WinFormsmedia_tech
             // see https://aka.ms/applicationconfiguration.
             Core.Initialize();
             ApplicationConfiguration.Initialize();
-            Application.Run(new ConnexionForm());
+            Application.Run(new AccueilForm());
         }
     }
 }

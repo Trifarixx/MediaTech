@@ -429,6 +429,7 @@ namespace WinFormsmedia_tech
                     string datePubli = row.Cells["date_publication"].Value != DBNull.Value
                         ? Convert.ToDateTime(row.Cells["date_publication"].Value).ToString("dd/MM/yyyy")
                         : "N/A";
+                    string urlImage = dataGridViewCatalogue.Rows[e.RowIndex].Cells["image_url"].Value?.ToString();
 
                     // Vérifier la disponibilité
                     bool disponible = repo.IsContenuDisponible(idContenu);
