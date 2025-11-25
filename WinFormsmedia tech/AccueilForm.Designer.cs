@@ -50,6 +50,7 @@
             box_trier = new ComboBox();
             dataGridViewCatalogue = new DataGridView();
             boutonLireDVD = new Button();
+            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).BeginInit();
             panel2.SuspendLayout();
@@ -279,7 +280,7 @@
             // 
             // boutonLireDVD
             // 
-            boutonLireDVD.Location = new Point(166, 713);
+            boutonLireDVD.Location = new Point(68, 864);
             boutonLireDVD.Name = "boutonLireDVD";
             boutonLireDVD.Size = new Size(75, 23);
             boutonLireDVD.TabIndex = 12;
@@ -287,11 +288,22 @@
             boutonLireDVD.UseVisualStyleBackColor = true;
             boutonLireDVD.Click += boutonLireDVD_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(163, 864);
+            button1.Name = "button1";
+            button1.Size = new Size(86, 23);
+            button1.TabIndex = 13;
+            button1.Text = "AfficherPdf";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnAfficherPDF;
+            // 
             // AccueilForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2547, 1159);
+            Controls.Add(button1);
             Controls.Add(boutonLireDVD);
             Controls.Add(dataGridViewCatalogue);
             Controls.Add(panel2);
@@ -340,5 +352,6 @@
         private Button button2;
         private DataGridView dataGridViewCatalogue;
         private Button boutonLireDVD;
+        private Button button1;
     }
 }

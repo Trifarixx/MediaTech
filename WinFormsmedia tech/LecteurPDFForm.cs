@@ -1,20 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PdfiumViewer;
+using IronPdf;
 using System.Windows.Forms;
+using System.Drawing;
+using System;
+
 
 namespace WinFormsmedia_tech
 {
-    public partial class LecteurPDFForm : Form
+    public partial class LecteurPdfForm : Form
     {
-        public LecteurPDFForm()
+        private Panel panelpdfViewer;
+        private PdfiumViewer.PdfViewer pdfViewer;
+        public LecteurPdfForm()
         {
             InitializeComponent();
+            InitializepdfViewer();
         }
+        public LecteurPdfForm(string cheminFichierPdf) : this()
+        {
+            LoadPDF(cheminFichierPdf);
+        }
+        private void InitializepdfViewer()
+        {
+            panelpdfViewer = new Panel();
+            panelpdfViewer.Dock = DockStyle.Fill;
+            this.Controls.Add(panelViewer);
+
+            pdfViewer = new PdfiumViewer.PdfViewer();
+            pdfViewer.Dock = DockStyle.Fill;
+            panelViewer.Controls.Add(pdfViewer);
+
+
+        }
+        public void LoadPDF(string cheminFichierPdf)
+        {
+            try
+            {
+                var document = PdfiumViewer.PdfDocument.Load("fichier.pdf");
+                pdfViewer.Document = document;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors du chargement du PDF : " + ex.Message);
+            }
+        }
+
     }
 }

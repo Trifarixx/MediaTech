@@ -23,7 +23,7 @@ namespace WinFormsmedia_tech
             header.Dock = DockStyle.Top;
             this.Controls.Add(header);
             this.Controls.SetChildIndex(header, 0); // S'assurer que le header est au-dessus des autres contrôles
-            
+
 
 
 
@@ -470,6 +470,15 @@ namespace WinFormsmedia_tech
             LecteurVideoForm playerForm = new LecteurVideoForm();
             playerForm.LoadMedia(cheminVideo);
             playerForm.Show();
+        }
+
+        private void btnAfficherPDF(object sender, EventArgs e)
+        {
+            string cheminPdf = "C:\\Users\\MESSAOUDI\\Downloads\\fichier.pdf";
+
+            LecteurPdfForm pdfForm = new LecteurPdfForm(cheminPdf);
+           
+            pdfForm.Show();
         }
     }
 
