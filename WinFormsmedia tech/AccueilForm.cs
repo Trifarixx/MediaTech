@@ -42,6 +42,9 @@ namespace WinFormsmedia_tech
 
             // Définir le bouton "Tous" comme actif par défaut
             DefinirBoutonActif(btn_filter1);
+
+            // Mettre à jour l'état de connexion
+            MettreAJourEtatConnexion();
         }
 
         private void ConfigurerDataGridView()
@@ -253,13 +256,32 @@ namespace WinFormsmedia_tech
         // Bouton "Créer un compte"
         private void btn_creer_compte(object sender, EventArgs e)
         {
-            MessageBox.Show("Fonctionnalité de création de compte à venir !\n\n" +
-                          "Vous pourrez bientôt :\n" +
-                          "- Créer votre compte membre\n" +
-                          "- Emprunter jusqu'à 5 contenus\n" +
-                          "- Consulter votre historique\n" +
-                          "- Laisser des avis",
-                "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            InscriptionForm inscription = new InscriptionForm();
+            inscription.Show();
+
+            this.Hide();
+
+            inscription.FormClosed += (s, args) =>
+            {
+                if (Application.OpenForms["ConnexionForm"] == null && !this.Visible)
+                {
+                    this.Show();
+                }
+            };
+        }
+
+        public void MettreAJourEtatConnexion()
+        {
+            if (IdMembreConnecte > 0)
+            {
+                if (btn_compte != null)
+                    btn_compte.Visible = false;
+            }
+            else
+            {
+                if (btn_compte != null)
+                    btn_compte.Visible = true;
+            }
         }
 
         // Recherche en temps réel
@@ -378,17 +400,17 @@ namespace WinFormsmedia_tech
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            // Méthode générée par le designer
+
         }
 
         private void ImageAccueil1_Click(object sender, EventArgs e)
         {
-            // Optionnel : Action au clic sur l'image
+
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-            // Méthode générée par le designer
+
         }
 
         private void dataGridViewCatalogue_CellContentClick(object sender, DataGridViewCellEventArgs e)

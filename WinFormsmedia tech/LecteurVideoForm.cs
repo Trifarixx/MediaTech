@@ -87,7 +87,7 @@ namespace WinFormsmedia_tech
             if (!panelControls.Visible)
             {
                 panelControls.Visible = true;
-                Cursor.Show(); // Réaffiche le curseur Windows
+                Cursor.Show();
             }
 
             // On redémarre le compte à rebours pour cacher
@@ -102,7 +102,6 @@ namespace WinFormsmedia_tech
             if (_mediaPlayer.IsPlaying)
             {
                 panelControls.Visible = false;
-                // Optionnel : cacher aussi le curseur de la souris pour immersion totale
                 if (this.Bounds.Contains(this.PointToClient(Cursor.Position)))
                 {
                     Cursor.Hide();
@@ -111,24 +110,20 @@ namespace WinFormsmedia_tech
             timerInactivite.Stop();
         }
 
-        // --- LOGIQUE BOUTONS ---
 
         private void BtnPlayPause_Click(object sender, EventArgs e)
         {
             if (_mediaPlayer.IsPlaying) _mediaPlayer.Pause();
             else _mediaPlayer.Play();
 
-            // Quand on clique, on garde l'interface affichée un peu plus longtemps
             AfficherInterface();
         }
 
         private void BtnStop_Click(object sender, EventArgs e)
         {
             _mediaPlayer.Stop();
-            AfficherInterface();
+            this.Close();
         }
-
-        // --- MISE A JOUR DES ICONES ---
 
         private void MediaPlayer_StatusChanged(object sender, EventArgs e)
         {
@@ -165,7 +160,7 @@ namespace WinFormsmedia_tech
         {
             timerInactivite.Stop();
             timerSurveillanceSouris.Stop();
-            Cursor.Show(); // Sécurité pour être sûr de rendre la souris
+            Cursor.Show();
 
             _mediaPlayer.Stop();
             _mediaPlayer.Dispose();

@@ -53,7 +53,9 @@ namespace WinFormsmedia_tech
                 // Ouvrir le formulaire de connexion
                 ConnexionForm connexionForm = new ConnexionForm();
                 connexionForm.Show();
-                this.Close();
+                this.Hide();
+
+                connexionForm.FormClosed += (s, args) => this.Close();
             }
             else
             {

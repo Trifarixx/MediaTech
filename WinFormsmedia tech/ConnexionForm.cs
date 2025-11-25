@@ -69,7 +69,6 @@ namespace WinFormsmedia_tech
 
             if (idMembre > 0)
             {
-                // Connexion réussie
                 IdMembreConnecte = idMembre;
                 NomMembre = nom;
                 PrenomMembre = prenom;
@@ -79,17 +78,28 @@ namespace WinFormsmedia_tech
 
                 this.DialogResult = DialogResult.OK;
 
-                // Mettre à jour le titre de l'accueil si ouvert
+
                 AccueilForm accueilForm = Application.OpenForms["AccueilForm"] as AccueilForm;
-                if (accueilForm != null)
+
+                if (accueilForm == null)
                 {
-                    accueilForm.IdMembreConnecte = idMembre;
-                    accueilForm.NomMembreConnecte = nom;
-                    accueilForm.PrenomMembreConnecte = prenom;
-                    accueilForm.Text = $"Média-Tech - Connecté: {prenom} {nom}";
+                    accueilForm = new AccueilForm();
+                    accueilForm.Show();
                 }
 
-                this.Close();
+                // On met à jour les informations de l'utilisateur sur l'accueil
+                accueilForm.IdMembreConnecte = idMembre;
+                accueilForm.NomMembreConnecte = nom;
+                accueilForm.PrenomMembreConnecte = prenom;
+                accueilForm.Text = $"Média-Tech - Connecté: {prenom} {nom}";
+                accueilForm.MettreAJourEtatConnexion();
+
+                if (!accueilForm.Visible) accueilForm.Visible = true;
+                accueilForm.BringToFront();
+
+                this.Hide();
+
+                accueilForm.FormClosed += (s, args) => Application.Exit();
             }
             else
             {
