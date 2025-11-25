@@ -50,9 +50,6 @@
             label9 = new Label();
             label8 = new Label();
             label2 = new Label();
-            Classique = new Label();
-            Enfant = new Label();
-            Disponible = new Label();
             Partager = new Button();
             favoris = new Button();
             Emprunter = new Button();
@@ -133,7 +130,6 @@
             txAuteur.Name = "txAuteur";
             txAuteur.Size = new Size(100, 23);
             txAuteur.TabIndex = 74;
-           
             // 
             // label6
             // 
@@ -268,39 +264,6 @@
             label2.TabIndex = 63;
             label2.Text = "Auteur";
             // 
-            // Classique
-            // 
-            Classique.AutoSize = true;
-            Classique.BackColor = Color.DarkGray;
-            Classique.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Classique.Location = new Point(588, 726);
-            Classique.Name = "Classique";
-            Classique.Size = new Size(92, 25);
-            Classique.TabIndex = 61;
-            Classique.Text = "Classique";
-            // 
-            // Enfant
-            // 
-            Enfant.AutoSize = true;
-            Enfant.BackColor = Color.FromArgb(255, 128, 128);
-            Enfant.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Enfant.Location = new Point(498, 726);
-            Enfant.Name = "Enfant";
-            Enfant.Size = new Size(66, 25);
-            Enfant.TabIndex = 60;
-            Enfant.Text = "Enfant";
-            // 
-            // Disponible
-            // 
-            Disponible.AutoSize = true;
-            Disponible.BackColor = Color.FromArgb(128, 255, 128);
-            Disponible.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Disponible.Location = new Point(369, 726);
-            Disponible.Name = "Disponible";
-            Disponible.Size = new Size(102, 25);
-            Disponible.TabIndex = 59;
-            Disponible.Text = "Disponible";
-            // 
             // Partager
             // 
             Partager.BackColor = SystemColors.ControlLightLight;
@@ -392,9 +355,6 @@
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label2);
-            Controls.Add(Classique);
-            Controls.Add(Enfant);
-            Controls.Add(Disponible);
             Controls.Add(Partager);
             Controls.Add(favoris);
             Controls.Add(Emprunter);
@@ -434,9 +394,6 @@
         private Label label9;
         private Label label8;
         private Label label2;
-        private Label Classique;
-        private Label Enfant;
-        private Label Disponible;
         private Button Partager;
         private Button favoris;
         private Button Emprunter;

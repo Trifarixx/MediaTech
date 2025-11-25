@@ -30,7 +30,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccueilForm));
             label1 = new Label();
             label2 = new Label();
             btn_decouvrir = new Button();
@@ -50,6 +49,7 @@
             box_genre = new ComboBox();
             box_trier = new ComboBox();
             dataGridViewCatalogue = new DataGridView();
+            boutonLireDVD = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).BeginInit();
             panel2.SuspendLayout();
@@ -75,7 +75,7 @@
             label2.Name = "label2";
             label2.Size = new Size(838, 179);
             label2.TabIndex = 1;
-            label2.Text = resources.GetString("label2.Text");
+            label2.Text = "Média-Tech est une néo-médiathèque moderne publique qui\r\npropose à ses membres un large éventail de contenus multimédias, incluant des livres, des magazines, des CD audio, et des DVD.";
             // 
             // btn_decouvrir
             // 
@@ -277,11 +277,22 @@
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
             // 
+            // boutonLireDVD
+            // 
+            boutonLireDVD.Location = new Point(166, 713);
+            boutonLireDVD.Name = "boutonLireDVD";
+            boutonLireDVD.Size = new Size(75, 23);
+            boutonLireDVD.TabIndex = 12;
+            boutonLireDVD.Text = "dvd";
+            boutonLireDVD.UseVisualStyleBackColor = true;
+            boutonLireDVD.Click += boutonLireDVD_Click;
+            // 
             // AccueilForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2547, 1159);
+            Controls.Add(boutonLireDVD);
             Controls.Add(dataGridViewCatalogue);
             Controls.Add(panel2);
             Controls.Add(btn_filter4);
@@ -328,5 +339,6 @@
         private TextBox txtRecherche;
         private Button button2;
         private DataGridView dataGridViewCatalogue;
+        private Button boutonLireDVD;
     }
 }

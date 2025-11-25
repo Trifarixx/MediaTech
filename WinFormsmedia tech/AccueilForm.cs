@@ -10,6 +10,9 @@ namespace WinFormsmedia_tech
         private MediaTechRepository repo;
         private string filtreActif = "Tous";
 
+        public int IdMembreConnecte { get; internal set; }
+        public string NomMembreConnecte { get; internal set; }
+        public string PrenomMembreConnecte { get; internal set; }
 
         public AccueilForm()
         {
@@ -48,6 +51,9 @@ namespace WinFormsmedia_tech
 
             // Définir le bouton "Tous" comme actif par défaut
             DefinirBoutonActif(btn_filter1);
+
+            // Mettre à jour l'état de connexion
+            MettreAJourEtatConnexion();
         }
 
         private void ConfigurerDataGridView()
@@ -259,13 +265,32 @@ namespace WinFormsmedia_tech
         // Bouton "Créer un compte"
         private void btn_creer_compte(object sender, EventArgs e)
         {
-            MessageBox.Show("Fonctionnalité de création de compte à venir !\n\n" +
-                          "Vous pourrez bientôt :\n" +
-                          "- Créer votre compte membre\n" +
-                          "- Emprunter jusqu'à 5 contenus\n" +
-                          "- Consulter votre historique\n" +
-                          "- Laisser des avis",
-                "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            InscriptionForm inscription = new InscriptionForm();
+            inscription.Show();
+
+            this.Hide();
+
+            inscription.FormClosed += (s, args) =>
+            {
+                if (Application.OpenForms["ConnexionForm"] == null && !this.Visible)
+                {
+                    this.Show();
+                }
+            };
+        }
+
+        public void MettreAJourEtatConnexion()
+        {
+            if (IdMembreConnecte > 0)
+            {
+                if (btn_compte != null)
+                    btn_compte.Visible = false;
+            }
+            else
+            {
+                if (btn_compte != null)
+                    btn_compte.Visible = true;
+            }
         }
 
         // Recherche en temps réel
@@ -384,17 +409,17 @@ namespace WinFormsmedia_tech
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            // Méthode générée par le designer
+
         }
 
         private void ImageAccueil1_Click(object sender, EventArgs e)
         {
-            // Optionnel : Action au clic sur l'image
+
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-            // Méthode générée par le designer
+
         }
 
         private void dataGridViewCatalogue_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -413,6 +438,7 @@ namespace WinFormsmedia_tech
                     string datePubli = row.Cells["date_publication"].Value != DBNull.Value
                         ? Convert.ToDateTime(row.Cells["date_publication"].Value).ToString("dd/MM/yyyy")
                         : "N/A";
+                    string urlImage = dataGridViewCatalogue.Rows[e.RowIndex].Cells["image_url"].Value?.ToString();
 
                     // Vérifier la disponibilité
                     bool disponible = repo.IsContenuDisponible(idContenu);
@@ -437,5 +463,14 @@ namespace WinFormsmedia_tech
                 }
             }
         }
+
+        private void boutonLireDVD_Click(object sender, EventArgs e)
+        {
+            string cheminVideo = "C:\\Users\\DEBROIZE\\Downloads\\oui.mp4";
+            LecteurVideoForm playerForm = new LecteurVideoForm();
+            playerForm.LoadMedia(cheminVideo);
+            playerForm.Show();
+        }
     }
+
 }
