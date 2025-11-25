@@ -134,9 +134,6 @@ namespace WinFormsmedia_tech
             if (dataGridViewCatalogue.Columns.Count > 0)
             {
                 // Personnaliser les en-têtes
-                if (dataGridViewCatalogue.Columns.Contains("id"))
-                    dataGridViewCatalogue.Columns["id"].HeaderText = "ID";
-
                 if (dataGridViewCatalogue.Columns.Contains("titre"))
                     dataGridViewCatalogue.Columns["titre"].HeaderText = "Titre";
 
@@ -148,12 +145,12 @@ namespace WinFormsmedia_tech
 
                 if (dataGridViewCatalogue.Columns.Contains("date_publication"))
                 {
-                    dataGridViewCatalogue.Columns["date_publication"].HeaderText = "Date de publication";
+                    dataGridViewCatalogue.Columns["date_publication"].HeaderText = "Date";
                     dataGridViewCatalogue.Columns["date_publication"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 }
 
                 if (dataGridViewCatalogue.Columns.Contains("quantite"))
-                    dataGridViewCatalogue.Columns["quantite"].HeaderText = "Quantité";
+                    dataGridViewCatalogue.Columns["quantite"].HeaderText = "Qté";
 
                 if (dataGridViewCatalogue.Columns.Contains("categories"))
                     dataGridViewCatalogue.Columns["categories"].HeaderText = "Catégories";
@@ -166,6 +163,16 @@ namespace WinFormsmedia_tech
 
                 if (dataGridViewCatalogue.Columns.Contains("duree_minutes"))
                     dataGridViewCatalogue.Columns["duree_minutes"].HeaderText = "Durée (min)";
+
+                string[] colonnesAMasquer = { "id", "image_url", "nombre_page", "nombre_morceau", "duree_cd", "duree_dvd" };
+
+                foreach (string colName in colonnesAMasquer)
+                {
+                    if (dataGridViewCatalogue.Columns.Contains(colName))
+                    {
+                        dataGridViewCatalogue.Columns[colName].Visible = false;
+                    }
+                }
             }
         }
 
@@ -438,28 +445,38 @@ namespace WinFormsmedia_tech
                     string datePubli = row.Cells["date_publication"].Value != DBNull.Value
                         ? Convert.ToDateTime(row.Cells["date_publication"].Value).ToString("dd/MM/yyyy")
                         : "N/A";
-                    string urlImage = dataGridViewCatalogue.Rows[e.RowIndex].Cells["image_url"].Value?.ToString();
+                    string urlImage = "";
+                    if (dataGridViewCatalogue.Columns.Contains("image_url"))
+                        urlImage = row.Cells["image_url"].Value?.ToString();
 
-                    // Vérifier la disponibilité
-                    bool disponible = repo.IsContenuDisponible(idContenu);
-                    string statutDispo = disponible ? "✓ Disponible" : "✗ Non disponible";
+                    int? nbPages = null;
+                    if (dataGridViewCatalogue.Columns.Contains("nombre_page") && row.Cells["nombre_page"].Value != DBNull.Value)
+                        nbPages = Convert.ToInt32(row.Cells["nombre_page"].Value);
 
-                    string message = $"📚 DÉTAILS DU CONTENU\n\n" +
-                                   $"Titre : {titre}\n" +
-                                   $"Auteur : {auteur}\n" +
-                                   $"Éditeur : {editeur}\n" +
-                                   $"Catégories : {categories}\n" +
-                                   $"Date de publication : {datePubli}\n" +
-                                   $"Quantité en stock : {quantite}\n" +
-                                   $"Statut : {statutDispo}";
+                    int nbMorceaux = 1;
+                    if (dataGridViewCatalogue.Columns.Contains("nombre_morceau") && row.Cells["nombre_morceau"].Value != DBNull.Value)
+                    {
+                        int valeurBrute = Convert.ToInt32(row.Cells["nombre_morceau"].Value);
+                        if (valeurBrute > 0) nbMorceaux = valeurBrute;
+                    }
 
-                    MessageBox.Show(message, "Détails du contenu",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int? dureeCd = null;
+                    if (dataGridViewCatalogue.Columns.Contains("duree_cd") && row.Cells["duree_cd"].Value != DBNull.Value)
+                        dureeCd = Convert.ToInt32(row.Cells["duree_cd"].Value);
+
+                    int? dureeDvd = null;
+                    if (dataGridViewCatalogue.Columns.Contains("duree_dvd") && row.Cells["duree_dvd"].Value != DBNull.Value)
+                        dureeDvd = Convert.ToInt32(row.Cells["duree_dvd"].Value);
+
+                    PageArticleForm pageArticle = new PageArticleForm();
+
+                    pageArticle.ChargerDonnees(titre, auteur, editeur, categories, datePubli, urlImage, nbPages, nbMorceaux, dureeCd, dureeDvd);
+
+                    pageArticle.ShowDialog();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erreur lors de l'affichage des détails : {ex.Message}",
-                        "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erreur : {ex.Message}");
                 }
             }
         }

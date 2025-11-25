@@ -67,12 +67,21 @@ namespace WinFormsmedia_tech
                     c.date_publication,
                     c.quantite,
                     c.image_url,
+                    l.nombre_page,          
+                    cd.nombre_morceau,      
+                    cd.durée AS duree_cd,   
+                    d.duree AS duree_dvd,
                     ISNULL(STRING_AGG(cat.nom_categorie, ', '), 'Non catégorisé') AS categories
                 FROM Contenu c
+                LEFT JOIN Livres l ON c.id = l.id_1
+                LEFT JOIN CD_Audio cd ON c.id = cd.id_1
+                LEFT JOIN DVD d ON c.id = d.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, 
+                         l.nombre_page, cd.nombre_morceau, cd.durée, d.duree
                 ORDER BY c.titre";
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
