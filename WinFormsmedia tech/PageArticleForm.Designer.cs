@@ -146,6 +146,7 @@
             Emprunter.TabIndex = 56;
             Emprunter.Text = "Empunter";
             Emprunter.UseVisualStyleBackColor = false;
+            Emprunter.Click += Emprunter_Click_1;
             // 
             // picturebox
             // 
