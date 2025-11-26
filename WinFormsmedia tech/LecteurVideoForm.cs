@@ -2,6 +2,9 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using YoutubeExplode;
+using YoutubeExplode.Videos.Streams;
+using System.Linq;
 
 namespace WinFormsmedia_tech
 {
@@ -147,11 +150,62 @@ namespace WinFormsmedia_tech
 
         // --- CHARGEMENT ET NETTOYAGE ---
 
-        public void LoadMedia(string mediaPath)
+        public async void LoadMedia(string mediaPath)
         {
             if (!this.Visible) this.Show();
-            using (var media = new Media(_libVLC, new Uri(mediaPath)))
+
+            string urlVideo = mediaPath;
+            string urlAudio = null; // Sera rempli uniquement si c'est du YouTube HD
+
+            if (mediaPath.Contains("youtube.com") || mediaPath.Contains("youtu.be"))
             {
+                try
+                {
+                    var youtube = new YoutubeClient();
+
+                    // 1. Récupérer le Manifeste (toutes les versions disponibles)
+                    var streamManifest = await youtube.Videos.Streams.GetManifestAsync(mediaPath);
+
+                    // On cherche le flux "VideoOnly" avec la plus haute qualité
+                    var videoStreamInfo = streamManifest
+                        .GetVideoOnlyStreams()
+                        .Where(s => s.Container == YoutubeExplode.Videos.Streams.Container.Mp4).GetWithHighestVideoQuality();
+
+                    // 3. Trouver le MEILLEUR Audio - SANS L'IMAGE
+                    var audioStreamInfo = streamManifest
+                        .GetAudioOnlyStreams()
+                        .GetWithHighestBitrate();
+
+                    if (videoStreamInfo != null && audioStreamInfo != null)
+                    {
+                        urlVideo = videoStreamInfo.Url;
+                        urlAudio = audioStreamInfo.Url;
+
+                        var videoInfo = await youtube.Videos.GetAsync(mediaPath);
+                        this.Text = $"Lecture 1080p : {videoInfo.Title}";
+                    }
+                    else
+                    {
+                        // Si on ne trouve pas de flux séparés (très rare), on se rabat sur le standard 720p
+                        var muxed = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+                        urlVideo = muxed.Url;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur YouTube : " + ex.Message);
+                    return;
+                }
+            }
+
+            // 4. Création du Média VLC
+            using (var media = new Media(_libVLC, new Uri(urlVideo)))
+            {
+                if (!string.IsNullOrEmpty(urlAudio))
+                {
+                    media.AddSlave(MediaSlaveType.Audio, 0, urlAudio);
+                }
+
                 _mediaPlayer.Play(media);
             }
         }

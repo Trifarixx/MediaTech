@@ -475,7 +475,7 @@ namespace WinFormsmedia_tech
 
                     PageArticleForm pageArticle = new PageArticleForm();
 
-                    pageArticle.ChargerDonnees(titre, auteur, editeur, categories, datePubli, urlImage, urlFichier, nbPages, nbMorceaux, dureeCd, dureeDvd);
+                    pageArticle.ChargerDonnees(titre, auteur, editeur, categories, datePubli, urlFichier, urlImage, nbPages, nbMorceaux, dureeCd, dureeDvd);
 
                     pageArticle.ShowDialog();
                 }
