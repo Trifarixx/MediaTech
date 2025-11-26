@@ -275,7 +275,7 @@
             dataGridViewCatalogue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCatalogue.Location = new Point(332, 1026);
             dataGridViewCatalogue.Name = "dataGridViewCatalogue";
-            dataGridViewCatalogue.Size = new Size(240, 150);
+            dataGridViewCatalogue.Size = new Size(1967, 150);
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
             // 
