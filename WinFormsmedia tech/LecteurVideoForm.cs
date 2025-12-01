@@ -35,6 +35,7 @@ namespace WinFormsmedia_tech
             timerSurveillanceSouris.Interval = 100;
             timerSurveillanceSouris.Tick += TimerSurveillanceSouris_Tick;
 
+            this.WindowState = FormWindowState.Maximized;
             this.Load += LecteurVideoForm_Load;
             this.FormClosed += LecteurVideoForm_FormClosed;
         }
@@ -46,8 +47,6 @@ namespace WinFormsmedia_tech
             _mediaPlayer = new MediaPlayer(_libVLC);
             videoView1.MediaPlayer = _mediaPlayer;
 
-            // 2. Correction du style "S'affiche mal"
-            // On ne met PAS le parent à videoView1 (ça cause des bugs graphiques)
             // On utilise une couleur unie propre
             panelControls.BackColor = Color.FromArgb(15, 15, 15); 
 
@@ -182,7 +181,7 @@ namespace WinFormsmedia_tech
                         urlAudio = audioStreamInfo.Url;
 
                         var videoInfo = await youtube.Videos.GetAsync(mediaPath);
-                        this.Text = $"Lecture 1080p : {videoInfo.Title}";
+                        this.Text = $"Lecture de : {videoInfo.Title}";
                     }
                     else
                     {

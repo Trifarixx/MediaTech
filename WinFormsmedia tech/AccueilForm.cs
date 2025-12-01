@@ -23,6 +23,8 @@ namespace WinFormsmedia_tech
             header.Dock = DockStyle.Top;
             this.Controls.Add(header);
             this.Controls.SetChildIndex(header, 0);
+            this.AutoScroll = true;
+            this.WindowState = FormWindowState.Maximized;
 
 
 
@@ -58,7 +60,7 @@ namespace WinFormsmedia_tech
 
         private void ConfigurerDataGridView()
         {
-            // --- 1. Paramètres de base (Fonctionnel) ---
+            // --- 1. Paramètres de base ---
             dataGridViewCatalogue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCatalogue.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCatalogue.MultiSelect = false;
@@ -73,20 +75,20 @@ namespace WinFormsmedia_tech
             dataGridViewCatalogue.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCatalogue.GridColor = Color.FromArgb(230, 230, 230);
 
-            // --- 3. En-têtes (Le haut des colonnes) ---
+            // --- 3. En-têtes ---
             dataGridViewCatalogue.EnableHeadersVisualStyles = false;
             dataGridViewCatalogue.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCatalogue.ColumnHeadersHeight = 50;
             dataGridViewCatalogue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
-            // Style des en-têtes (Votre Bleu Média-Tech)
+            // Style des en-têtes 
             dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(61, 173, 213);
             dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.Font = new Font("DM Sans", 12, FontStyle.Bold);
             dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
 
-            // --- 4. Les Lignes (Le contenu) ---
+            // --- 4. Les Lignes ---
             dataGridViewCatalogue.DefaultCellStyle.BackColor = Color.White;
             dataGridViewCatalogue.DefaultCellStyle.ForeColor = Color.Black;
             dataGridViewCatalogue.DefaultCellStyle.Font = new Font("DM Sans", 10);
@@ -96,8 +98,15 @@ namespace WinFormsmedia_tech
 
             dataGridViewCatalogue.RowTemplate.Height = 40;
 
-            // --- 5. Alternance (Zebra) ---
+            // --- 5. Alternance ---
             dataGridViewCatalogue.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 248, 248);
+
+            int nombreDeLignesVisibles = 10;
+            int hauteurLigne = dataGridViewCatalogue.RowTemplate.Height;
+            int hauteurEntete = dataGridViewCatalogue.ColumnHeadersHeight;
+            int hauteurTotale = hauteurEntete + (hauteurLigne * nombreDeLignesVisibles); 
+            dataGridViewCatalogue.Height = hauteurTotale;
+            dataGridViewCatalogue.Width = 1965;
         }
 
         private void ChargerComboBoxGenres()

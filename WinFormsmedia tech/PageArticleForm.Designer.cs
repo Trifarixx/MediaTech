@@ -60,7 +60,7 @@
             lbl_date.AutoSize = true;
             lbl_date.BackColor = Color.FromArgb(61, 173, 213);
             lbl_date.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_date.Location = new Point(1458, 366);
+            lbl_date.Location = new Point(909, 376);
             lbl_date.Name = "lbl_date";
             lbl_date.Size = new Size(249, 31);
             lbl_date.TabIndex = 67;
@@ -71,7 +71,7 @@
             lbl_auteur.AutoSize = true;
             lbl_auteur.BackColor = Color.FromArgb(61, 173, 213);
             lbl_auteur.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_auteur.Location = new Point(909, 287);
+            lbl_auteur.Location = new Point(909, 153);
             lbl_auteur.Name = "lbl_auteur";
             lbl_auteur.Size = new Size(96, 31);
             lbl_auteur.TabIndex = 64;
@@ -82,7 +82,7 @@
             lbl_Editeur.AutoSize = true;
             lbl_Editeur.BackColor = Color.FromArgb(61, 173, 213);
             lbl_Editeur.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_Editeur.Location = new Point(909, 366);
+            lbl_Editeur.Location = new Point(909, 295);
             lbl_Editeur.Name = "lbl_Editeur";
             lbl_Editeur.Size = new Size(101, 31);
             lbl_Editeur.TabIndex = 65;
@@ -94,7 +94,7 @@
             lbl_carac.AutoSize = true;
             lbl_carac.BackColor = Color.FromArgb(61, 173, 213);
             lbl_carac.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_carac.Location = new Point(909, 152);
+            lbl_carac.Location = new Point(909, 36);
             lbl_carac.Name = "lbl_carac";
             lbl_carac.Size = new Size(216, 31);
             lbl_carac.TabIndex = 62;
@@ -105,7 +105,7 @@
             lbl_Titre.AutoSize = true;
             lbl_Titre.BackColor = Color.FromArgb(61, 173, 213);
             lbl_Titre.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_Titre.Location = new Point(909, 209);
+            lbl_Titre.Location = new Point(909, 96);
             lbl_Titre.Name = "lbl_Titre";
             lbl_Titre.Size = new Size(70, 31);
             lbl_Titre.TabIndex = 63;
@@ -162,9 +162,9 @@
             // 
             dataGridView1.BackgroundColor = Color.FromArgb(61, 173, 213);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(885, 126);
+            dataGridView1.Location = new Point(885, 12);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1024, 347);
+            dataGridView1.Size = new Size(1024, 423);
             dataGridView1.TabIndex = 54;
             // 
             // panelLivre
@@ -250,7 +250,7 @@
             lbl_Categorie.AutoSize = true;
             lbl_Categorie.BackColor = Color.FromArgb(61, 173, 213);
             lbl_Categorie.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_Categorie.Location = new Point(1458, 287);
+            lbl_Categorie.Location = new Point(909, 221);
             lbl_Categorie.Name = "lbl_Categorie";
             lbl_Categorie.Size = new Size(132, 31);
             lbl_Categorie.TabIndex = 84;

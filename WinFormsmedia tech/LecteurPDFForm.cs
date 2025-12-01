@@ -15,6 +15,7 @@ namespace WinFormsmedia_tech
         {
             InitializeComponent();
             InitializepdfViewer();
+            this.WindowState = FormWindowState.Maximized;
         }
         public LecteurPdfForm(string cheminFichierPdf) : this()
         {
