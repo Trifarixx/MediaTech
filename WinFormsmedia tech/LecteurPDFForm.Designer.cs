@@ -1,6 +1,6 @@
 ﻿namespace WinFormsmedia_tech
 {
-    partial class LecteurPDFForm
+    partial class LecteurPdfForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "LecteurPDFForm";
+            panelViewer = new Panel();
+            SuspendLayout();
+            // 
+            // panelViewer
+            // 
+            panelViewer.BackColor = SystemColors.Control;
+            panelViewer.Dock = DockStyle.Fill;
+            panelViewer.Location = new Point(0, 0);
+            panelViewer.Name = "panelViewer";
+            panelViewer.Size = new Size(800, 450);
+            panelViewer.TabIndex = 1;
+            // 
+            // LecteurPdfForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(panelViewer);
+            Name = "LecteurPdfForm";
+            Text = "LecteurPdfForm";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel panelViewer;
     }
 }

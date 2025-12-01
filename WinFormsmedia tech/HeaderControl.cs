@@ -78,12 +78,11 @@ namespace WinFormsmedia_tech
 
         private void btnSeConnecter_Click(object sender, EventArgs e)
         {
-
-
+            ConnexionForm connexionForm = new ConnexionForm();
+            connexionForm.Show();
         }
         private void btnAccueil_Click(object sender, EventArgs e)
         {
-
 
         }
         private void btnCatalogue_Click(object sender, EventArgs e)

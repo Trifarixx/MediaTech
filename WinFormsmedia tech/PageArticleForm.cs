@@ -146,12 +146,8 @@ namespace WinFormsmedia_tech
                         break;
 
                     case "Livre":
-                        LecteurPDFForm lecteurL = new LecteurPDFForm();
-
-                        // ATTENTION : Vérifiez que LecteurPDFForm a bien une méthode ChargerLivre ou LoadPdf
-                        // Si votre méthode s'appelle autrement, modifiez la ligne ci-dessous :
-                        //                        lecteurL.ChargerLivre(_urlFichier);
-
+                        LecteurPdfForm lecteurL = new LecteurPdfForm();
+                        lecteurL.LoadPDF(_urlFichier);
                         lecteurL.Show();
                         break;
                 }

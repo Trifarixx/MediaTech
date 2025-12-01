@@ -22,8 +22,8 @@ namespace WinFormsmedia_tech
             HeaderControl header = new HeaderControl();
             header.Dock = DockStyle.Top;
             this.Controls.Add(header);
-            this.Controls.SetChildIndex(header, 0); // S'assurer que le header est au-dessus des autres contrôles
-            
+            this.Controls.SetChildIndex(header, 0);
+
 
 
 
@@ -484,6 +484,14 @@ namespace WinFormsmedia_tech
                     MessageBox.Show($"Erreur : {ex.Message}");
                 }
             }
+        }
+        private void btnAfficherPDF(object sender, EventArgs e)
+        {
+            string cheminPdf = "C:\\Users\\DEBROIZE\\Downloads\\fichier.pdf";
+
+            LecteurPdfForm pdfForm = new LecteurPdfForm(cheminPdf);
+           
+            pdfForm.Show();
         }
     }
 }

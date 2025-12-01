@@ -43,13 +43,12 @@
             btn_filter3 = new Button();
             btn_filter4 = new Button();
             panel2 = new Panel();
-            button2 = new Button();
             txtRecherche = new TextBox();
             btn_filter = new Button();
             box_genre = new ComboBox();
             box_trier = new ComboBox();
             dataGridViewCatalogue = new DataGridView();
-            boutonLireDVD = new Button();
+            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).BeginInit();
             panel2.SuspendLayout();
@@ -206,7 +205,6 @@
             // 
             panel2.Anchor = AnchorStyles.Top;
             panel2.BackColor = Color.FromArgb(234, 192, 88);
-            panel2.Controls.Add(button2);
             panel2.Controls.Add(txtRecherche);
             panel2.Controls.Add(btn_filter);
             panel2.Controls.Add(box_genre);
@@ -216,23 +214,12 @@
             panel2.Size = new Size(1967, 105);
             panel2.TabIndex = 10;
             // 
-            // button2
-            // 
-            button2.Anchor = AnchorStyles.Top;
-            button2.Font = new Font("DM Sans 14pt Black", 14.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(1500, 38);
-            button2.Name = "button2";
-            button2.Size = new Size(182, 34);
-            button2.TabIndex = 13;
-            button2.Text = "Rechercher";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // txtRecherche
             // 
             txtRecherche.Anchor = AnchorStyles.Top;
             txtRecherche.Location = new Point(781, 45);
             txtRecherche.Name = "txtRecherche";
-            txtRecherche.Size = new Size(610, 23);
+            txtRecherche.Size = new Size(1115, 23);
             txtRecherche.TabIndex = 12;
             txtRecherche.TextChanged += txtRecherche_TextChanged;
             // 
@@ -279,13 +266,22 @@
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
             // 
+            // button1
+            // 
+            button1.Location = new Point(163, 864);
+            button1.Name = "button1";
+            button1.Size = new Size(86, 23);
+            button1.TabIndex = 13;
+            button1.Text = "AfficherPdf";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnAfficherPDF;
             // 
             // AccueilForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2547, 1159);
-            Controls.Add(boutonLireDVD);
+            Controls.Add(button1);
             Controls.Add(dataGridViewCatalogue);
             Controls.Add(panel2);
             Controls.Add(btn_filter4);
@@ -329,8 +325,7 @@
         private ComboBox box_trier;
         private Button btn_filter;
         private TextBox txtRecherche;
-        private Button button2;
         private DataGridView dataGridViewCatalogue;
-        private Button boutonLireDVD;
+        private Button button1;
     }
 }
