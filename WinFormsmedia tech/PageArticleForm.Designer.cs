@@ -60,7 +60,7 @@
             lbl_date.AutoSize = true;
             lbl_date.BackColor = Color.FromArgb(61, 173, 213);
             lbl_date.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_date.Location = new Point(1413, 429);
+            lbl_date.Location = new Point(1458, 366);
             lbl_date.Name = "lbl_date";
             lbl_date.Size = new Size(249, 31);
             lbl_date.TabIndex = 67;
@@ -71,7 +71,7 @@
             lbl_auteur.AutoSize = true;
             lbl_auteur.BackColor = Color.FromArgb(61, 173, 213);
             lbl_auteur.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_auteur.Location = new Point(1248, 250);
+            lbl_auteur.Location = new Point(909, 287);
             lbl_auteur.Name = "lbl_auteur";
             lbl_auteur.Size = new Size(96, 31);
             lbl_auteur.TabIndex = 64;
@@ -82,7 +82,7 @@
             lbl_Editeur.AutoSize = true;
             lbl_Editeur.BackColor = Color.FromArgb(61, 173, 213);
             lbl_Editeur.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_Editeur.Location = new Point(909, 429);
+            lbl_Editeur.Location = new Point(909, 366);
             lbl_Editeur.Name = "lbl_Editeur";
             lbl_Editeur.Size = new Size(101, 31);
             lbl_Editeur.TabIndex = 65;
@@ -105,7 +105,7 @@
             lbl_Titre.AutoSize = true;
             lbl_Titre.BackColor = Color.FromArgb(61, 173, 213);
             lbl_Titre.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_Titre.Location = new Point(909, 250);
+            lbl_Titre.Location = new Point(909, 209);
             lbl_Titre.Name = "lbl_Titre";
             lbl_Titre.Size = new Size(70, 31);
             lbl_Titre.TabIndex = 63;
@@ -250,7 +250,7 @@
             lbl_Categorie.AutoSize = true;
             lbl_Categorie.BackColor = Color.FromArgb(61, 173, 213);
             lbl_Categorie.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lbl_Categorie.Location = new Point(1530, 250);
+            lbl_Categorie.Location = new Point(1458, 287);
             lbl_Categorie.Name = "lbl_Categorie";
             lbl_Categorie.Size = new Size(132, 31);
             lbl_Categorie.TabIndex = 84;

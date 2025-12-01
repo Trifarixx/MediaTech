@@ -279,15 +279,6 @@
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
             // 
-            // boutonLireDVD
-            // 
-            boutonLireDVD.Location = new Point(166, 713);
-            boutonLireDVD.Name = "boutonLireDVD";
-            boutonLireDVD.Size = new Size(75, 23);
-            boutonLireDVD.TabIndex = 12;
-            boutonLireDVD.Text = "dvd";
-            boutonLireDVD.UseVisualStyleBackColor = true;
-            boutonLireDVD.Click += boutonLireDVD_Click;
             // 
             // AccueilForm
             // 

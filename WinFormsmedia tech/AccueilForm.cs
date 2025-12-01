@@ -485,14 +485,5 @@ namespace WinFormsmedia_tech
                 }
             }
         }
-
-        private void boutonLireDVD_Click(object sender, EventArgs e)
-        {
-            string cheminVideo = "C:\\Users\\DEBROIZE\\Downloads\\oui.mp4";
-            LecteurVideoForm playerForm = new LecteurVideoForm();
-            playerForm.LoadMedia(cheminVideo);
-            playerForm.Show();
-        }
     }
-
 }
