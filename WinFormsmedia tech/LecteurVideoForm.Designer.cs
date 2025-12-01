@@ -96,13 +96,14 @@
             // 
             // lblTempsTotal
             // 
+            lblTempsTotal.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblTempsTotal.AutoSize = true;
             lblTempsTotal.ForeColor = Color.White;
             lblTempsTotal.Location = new Point(2039, 25);
             lblTempsTotal.Name = "lblTempsTotal";
-            lblTempsTotal.Size = new Size(38, 15);
+            lblTempsTotal.Size = new Size(34, 15);
             lblTempsTotal.TabIndex = 6;
-            lblTempsTotal.Text = "label1";
+            lblTempsTotal.Text = "00:00";
             // 
             // lblTempsCourant
             // 
@@ -110,15 +111,16 @@
             lblTempsCourant.ForeColor = Color.White;
             lblTempsCourant.Location = new Point(14, 25);
             lblTempsCourant.Name = "lblTempsCourant";
-            lblTempsCourant.Size = new Size(38, 15);
+            lblTempsCourant.Size = new Size(34, 15);
             lblTempsCourant.TabIndex = 5;
-            lblTempsCourant.Text = "label1";
+            lblTempsCourant.Text = "00:00";
             // 
             // trackBarVideo
             // 
             trackBarVideo.AutoSize = false;
             trackBarVideo.Dock = DockStyle.Top;
             trackBarVideo.Location = new Point(0, 0);
+            trackBarVideo.Maximum = 100;
             trackBarVideo.Name = "trackBarVideo";
             trackBarVideo.Size = new Size(2089, 40);
             trackBarVideo.TabIndex = 4;
