@@ -1,10 +1,10 @@
 ﻿using LibVLCSharp.Shared;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
-using System.Linq;
 
 namespace WinFormsmedia_tech
 {
@@ -13,20 +13,20 @@ namespace WinFormsmedia_tech
         private LibVLC _libVLC;
         private MediaPlayer _mediaPlayer;
 
-        // Timer pour cacher l'interface après inactivité
+        // Timers pour l'interface
         private System.Windows.Forms.Timer timerInactivite;
-
-        // Timer pour surveiller la souris (contourne le problème de la vidéo qui bloque les événements)
         private System.Windows.Forms.Timer timerSurveillanceSouris;
-
         private Point dernierePositionSouris;
-        private const int DELAI_INACTIVITE = 3000; // 3 secondes avant de cacher
+        private const int DELAI_INACTIVITE = 3000;
+
+        // Variable pour éviter le conflit quand l'utilisateur bouge la barre
+        private bool isDragging = false;
 
         public LecteurVideoForm()
         {
             InitializeComponent();
 
-            // Configuration des Timers
+            // Initialisation des Timers d'interface
             timerInactivite = new System.Windows.Forms.Timer();
             timerInactivite.Interval = DELAI_INACTIVITE;
             timerInactivite.Tick += TimerInactivite_Tick;
@@ -35,142 +35,119 @@ namespace WinFormsmedia_tech
             timerSurveillanceSouris.Interval = 100;
             timerSurveillanceSouris.Tick += TimerSurveillanceSouris_Tick;
 
-            this.WindowState = FormWindowState.Maximized;
             this.Load += LecteurVideoForm_Load;
             this.FormClosed += LecteurVideoForm_FormClosed;
         }
 
         private void LecteurVideoForm_Load(object sender, EventArgs e)
         {
-            // 1. Initialiser VLC
+            // 1. Initialisation VLC
             _libVLC = new LibVLC();
             _mediaPlayer = new MediaPlayer(_libVLC);
             videoView1.MediaPlayer = _mediaPlayer;
 
-            // On utilise une couleur unie propre
-            panelControls.BackColor = Color.FromArgb(15, 15, 15); 
-
-            // S'assurer que le panel est bien au-dessus de la vidéo
+            // 2. Style Interface
+            panelControls.Parent = videoView1; // Superposition
+            panelControls.BackColor = Color.FromArgb(200, 30, 30, 30); // Fond semi-transparent
+            panelControls.Dock = DockStyle.Bottom;
             panelControls.BringToFront();
 
-            // 3. Gestion des boutons
-            btn_PlayPause.Click += BtnPlayPause_Click;
-            btn_stop.Click += BtnStop_Click;
-
-            // 4. Événements VLC
+            // 3. Événements VLC
             _mediaPlayer.Playing += MediaPlayer_StatusChanged;
             _mediaPlayer.Paused += MediaPlayer_StatusChanged;
             _mediaPlayer.Stopped += MediaPlayer_StatusChanged;
             _mediaPlayer.EndReached += MediaPlayer_StatusChanged;
 
-            // Démarrer la surveillance
+            // --- NOUVEAUX ÉVÉNEMENTS POUR LA BARRE ---
+            _mediaPlayer.LengthChanged += MediaPlayer_LengthChanged; // Durée totale connue
+            _mediaPlayer.TimeChanged += MediaPlayer_TimeChanged;     // Temps qui avance
+
+            // 4. Événements Interface
+            btn_PlayPause.Click += BtnPlayPause_Click;
+            btn_Stop.Click += BtnStop_Click;
+
+            // --- GESTION DE LA TRACKBAR (SOURIS) ---
+            // Quand on appuie sur la barre, on dit "Je suis en train de glisser"
+            trackBarVideo.MouseDown += (s, args) => { isDragging = true; };
+
+            // Quand on relâche, on applique le changement de temps
+            trackBarVideo.MouseUp += (s, args) =>
+            {
+                if (_mediaPlayer.IsSeekable)
+                {
+                    _mediaPlayer.Time = trackBarVideo.Value; // On déplace la vidéo
+                }
+                isDragging = false; // On a fini de glisser
+            };
+
+            // Surveillance souris pour cacher/afficher le menu
             dernierePositionSouris = Cursor.Position;
             timerSurveillanceSouris.Start();
             AfficherInterface();
         }
 
+        // --- GESTION DE LA BARRE DE PROGRESSION ---
 
-        private void TimerSurveillanceSouris_Tick(object sender, EventArgs e)
+        // 1. Quand la durée totale de la vidéo est détectée (au début)
+        private void MediaPlayer_LengthChanged(object sender, MediaPlayerLengthChangedEventArgs e)
         {
-            // On regarde si la souris a bougé depuis la dernière fois
-            Point positionActuelle = Cursor.Position;
-
-            if (positionActuelle != dernierePositionSouris)
+            // Invoke car VLC est sur un autre thread
+            Invoke(new Action(() =>
             {
-                // Mouvement détecté !
-                dernierePositionSouris = positionActuelle;
-                AfficherInterface();
-            }
+                // On configure le maximum de la barre (en millisecondes)
+                trackBarVideo.Minimum = 0;
+                // Attention : TrackBar utilise des INT, donc on cast le long en int
+                trackBarVideo.Maximum = (int)e.Length;
+
+                // Affichage du temps total (ex: 03:45)
+                if (lblTempsTotal != null)
+                    lblTempsTotal.Text = TimeSpan.FromMilliseconds(e.Length).ToString(@"mm\:ss");
+            }));
         }
 
-        private void AfficherInterface()
+        // 2. Quand le temps avance (appelé plusieurs fois par seconde)
+        private void MediaPlayer_TimeChanged(object sender, MediaPlayerTimeChangedEventArgs e)
         {
-            // Si le panel est déjà visible et que le timer tourne, on ne fait rien de plus que reset le timer
-            if (!panelControls.Visible)
-            {
-                panelControls.Visible = true;
-                Cursor.Show();
-            }
+            // Si l'utilisateur est en train de bouger la barre manuellement, 
+            // ON NE TOUCHE PAS à la valeur pour éviter que ça saute.
+            if (isDragging) return;
 
-            // On redémarre le compte à rebours pour cacher
-            timerInactivite.Stop();
-            timerInactivite.Start();
-        }
-
-        private void TimerInactivite_Tick(object sender, EventArgs e)
-        {
-            // Le temps est écoulé, on cache tout
-            // Seulement si la vidéo est en train de jouer (on ne cache pas si c'est en pause)
-            if (_mediaPlayer.IsPlaying)
+            Invoke(new Action(() =>
             {
-                panelControls.Visible = false;
-                if (this.Bounds.Contains(this.PointToClient(Cursor.Position)))
+                // Vérification de sécurité pour ne pas dépasser le max
+                if (e.Time <= trackBarVideo.Maximum)
                 {
-                    Cursor.Hide();
+                    trackBarVideo.Value = (int)e.Time;
                 }
-            }
-            timerInactivite.Stop();
+
+                // Mise à jour du label temps courant
+                if (lblTempsCourant != null)
+                    lblTempsCourant.Text = TimeSpan.FromMilliseconds(e.Time).ToString(@"mm\:ss");
+            }));
         }
 
 
-        private void BtnPlayPause_Click(object sender, EventArgs e)
-        {
-            if (_mediaPlayer.IsPlaying) _mediaPlayer.Pause();
-            else _mediaPlayer.Play();
-
-            AfficherInterface();
-        }
-
-        private void BtnStop_Click(object sender, EventArgs e)
-        {
-            _mediaPlayer.Stop();
-            this.Close();
-        }
-
-        private void MediaPlayer_StatusChanged(object sender, EventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new Action(UpdateIcons));
-            }
-            else
-            {
-                UpdateIcons();
-            }
-        }
-
-        private void UpdateIcons()
-        {
-            if (_mediaPlayer.IsPlaying)
-                btn_PlayPause.Image = Properties.Resources.Pause;
-            else
-                btn_PlayPause.Image = Properties.Resources.Play;
-        }
-
-        // --- CHARGEMENT ET NETTOYAGE ---
+        // --- LE RESTE DU CODE (Similaire à avant) ---
 
         public async void LoadMedia(string mediaPath)
         {
             if (!this.Visible) this.Show();
 
             string urlVideo = mediaPath;
-            string urlAudio = null; // Sera rempli uniquement si c'est du YouTube HD
+            string urlAudio = null;
 
             if (mediaPath.Contains("youtube.com") || mediaPath.Contains("youtu.be"))
             {
                 try
                 {
                     var youtube = new YoutubeClient();
-
-                    // 1. Récupérer le Manifeste (toutes les versions disponibles)
                     var streamManifest = await youtube.Videos.Streams.GetManifestAsync(mediaPath);
 
-                    // On cherche le flux "VideoOnly" avec la plus haute qualité
                     var videoStreamInfo = streamManifest
                         .GetVideoOnlyStreams()
-                        .Where(s => s.Container == YoutubeExplode.Videos.Streams.Container.Mp4).GetWithHighestVideoQuality();
+                        .Where(s => s.Container == YoutubeExplode.Videos.Streams.Container.Mp4)
+                        .GetWithHighestVideoQuality();
 
-                    // 3. Trouver le MEILLEUR Audio - SANS L'IMAGE
                     var audioStreamInfo = streamManifest
                         .GetAudioOnlyStreams()
                         .GetWithHighestBitrate();
@@ -179,13 +156,11 @@ namespace WinFormsmedia_tech
                     {
                         urlVideo = videoStreamInfo.Url;
                         urlAudio = audioStreamInfo.Url;
-
                         var videoInfo = await youtube.Videos.GetAsync(mediaPath);
-                        this.Text = $"Lecture de : {videoInfo.Title}";
+                        this.Text = videoInfo.Title;
                     }
                     else
                     {
-                        // Si on ne trouve pas de flux séparés (très rare), on se rabat sur le standard 720p
                         var muxed = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
                         urlVideo = muxed.Url;
                     }
@@ -197,16 +172,76 @@ namespace WinFormsmedia_tech
                 }
             }
 
-            // 4. Création du Média VLC
             using (var media = new Media(_libVLC, new Uri(urlVideo)))
             {
                 if (!string.IsNullOrEmpty(urlAudio))
                 {
                     media.AddSlave(MediaSlaveType.Audio, 0, urlAudio);
                 }
-
                 _mediaPlayer.Play(media);
             }
+        }
+
+        private void MediaPlayer_StatusChanged(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired) this.Invoke(new Action(UpdateIcons));
+            else UpdateIcons();
+        }
+
+        private void UpdateIcons()
+        {
+            if (_mediaPlayer.IsPlaying)
+                btn_PlayPause.Image = Properties.Resources.Pause; // Assurez-vous d'avoir l'image
+            else
+                btn_PlayPause.Image = Properties.Resources.Play;
+        }
+
+        private void BtnPlayPause_Click(object sender, EventArgs e)
+        {
+            if (_mediaPlayer.IsPlaying) _mediaPlayer.Pause();
+            else _mediaPlayer.Play();
+            AfficherInterface();
+        }
+
+        private void BtnStop_Click(object sender, EventArgs e)
+        {
+            _mediaPlayer.Stop();
+            this.Close(); // Ferme et revient à l'accueil
+        }
+
+        // --- LOGIQUE AUTO-HIDE ---
+        private void TimerSurveillanceSouris_Tick(object sender, EventArgs e)
+        {
+            Point positionActuelle = Cursor.Position;
+            if (positionActuelle != dernierePositionSouris)
+            {
+                dernierePositionSouris = positionActuelle;
+                AfficherInterface();
+            }
+        }
+
+        private void AfficherInterface()
+        {
+            if (!panelControls.Visible)
+            {
+                panelControls.Visible = true;
+                Cursor.Show();
+            }
+            timerInactivite.Stop();
+            timerInactivite.Start();
+        }
+
+        private void TimerInactivite_Tick(object sender, EventArgs e)
+        {
+            if (_mediaPlayer.IsPlaying)
+            {
+                panelControls.Visible = false;
+                if (this.Bounds.Contains(this.PointToClient(Cursor.Position)))
+                {
+                    Cursor.Hide();
+                }
+            }
+            timerInactivite.Stop();
         }
 
         private void LecteurVideoForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -214,7 +249,6 @@ namespace WinFormsmedia_tech
             timerInactivite.Stop();
             timerSurveillanceSouris.Stop();
             Cursor.Show();
-
             _mediaPlayer.Stop();
             _mediaPlayer.Dispose();
             _libVLC.Dispose();

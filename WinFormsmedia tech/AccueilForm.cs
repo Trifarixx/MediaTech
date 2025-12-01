@@ -200,7 +200,10 @@ namespace WinFormsmedia_tech
                 if (dataGridViewCatalogue.Columns.Contains("duree_minutes"))
                     dataGridViewCatalogue.Columns["duree_minutes"].HeaderText = "Durée (min)";
 
-                string[] colonnesAMasquer = { "id", "image_url", "nombre_page", "nombre_morceau", "duree_cd", "duree_dvd" };
+                string[] colonnesAMasquer = {
+                    "id", "image_url", "url_fichier",
+                    "nombre_page", "nombre_morceau", "duree_cd", "duree_dvd", "duree_minutes"
+                };
 
                 foreach (string colName in colonnesAMasquer)
                 {
