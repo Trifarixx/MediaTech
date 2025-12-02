@@ -14,6 +14,8 @@ namespace WinFormsmedia_tech
         public string NomMembreConnecte { get; internal set; }
         public string PrenomMembreConnecte { get; internal set; }
 
+
+
         public AccueilForm()
         {
             InitializeComponent();
@@ -291,6 +293,9 @@ namespace WinFormsmedia_tech
                 if (btn_compte != null)
                     btn_compte.Visible = true;
             }
+
+
+
         }
 
         // Recherche en temps réel
@@ -477,8 +482,13 @@ namespace WinFormsmedia_tech
             string cheminPdf = "C:\\Users\\MESSAOUDI\\Downloads\\fichier.pdf";
 
             LecteurPdfForm pdfForm = new LecteurPdfForm(cheminPdf);
-           
+
             pdfForm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

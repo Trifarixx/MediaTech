@@ -11,15 +11,36 @@ using System.Windows.Forms;
 
 namespace WinFormsmedia_tech
 {
+
+
     public partial class HeaderControl : UserControl
     {
+
+
+
+        private MediaTechRepository repo;
+
+
+
         public HeaderControl()
         {
             InitializeComponent();
+            repo = new MediaTechRepository();
+            comboProfil.Items.Add("Gérer mon profil");
+            comboProfil.Items.Add("Se déconnecter");
+
+            comboProfil.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
 
 
 
         }
+
+
+
+
+
         private void btnLogo_Click(object sender, EventArgs e)
         {
             // Trouver le formulaire parent
@@ -74,13 +95,35 @@ namespace WinFormsmedia_tech
                 // Afficher le texte dans une MessageBox
                 MessageBox.Show("Recherche pour: " + searchText);
             }
+
         }
 
         private void btnSeConnecter_Click(object sender, EventArgs e)
         {
             ConnexionForm connexionForm = new ConnexionForm();
-            connexionForm.Show();
+
+            // Ouvre la fenêtre en mode modal et attend la fermeture
+            if (connexionForm.ShowDialog() == DialogResult.OK)
+            {
+                // On récupère l'ID du membre connecté
+                if (connexionForm.IdMembreConnecte != 0)
+                {
+                    btn_LogProfil.Visible = true;    // Affiche bouton profil
+                    Se_Connecter.Visible = false;   // Cache bouton connexion
+                    comboProfil.Visible = true;
+
+                }
+                else
+                {
+                    btn_LogProfil.Visible = false;   // Cache bouton profil
+                }
+
+            }
+
+
         }
+
+
         private void btnAccueil_Click(object sender, EventArgs e)
         {
 
@@ -105,9 +148,53 @@ namespace WinFormsmedia_tech
         {
 
         }
+
+        private void btnLogProfil(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void comboProfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboProfil.SelectedIndex == 0)
+                return;
+
+            string selection = comboProfil.SelectedItem.ToString();
+
+            if (selection == "Gérer mon profil")
+            {
+                ProfilForm profilForm = new ProfilForm();
+                profilForm.Show();
+               
+
+            }
+            else if (selection == "Se déconnecter")
+            {
+                btn_LogProfil.Visible = false;   // Cache bouton profil
+                Se_Connecter.Visible = true;    // Affiche bouton connexion
+                comboProfil.SelectedIndex = 0; // Réinitialise la sélection
+
+                MessageBox.Show("Vous avez été déconnecté avec succès.", "Déconnexion",
+                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
     }
 }
+
     
+
+
+
+    
+    
+
+
+
+
+
+
 
 
 

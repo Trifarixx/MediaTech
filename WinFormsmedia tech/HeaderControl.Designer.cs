@@ -30,19 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HeaderControl));
             panel1 = new Panel();
+            btn_LogProfil = new PictureBox();
             textBox1 = new TextBox();
             Se_Connecter = new Button();
             pictureBox1 = new PictureBox();
             A_propos = new Button();
             Accueil = new Button();
             Catalogue = new Button();
+            comboProfil = new ComboBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btn_LogProfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(75, 86, 93);
+            panel1.Controls.Add(btn_LogProfil);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(Se_Connecter);
             panel1.Controls.Add(pictureBox1);
@@ -53,9 +57,22 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(2574, 55);
+            panel1.Size = new Size(2577, 55);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint_2;
+            // 
+            // btn_LogProfil
+            // 
+            btn_LogProfil.BackgroundImage = (Image)resources.GetObject("btn_LogProfil.BackgroundImage");
+            btn_LogProfil.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_LogProfil.InitialImage = (Image)resources.GetObject("btn_LogProfil.InitialImage");
+            btn_LogProfil.Location = new Point(2417, -3);
+            btn_LogProfil.Name = "btn_LogProfil";
+            btn_LogProfil.Size = new Size(142, 55);
+            btn_LogProfil.TabIndex = 3;
+            btn_LogProfil.TabStop = false;
+            btn_LogProfil.Visible = false;
+            btn_LogProfil.Click += btnLogProfil;
             // 
             // textBox1
             // 
@@ -69,7 +86,7 @@
             // 
             // Se_Connecter
             // 
-            Se_Connecter.Location = new Point(2236, 6);
+            Se_Connecter.Location = new Point(2147, 6);
             Se_Connecter.Margin = new Padding(3, 2, 3, 2);
             Se_Connecter.Name = "Se_Connecter";
             Se_Connecter.Size = new Size(205, 45);
@@ -126,16 +143,27 @@
             Catalogue.UseVisualStyleBackColor = true;
             Catalogue.Click += btnCatalogue_Click;
             // 
+            // comboProfil
+            // 
+            comboProfil.FormattingEnabled = true;
+            comboProfil.Location = new Point(2428, 58);
+            comboProfil.Name = "comboProfil";
+            comboProfil.Size = new Size(121, 23);
+            comboProfil.TabIndex = 2;
+            comboProfil.SelectedIndexChanged += comboProfil_SelectedIndexChanged;
+            // 
             // HeaderControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
+            Controls.Add(comboProfil);
             Controls.Add(panel1);
             Name = "HeaderControl";
-            Size = new Size(2574, 1036);
+            Size = new Size(2577, 1036);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)btn_LogProfil).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -149,5 +177,7 @@
         private Button A_propos;
         private Button Accueil;
         private Button Catalogue;
+        private PictureBox btn_LogProfil;
+        private ComboBox comboProfil;
     }
 }
