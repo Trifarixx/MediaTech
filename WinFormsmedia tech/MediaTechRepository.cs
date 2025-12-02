@@ -67,11 +67,20 @@ namespace WinFormsmedia_tech
                     c.date_publication,
                     c.quantite,
                     c.image_url,
+                    c.url_fichier,
+                    l.nombre_page,          -- Info Livre
+                    cd.nombre_morceau,      -- Info CD
+                    cd.durée AS duree_cd,   -- Info CD (alias distinct)
+                    d.duree AS duree_dvd,   -- Info DVD (alias distinct)
                     ISNULL(STRING_AGG(cat.nom_categorie, ', '), 'Non catégorisé') AS categories
                 FROM Contenu c
+                LEFT JOIN Livres l ON c.id = l.id_1
+                LEFT JOIN CD_Audio cd ON c.id = cd.id_1
+                LEFT JOIN DVD d ON c.id = d.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier, 
+                         l.nombre_page, cd.nombre_morceau, cd.durée, d.duree
                 ORDER BY c.titre";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -179,20 +188,15 @@ namespace WinFormsmedia_tech
         {
             string query = @"
                 SELECT 
-                    c.id,
-                    c.titre,
-                    c.auteur,
-                    c.editeur,
-                    c.date_publication,
-                    c.quantite,
+                    c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier,
                     cd.nombre_morceau,
-                    cd.durée AS duree_minutes,
+                    cd.durée AS duree_cd,
                     ISNULL(STRING_AGG(cat.nom_categorie, ', '), 'Non catégorisé') AS categories
                 FROM Contenu c
                 INNER JOIN CD_Audio cd ON c.id = cd.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, cd.nombre_morceau, cd.durée
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier, cd.nombre_morceau, cd.durée
                 ORDER BY c.titre";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -209,19 +213,14 @@ namespace WinFormsmedia_tech
         {
             string query = @"
                 SELECT 
-                    c.id,
-                    c.titre,
-                    c.auteur,
-                    c.editeur,
-                    c.date_publication,
-                    c.quantite,
-                    d.duree AS duree_minutes,
+                    c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier,
+                    d.duree AS duree_dvd, -- Alias harmonisé
                     ISNULL(STRING_AGG(cat.nom_categorie, ', '), 'Non catégorisé') AS categories
                 FROM Contenu c
                 INNER JOIN DVD d ON c.id = d.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, d.duree
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier, d.duree
                 ORDER BY c.titre";
 
             using (SqlConnection connection = new SqlConnection(connectionString))

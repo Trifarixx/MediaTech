@@ -43,13 +43,11 @@
             btn_filter3 = new Button();
             btn_filter4 = new Button();
             panel2 = new Panel();
-            button2 = new Button();
             txtRecherche = new TextBox();
             btn_filter = new Button();
             box_genre = new ComboBox();
             box_trier = new ComboBox();
             dataGridViewCatalogue = new DataGridView();
-            boutonLireDVD = new Button();
             button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).BeginInit();
@@ -60,9 +58,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.SkyBlue;
+            label1.BackColor = Color.FromArgb(61, 173, 213);
             label1.Font = new Font("DM Sans 14pt SemiBold", 50.2499924F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(149, 241);
+            label1.Location = new Point(159, 11);
             label1.Name = "label1";
             label1.Size = new Size(900, 89);
             label1.TabIndex = 0;
@@ -70,9 +68,9 @@
             // 
             // label2
             // 
-            label2.BackColor = Color.SkyBlue;
+            label2.BackColor = Color.FromArgb(61, 173, 213);
             label2.Font = new Font("DM Sans 14pt", 20F, FontStyle.Italic);
-            label2.Location = new Point(163, 330);
+            label2.Location = new Point(163, 100);
             label2.Name = "label2";
             label2.Size = new Size(838, 179);
             label2.TabIndex = 1;
@@ -84,7 +82,7 @@
             btn_decouvrir.FlatAppearance.BorderColor = Color.White;
             btn_decouvrir.Font = new Font("DM Sans 14pt Medium", 15F, FontStyle.Bold | FontStyle.Italic);
             btn_decouvrir.ForeColor = SystemColors.ButtonHighlight;
-            btn_decouvrir.Location = new Point(159, 291);
+            btn_decouvrir.Location = new Point(159, 263);
             btn_decouvrir.Name = "btn_decouvrir";
             btn_decouvrir.Size = new Size(346, 60);
             btn_decouvrir.TabIndex = 2;
@@ -95,11 +93,13 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = Color.SkyBlue;
+            panel1.BackColor = Color.FromArgb(61, 173, 213);
             panel1.Controls.Add(ImageAccueil1);
             panel1.Controls.Add(btn_compte);
             panel1.Controls.Add(btn_decouvrir);
-            panel1.Location = new Point(-4, 231);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(0, 114);
             panel1.Name = "panel1";
             panel1.Size = new Size(2558, 366);
             panel1.TabIndex = 3;
@@ -121,7 +121,7 @@
             // btn_compte
             // 
             btn_compte.Font = new Font("DM Sans 14pt Medium", 15F, FontStyle.Italic);
-            btn_compte.Location = new Point(525, 291);
+            btn_compte.Location = new Point(511, 263);
             btn_compte.Name = "btn_compte";
             btn_compte.Size = new Size(311, 60);
             btn_compte.TabIndex = 3;
@@ -134,7 +134,7 @@
             label3.Anchor = AnchorStyles.Top;
             label3.AutoSize = true;
             label3.Font = new Font("DM Sans 14pt SemiBold", 50.2499924F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.Location = new Point(1045, 622);
+            label3.Location = new Point(1055, 534);
             label3.Name = "label3";
             label3.Size = new Size(568, 89);
             label3.TabIndex = 4;
@@ -144,7 +144,7 @@
             // 
             label4.Anchor = AnchorStyles.Top;
             label4.Font = new Font("DM Sans 14pt", 20F, FontStyle.Italic);
-            label4.Location = new Point(832, 711);
+            label4.Location = new Point(833, 642);
             label4.Name = "label4";
             label4.Size = new Size(1000, 76);
             label4.TabIndex = 5;
@@ -157,7 +157,7 @@
             btn_filter1.BackColor = SystemColors.ActiveCaptionText;
             btn_filter1.Font = new Font("DM Sans 14pt Medium", 15F, FontStyle.Bold | FontStyle.Italic);
             btn_filter1.ForeColor = SystemColors.ButtonHighlight;
-            btn_filter1.Location = new Point(872, 817);
+            btn_filter1.Location = new Point(877, 756);
             btn_filter1.Name = "btn_filter1";
             btn_filter1.Size = new Size(177, 48);
             btn_filter1.TabIndex = 6;
@@ -169,7 +169,7 @@
             // 
             btn_filter2.Anchor = AnchorStyles.Top;
             btn_filter2.Font = new Font("DM Sans 14pt Medium", 14.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_filter2.Location = new Point(1055, 817);
+            btn_filter2.Location = new Point(1055, 756);
             btn_filter2.Name = "btn_filter2";
             btn_filter2.Size = new Size(182, 48);
             btn_filter2.TabIndex = 7;
@@ -181,7 +181,7 @@
             // 
             btn_filter3.Anchor = AnchorStyles.Top;
             btn_filter3.Font = new Font("DM Sans 14pt Medium", 14.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_filter3.Location = new Point(1243, 817);
+            btn_filter3.Location = new Point(1243, 756);
             btn_filter3.Name = "btn_filter3";
             btn_filter3.Size = new Size(182, 48);
             btn_filter3.TabIndex = 8;
@@ -193,7 +193,7 @@
             // 
             btn_filter4.Anchor = AnchorStyles.Top;
             btn_filter4.Font = new Font("DM Sans 14pt Medium", 14.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_filter4.Location = new Point(1431, 817);
+            btn_filter4.Location = new Point(1431, 756);
             btn_filter4.Name = "btn_filter4";
             btn_filter4.Size = new Size(182, 48);
             btn_filter4.TabIndex = 9;
@@ -205,33 +205,21 @@
             // 
             panel2.Anchor = AnchorStyles.Top;
             panel2.BackColor = Color.FromArgb(234, 192, 88);
-            panel2.Controls.Add(button2);
             panel2.Controls.Add(txtRecherche);
             panel2.Controls.Add(btn_filter);
             panel2.Controls.Add(box_genre);
             panel2.Controls.Add(box_trier);
-            panel2.Location = new Point(329, 915);
+            panel2.Location = new Point(332, 832);
             panel2.Name = "panel2";
             panel2.Size = new Size(1967, 105);
             panel2.TabIndex = 10;
-            // 
-            // button2
-            // 
-            button2.Anchor = AnchorStyles.Top;
-            button2.Font = new Font("DM Sans 14pt Black", 14.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(1500, 38);
-            button2.Name = "button2";
-            button2.Size = new Size(182, 34);
-            button2.TabIndex = 13;
-            button2.Text = "Rechercher";
-            button2.UseVisualStyleBackColor = true;
             // 
             // txtRecherche
             // 
             txtRecherche.Anchor = AnchorStyles.Top;
             txtRecherche.Location = new Point(781, 45);
             txtRecherche.Name = "txtRecherche";
-            txtRecherche.Size = new Size(610, 23);
+            txtRecherche.Size = new Size(1115, 23);
             txtRecherche.TabIndex = 12;
             txtRecherche.TextChanged += txtRecherche_TextChanged;
             // 
@@ -274,19 +262,9 @@
             dataGridViewCatalogue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCatalogue.Location = new Point(332, 1026);
             dataGridViewCatalogue.Name = "dataGridViewCatalogue";
-            dataGridViewCatalogue.Size = new Size(240, 150);
+            dataGridViewCatalogue.Size = new Size(1967, 150);
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
-            // 
-            // boutonLireDVD
-            // 
-            boutonLireDVD.Location = new Point(68, 864);
-            boutonLireDVD.Name = "boutonLireDVD";
-            boutonLireDVD.Size = new Size(75, 23);
-            boutonLireDVD.TabIndex = 12;
-            boutonLireDVD.Text = "dvd";
-            boutonLireDVD.UseVisualStyleBackColor = true;
-            boutonLireDVD.Click += boutonLireDVD_Click;
             // 
             // button1
             // 
@@ -304,7 +282,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2547, 1159);
             Controls.Add(button1);
-            Controls.Add(boutonLireDVD);
             Controls.Add(dataGridViewCatalogue);
             Controls.Add(panel2);
             Controls.Add(btn_filter4);
@@ -313,8 +290,6 @@
             Controls.Add(btn_filter1);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(panel1);
             Font = new Font("DM Sans 14pt", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             Margin = new Padding(3, 2, 3, 2);
@@ -322,6 +297,7 @@
             Text = "Média_Tech";
             Load += AccueilForm_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -349,9 +325,7 @@
         private ComboBox box_trier;
         private Button btn_filter;
         private TextBox txtRecherche;
-        private Button button2;
         private DataGridView dataGridViewCatalogue;
-        private Button boutonLireDVD;
         private Button button1;
     }
 }

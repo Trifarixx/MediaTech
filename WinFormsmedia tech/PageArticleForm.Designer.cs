@@ -28,246 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox9 = new TextBox();
-            textBox8 = new TextBox();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            txAuteur = new TextBox();
-            label6 = new Label();
-            label7 = new Label();
-            label3 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            InfoGeneral = new Label();
-            label12 = new Label();
-            label11 = new Label();
-            label10 = new Label();
-            label9 = new Label();
-            label8 = new Label();
-            label2 = new Label();
+            lbl_date = new Label();
+            lbl_auteur = new Label();
+            lbl_Editeur = new Label();
+            lbl_carac = new Label();
+            lbl_Titre = new Label();
             Partager = new Button();
             favoris = new Button();
             Emprunter = new Button();
             picturebox = new PictureBox();
             dataGridView1 = new DataGridView();
-            dataGridView2 = new DataGridView();
+            panelLivre = new Panel();
+            lbl_NbPages = new Label();
+            panelAudio = new Panel();
+            lbl_DureeAudio = new Label();
+            lbl_Pistes = new Label();
+            panelVideo = new Panel();
+            lbl_DureeVideo = new Label();
+            pictureBoxAffiche = new PictureBox();
+            lbl_Categorie = new Label();
             ((System.ComponentModel.ISupportInitialize)picturebox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            panelLivre.SuspendLayout();
+            panelAudio.SuspendLayout();
+            panelVideo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAffiche).BeginInit();
             SuspendLayout();
             // 
-            // textBox9
+            // lbl_date
             // 
-            textBox9.Location = new Point(1015, 798);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(100, 23);
-            textBox9.TabIndex = 83;
+            lbl_date.AutoSize = true;
+            lbl_date.BackColor = Color.FromArgb(61, 173, 213);
+            lbl_date.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_date.Location = new Point(909, 376);
+            lbl_date.Name = "lbl_date";
+            lbl_date.Size = new Size(249, 31);
+            lbl_date.TabIndex = 67;
+            lbl_date.Text = "Date de Publication";
             // 
-            // textBox8
+            // lbl_auteur
             // 
-            textBox8.Location = new Point(1015, 744);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(100, 23);
-            textBox8.TabIndex = 82;
+            lbl_auteur.AutoSize = true;
+            lbl_auteur.BackColor = Color.FromArgb(61, 173, 213);
+            lbl_auteur.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_auteur.Location = new Point(909, 153);
+            lbl_auteur.Name = "lbl_auteur";
+            lbl_auteur.Size = new Size(96, 31);
+            lbl_auteur.TabIndex = 64;
+            lbl_auteur.Text = "Auteur";
             // 
-            // textBox7
+            // lbl_Editeur
             // 
-            textBox7.Location = new Point(1015, 682);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 81;
+            lbl_Editeur.AutoSize = true;
+            lbl_Editeur.BackColor = Color.FromArgb(61, 173, 213);
+            lbl_Editeur.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_Editeur.Location = new Point(909, 295);
+            lbl_Editeur.Name = "lbl_Editeur";
+            lbl_Editeur.Size = new Size(101, 31);
+            lbl_Editeur.TabIndex = 65;
+            lbl_Editeur.Text = "Éditeur";
             // 
-            // textBox6
+            // lbl_carac
             // 
-            textBox6.Location = new Point(1070, 609);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(100, 23);
-            textBox6.TabIndex = 80;
+            lbl_carac.AccessibleRole = AccessibleRole.Window;
+            lbl_carac.AutoSize = true;
+            lbl_carac.BackColor = Color.FromArgb(61, 173, 213);
+            lbl_carac.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_carac.Location = new Point(909, 36);
+            lbl_carac.Name = "lbl_carac";
+            lbl_carac.Size = new Size(216, 31);
+            lbl_carac.TabIndex = 62;
+            lbl_carac.Text = "Caractéristiques";
             // 
-            // textBox5
+            // lbl_Titre
             // 
-            textBox5.Location = new Point(1270, 440);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(100, 23);
-            textBox5.TabIndex = 79;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(1270, 345);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 23);
-            textBox4.TabIndex = 78;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(1270, 261);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 77;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(909, 440);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 76;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(909, 345);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 75;
-            // 
-            // txAuteur
-            // 
-            txAuteur.Location = new Point(909, 251);
-            txAuteur.Name = "txAuteur";
-            txAuteur.Size = new Size(100, 23);
-            txAuteur.TabIndex = 74;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = SystemColors.ControlLightLight;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(1270, 399);
-            label6.Name = "label6";
-            label6.Size = new Size(52, 21);
-            label6.TabIndex = 67;
-            label6.Text = "Genre";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.BackColor = SystemColors.ControlLightLight;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(1270, 307);
-            label7.Name = "label7";
-            label7.Size = new Size(44, 21);
-            label7.TabIndex = 68;
-            label7.Text = "ISBN";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = SystemColors.ControlLightLight;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(1270, 216);
-            label3.Name = "label3";
-            label3.Size = new Size(106, 21);
-            label3.TabIndex = 64;
-            label3.Text = "Date de sortie";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = SystemColors.ControlLightLight;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(909, 399);
-            label5.Name = "label5";
-            label5.Size = new Size(61, 21);
-            label5.TabIndex = 66;
-            label5.Text = "Langue";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = SystemColors.ControlLightLight;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(909, 307);
-            label4.Name = "label4";
-            label4.Size = new Size(59, 21);
-            label4.TabIndex = 65;
-            label4.Text = "Éditeur";
-            // 
-            // InfoGeneral
-            // 
-            InfoGeneral.AccessibleRole = AccessibleRole.Window;
-            InfoGeneral.AutoSize = true;
-            InfoGeneral.BackColor = SystemColors.ControlLightLight;
-            InfoGeneral.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            InfoGeneral.Location = new Point(909, 152);
-            InfoGeneral.Name = "InfoGeneral";
-            InfoGeneral.Size = new Size(206, 25);
-            InfoGeneral.TabIndex = 62;
-            InfoGeneral.Text = "Informations générales";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.BackColor = SystemColors.ControlLightLight;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(909, 800);
-            label12.Name = "label12";
-            label12.Size = new Size(66, 21);
-            label12.TabIndex = 73;
-            label12.Text = "Résumé";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.BackColor = SystemColors.ControlLightLight;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.Location = new Point(909, 742);
-            label11.Name = "label11";
-            label11.Size = new Size(79, 21);
-            label11.TabIndex = 72;
-            label11.Text = "Collection";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = SystemColors.ControlLightLight;
-            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(909, 684);
-            label10.Name = "label10";
-            label10.Size = new Size(60, 21);
-            label10.TabIndex = 71;
-            label10.Text = "Format";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.BackColor = SystemColors.ControlLightLight;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(909, 607);
-            label9.Name = "label9";
-            label9.Size = new Size(134, 21);
-            label9.TabIndex = 70;
-            label9.Text = "Nombre de pages";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = SystemColors.ControlLightLight;
-            label8.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(930, 547);
-            label8.Name = "label8";
-            label8.Size = new Size(160, 25);
-            label8.TabIndex = 69;
-            label8.Text = "Informations livre";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = SystemColors.ControlLightLight;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(909, 216);
-            label2.Name = "label2";
-            label2.Size = new Size(57, 21);
-            label2.TabIndex = 63;
-            label2.Text = "Auteur";
+            lbl_Titre.AutoSize = true;
+            lbl_Titre.BackColor = Color.FromArgb(61, 173, 213);
+            lbl_Titre.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_Titre.Location = new Point(909, 96);
+            lbl_Titre.Name = "lbl_Titre";
+            lbl_Titre.Size = new Size(70, 31);
+            lbl_Titre.TabIndex = 63;
+            lbl_Titre.Text = "Titre";
             // 
             // Partager
             // 
             Partager.BackColor = SystemColors.ControlLightLight;
-            Partager.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Partager.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             Partager.ForeColor = SystemColors.ActiveCaptionText;
             Partager.Location = new Point(538, 840);
             Partager.Name = "Partager";
@@ -279,7 +126,7 @@
             // favoris
             // 
             favoris.BackColor = SystemColors.ControlLightLight;
-            favoris.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            favoris.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             favoris.ForeColor = SystemColors.ActiveCaptionText;
             favoris.Location = new Point(292, 840);
             favoris.Name = "favoris";
@@ -291,14 +138,15 @@
             // Emprunter
             // 
             Emprunter.BackColor = SystemColors.ActiveCaptionText;
-            Emprunter.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Emprunter.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             Emprunter.ForeColor = SystemColors.ButtonHighlight;
-            Emprunter.Location = new Point(314, 769);
+            Emprunter.Location = new Point(292, 769);
             Emprunter.Name = "Emprunter";
-            Emprunter.Size = new Size(444, 52);
+            Emprunter.Size = new Size(466, 52);
             Emprunter.TabIndex = 56;
             Emprunter.Text = "Empunter";
             Emprunter.UseVisualStyleBackColor = false;
+            Emprunter.Click += Emprunter_Click_1;
             // 
             // picturebox
             // 
@@ -312,93 +160,159 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.BackgroundColor = SystemColors.ControlLightLight;
+            dataGridView1.BackgroundColor = Color.FromArgb(61, 173, 213);
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(885, 126);
+            dataGridView1.Location = new Point(885, 12);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(845, 347);
+            dataGridView1.Size = new Size(1024, 423);
             dataGridView1.TabIndex = 54;
             // 
-            // dataGridView2
+            // panelLivre
             // 
-            dataGridView2.BackgroundColor = SystemColors.ControlLightLight;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(885, 517);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(845, 347);
-            dataGridView2.TabIndex = 55;
+            panelLivre.BackColor = Color.FromArgb(234, 192, 88);
+            panelLivre.Controls.Add(lbl_NbPages);
+            panelLivre.Location = new Point(885, 517);
+            panelLivre.Name = "panelLivre";
+            panelLivre.Size = new Size(1024, 347);
+            panelLivre.TabIndex = 80;
+            // 
+            // lbl_NbPages
+            // 
+            lbl_NbPages.AutoSize = true;
+            lbl_NbPages.Font = new Font("DM Sans 14pt ExtraBold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_NbPages.Location = new Point(78, 142);
+            lbl_NbPages.Name = "lbl_NbPages";
+            lbl_NbPages.Size = new Size(103, 28);
+            lbl_NbPages.TabIndex = 0;
+            lbl_NbPages.Text = "NbPages";
+            // 
+            // panelAudio
+            // 
+            panelAudio.BackColor = Color.LightGreen;
+            panelAudio.Controls.Add(lbl_DureeAudio);
+            panelAudio.Controls.Add(lbl_Pistes);
+            panelAudio.Location = new Point(885, 517);
+            panelAudio.Name = "panelAudio";
+            panelAudio.Size = new Size(1024, 347);
+            panelAudio.TabIndex = 81;
+            // 
+            // lbl_DureeAudio
+            // 
+            lbl_DureeAudio.AutoSize = true;
+            lbl_DureeAudio.Font = new Font("DM Sans 14pt ExtraBold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_DureeAudio.Location = new Point(78, 114);
+            lbl_DureeAudio.Name = "lbl_DureeAudio";
+            lbl_DureeAudio.Size = new Size(136, 28);
+            lbl_DureeAudio.TabIndex = 2;
+            lbl_DureeAudio.Text = "DureeAudio";
+            // 
+            // lbl_Pistes
+            // 
+            lbl_Pistes.AutoSize = true;
+            lbl_Pistes.Font = new Font("DM Sans 14pt ExtraBold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_Pistes.Location = new Point(78, 187);
+            lbl_Pistes.Name = "lbl_Pistes";
+            lbl_Pistes.Size = new Size(75, 28);
+            lbl_Pistes.TabIndex = 1;
+            lbl_Pistes.Text = "Pistes";
+            // 
+            // panelVideo
+            // 
+            panelVideo.BackColor = Color.IndianRed;
+            panelVideo.Controls.Add(lbl_DureeVideo);
+            panelVideo.Location = new Point(885, 517);
+            panelVideo.Name = "panelVideo";
+            panelVideo.Size = new Size(1024, 347);
+            panelVideo.TabIndex = 82;
+            // 
+            // lbl_DureeVideo
+            // 
+            lbl_DureeVideo.AutoSize = true;
+            lbl_DureeVideo.Font = new Font("DM Sans 14pt ExtraBold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_DureeVideo.Location = new Point(78, 52);
+            lbl_DureeVideo.Name = "lbl_DureeVideo";
+            lbl_DureeVideo.Size = new Size(136, 28);
+            lbl_DureeVideo.TabIndex = 3;
+            lbl_DureeVideo.Text = "VideoDuree";
+            // 
+            // pictureBoxAffiche
+            // 
+            pictureBoxAffiche.BackColor = Color.FromArgb(75, 86, 93);
+            pictureBoxAffiche.Location = new Point(238, 12);
+            pictureBoxAffiche.Name = "pictureBoxAffiche";
+            pictureBoxAffiche.Size = new Size(578, 751);
+            pictureBoxAffiche.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAffiche.TabIndex = 83;
+            pictureBoxAffiche.TabStop = false;
+            // 
+            // lbl_Categorie
+            // 
+            lbl_Categorie.AutoSize = true;
+            lbl_Categorie.BackColor = Color.FromArgb(61, 173, 213);
+            lbl_Categorie.Font = new Font("DM Sans 14pt ExtraBold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lbl_Categorie.Location = new Point(909, 221);
+            lbl_Categorie.Name = "lbl_Categorie";
+            lbl_Categorie.Size = new Size(132, 31);
+            lbl_Categorie.TabIndex = 84;
+            lbl_Categorie.Text = "Categorie";
             // 
             // PageArticleForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1942, 988);
-            Controls.Add(textBox9);
-            Controls.Add(textBox8);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(txAuteur);
-            Controls.Add(label6);
-            Controls.Add(label7);
-            Controls.Add(label3);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(InfoGeneral);
-            Controls.Add(label12);
-            Controls.Add(label11);
-            Controls.Add(label10);
-            Controls.Add(label9);
-            Controls.Add(label8);
-            Controls.Add(label2);
+            BackColor = Color.Gainsboro;
+            ClientSize = new Size(2158, 988);
+            Controls.Add(lbl_Categorie);
+            Controls.Add(pictureBoxAffiche);
+            Controls.Add(lbl_date);
+            Controls.Add(lbl_auteur);
+            Controls.Add(lbl_Editeur);
+            Controls.Add(lbl_carac);
+            Controls.Add(lbl_Titre);
             Controls.Add(Partager);
             Controls.Add(favoris);
             Controls.Add(Emprunter);
-            Controls.Add(picturebox);
             Controls.Add(dataGridView1);
-            Controls.Add(dataGridView2);
+            Controls.Add(picturebox);
+            Controls.Add(panelVideo);
+            Controls.Add(panelAudio);
+            Controls.Add(panelLivre);
             Name = "PageArticleForm";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)picturebox).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            panelLivre.ResumeLayout(false);
+            panelLivre.PerformLayout();
+            panelAudio.ResumeLayout(false);
+            panelAudio.PerformLayout();
+            panelVideo.ResumeLayout(false);
+            panelVideo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAffiche).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private TextBox textBox9;
-        private TextBox textBox8;
-        private TextBox textBox7;
-        private TextBox textBox6;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private TextBox txAuteur;
-        private Label label6;
-        private Label label7;
-        private Label label3;
-        private Label label5;
-        private Label label4;
-        private Label InfoGeneral;
-        private Label label12;
-        private Label label11;
-        private Label label10;
-        private Label label9;
-        private Label label8;
-        private Label label2;
+        private Label lbl_date;
+        private Label lbl_auteur;
+        private Label lbl_Editeur;
+        private Label lbl_carac;
+        private Label lbl_Titre;
         private Button Partager;
         private Button favoris;
         private Button Emprunter;
         private PictureBox picturebox;
         private DataGridView dataGridView1;
-        private DataGridView dataGridView2;
+        private Panel panelLivre;
+        private Panel panelAudio;
+        private Panel panelVideo;
+        private Label lbl_NbPages;
+        private Label lbl_DureeVideo;
+        private Label lbl_DureeAudio;
+        private Label lbl_Pistes;
+        private PictureBox pictureBoxAffiche;
+        private Label lbl_Categorie;
+        private Label label1;
+        private Label label2;
     }
 }
