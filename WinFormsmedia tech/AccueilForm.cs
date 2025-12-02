@@ -249,13 +249,8 @@ namespace WinFormsmedia_tech
         // Bouton "Créer un compte"
         private void btn_creer_compte(object sender, EventArgs e)
         {
-            MessageBox.Show("Fonctionnalité de création de compte à venir !\n\n" +
-                          "Vous pourrez bientôt :\n" +
-                          "- Créer votre compte membre\n" +
-                          "- Emprunter jusqu'à 5 contenus\n" +
-                          "- Consulter votre historique\n" +
-                          "- Laisser des avis",
-                "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            InscriptionForm formInscription = new InscriptionForm();
+            formInscription.Show();
         }
 
         // Recherche en temps réel
