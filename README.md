@@ -62,6 +62,12 @@ YoutubeExplode : Extraction de métadonnées et flux YouTube.
 
 NAudio : Gestion audio bas niveau.
 
+### 3.5 Installer la bonne police d'écriture
+Se rendre sur le lien suivant : https://fonts.google.com/specimen/DM+Sans
+- Cliquez sur Get Font puis download all.
+- Exporter le fichier dans vos téléchargements, cliquez sur vos 2 fichier (DMSans-Italic-VariableFont_opsz,wght.ttf et DMSans-VariableFont_opsz,wght.ttf) et cliquez sur installer.
+- Si la police d'écriture n'est pas appliquée quand le projet sera actif, relancer le PC.
+
 ### 4. Installation SQL SERVER 
 
 1. Configuration Réseau du Serveur SQL
@@ -129,7 +135,7 @@ Authentification : Choisir Authentification SQL Server.
 
 Identifiants : Utilisez le login et mot de passe créés précédemment.
 
-5. Un petit jeu de données à insérer dans la bases de données :
+### 5. Un petit jeu de données à insérer dans la bases de données :
 
 DECLARE @NewContenuID INT;
 DECLARE @NewCDAudioID INT;
@@ -187,10 +193,11 @@ BEGIN
     PRINT 'Ajouté sans catégorie (Aucune trouvée).';
 END
 
-6 - modifier dans le MediaTechRepository le "connectionString" et mettre les informations par rapport a votre identifiant, mdp, nom de base de donnée et votre adresse ip (celle en 172.)
+### 6 - modifier dans le MediaTechRepository le "connectionString" et mettre les informations par rapport a votre identifiant, mdp, nom de base de donnée et votre adresse ip (celle en 172.)
 Ce qui aura pour effet d'effectuer la connexion vers la base de donnée et récupérer le clip vidéo die for you que vous pourrez visionner.
 
 📝 Auteurs
-Thomas - Lead Dev
+Thomas - Dev
 Flavie - Dev 
 Zainabe - Dev 
+
