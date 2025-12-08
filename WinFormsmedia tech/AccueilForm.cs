@@ -10,10 +10,27 @@ namespace WinFormsmedia_tech
         private MediaTechRepository repo;
         private string filtreActif = "Tous";
 
+        public int IdMembreConnecte { get; internal set; }
+        public string NomMembreConnecte { get; internal set; }
+        public string PrenomMembreConnecte { get; internal set; }
+
+
+
         public AccueilForm()
         {
             InitializeComponent();
             repo = new MediaTechRepository();
+
+            HeaderControl header = new HeaderControl();
+            header.Dock = DockStyle.Top;
+            this.Controls.Add(header);
+            this.Controls.SetChildIndex(header, 0);
+            this.AutoScroll = true;
+            this.WindowState = FormWindowState.Maximized;
+
+
+
+
         }
 
         private void AccueilForm_Load(object sender, EventArgs e)
@@ -38,23 +55,60 @@ namespace WinFormsmedia_tech
 
             // Définir le bouton "Tous" comme actif par défaut
             DefinirBoutonActif(btn_filter1);
+
+            // Mettre à jour l'état de connexion
+            MettreAJourEtatConnexion();
         }
 
         private void ConfigurerDataGridView()
         {
-            // Configurer l'apparence du DataGridView
+            // --- 1. Paramètres de base ---
             dataGridViewCatalogue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCatalogue.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCatalogue.MultiSelect = false;
             dataGridViewCatalogue.ReadOnly = true;
             dataGridViewCatalogue.AllowUserToAddRows = false;
-            dataGridViewCatalogue.RowHeadersVisible = false;
+            dataGridViewCatalogue.RowHeadersVisible = false; 
+            dataGridViewCatalogue.AllowUserToResizeRows = false;
 
-            // Adapter la taille du DataGridView
-            dataGridViewCatalogue.Size = new Size(1400, 600);
+            // --- 2. Apparence Générale ---
+            dataGridViewCatalogue.BackgroundColor = Color.White;
+            dataGridViewCatalogue.BorderStyle = BorderStyle.None;
+            dataGridViewCatalogue.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCatalogue.GridColor = Color.FromArgb(230, 230, 230);
 
-            // Style alternance de lignes
-            dataGridViewCatalogue.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            // --- 3. En-têtes ---
+            dataGridViewCatalogue.EnableHeadersVisualStyles = false;
+            dataGridViewCatalogue.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCatalogue.ColumnHeadersHeight = 50;
+            dataGridViewCatalogue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+            // Style des en-têtes 
+            dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(61, 173, 213);
+            dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.Font = new Font("DM Sans", 12, FontStyle.Bold);
+            dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCatalogue.ColumnHeadersDefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
+
+            // --- 4. Les Lignes ---
+            dataGridViewCatalogue.DefaultCellStyle.BackColor = Color.White;
+            dataGridViewCatalogue.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridViewCatalogue.DefaultCellStyle.Font = new Font("DM Sans", 10);
+            dataGridViewCatalogue.DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
+            dataGridViewCatalogue.DefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 192, 88);
+            dataGridViewCatalogue.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dataGridViewCatalogue.RowTemplate.Height = 40;
+
+            // --- 5. Alternance ---
+            dataGridViewCatalogue.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 248, 248);
+
+            int nombreDeLignesVisibles = 10;
+            int hauteurLigne = dataGridViewCatalogue.RowTemplate.Height;
+            int hauteurEntete = dataGridViewCatalogue.ColumnHeadersHeight;
+            int hauteurTotale = hauteurEntete + (hauteurLigne * nombreDeLignesVisibles); 
+            dataGridViewCatalogue.Height = hauteurTotale;
+            dataGridViewCatalogue.Width = 1965;
         }
 
         private void ChargerComboBoxGenres()
@@ -118,9 +172,6 @@ namespace WinFormsmedia_tech
             if (dataGridViewCatalogue.Columns.Count > 0)
             {
                 // Personnaliser les en-têtes
-                if (dataGridViewCatalogue.Columns.Contains("id"))
-                    dataGridViewCatalogue.Columns["id"].HeaderText = "ID";
-
                 if (dataGridViewCatalogue.Columns.Contains("titre"))
                     dataGridViewCatalogue.Columns["titre"].HeaderText = "Titre";
 
@@ -132,12 +183,12 @@ namespace WinFormsmedia_tech
 
                 if (dataGridViewCatalogue.Columns.Contains("date_publication"))
                 {
-                    dataGridViewCatalogue.Columns["date_publication"].HeaderText = "Date de publication";
+                    dataGridViewCatalogue.Columns["date_publication"].HeaderText = "Date";
                     dataGridViewCatalogue.Columns["date_publication"].DefaultCellStyle.Format = "dd/MM/yyyy";
                 }
 
                 if (dataGridViewCatalogue.Columns.Contains("quantite"))
-                    dataGridViewCatalogue.Columns["quantite"].HeaderText = "Quantité";
+                    dataGridViewCatalogue.Columns["quantite"].HeaderText = "Qté";
 
                 if (dataGridViewCatalogue.Columns.Contains("categories"))
                     dataGridViewCatalogue.Columns["categories"].HeaderText = "Catégories";
@@ -150,6 +201,19 @@ namespace WinFormsmedia_tech
 
                 if (dataGridViewCatalogue.Columns.Contains("duree_minutes"))
                     dataGridViewCatalogue.Columns["duree_minutes"].HeaderText = "Durée (min)";
+
+                string[] colonnesAMasquer = {
+                    "id", "image_url", "url_fichier",
+                    "nombre_page", "nombre_morceau", "duree_cd", "duree_dvd", "duree_minutes"
+                };
+
+                foreach (string colName in colonnesAMasquer)
+                {
+                    if (dataGridViewCatalogue.Columns.Contains(colName))
+                    {
+                        dataGridViewCatalogue.Columns[colName].Visible = false;
+                    }
+                }
             }
         }
 
@@ -251,6 +315,35 @@ namespace WinFormsmedia_tech
         {
             InscriptionForm formInscription = new InscriptionForm();
             formInscription.Show();
+            InscriptionForm inscription = new InscriptionForm();
+            inscription.Show();
+
+            this.Hide();
+
+            inscription.FormClosed += (s, args) =>
+            {
+                if (Application.OpenForms["ConnexionForm"] == null && !this.Visible)
+                {
+                    this.Show();
+                }
+            };
+        }
+
+        public void MettreAJourEtatConnexion()
+        {
+            if (IdMembreConnecte > 0)
+            {
+                if (btn_compte != null)
+                    btn_compte.Visible = false;
+            }
+            else
+            {
+                if (btn_compte != null)
+                    btn_compte.Visible = true;
+            }
+
+
+
         }
 
         // Recherche en temps réel
@@ -369,18 +462,20 @@ namespace WinFormsmedia_tech
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            // Méthode générée par le designer
+
         }
 
         private void ImageAccueil1_Click(object sender, EventArgs e)
         {
-            // Optionnel : Action au clic sur l'image
+
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-            // Méthode générée par le designer
+
         }
+
+
 
         private void dataGridViewCatalogue_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -398,29 +493,58 @@ namespace WinFormsmedia_tech
                     string datePubli = row.Cells["date_publication"].Value != DBNull.Value
                         ? Convert.ToDateTime(row.Cells["date_publication"].Value).ToString("dd/MM/yyyy")
                         : "N/A";
+                    string urlImage = "";
+                    if (dataGridViewCatalogue.Columns.Contains("image_url"))
+                        urlImage = row.Cells["image_url"].Value?.ToString();
+                    string urlFichier = "";
+                    if (dataGridViewCatalogue.Columns.Contains("url_fichier"))
+                    {
+                        urlFichier = row.Cells["url_fichier"].Value?.ToString();
+                    }
 
-                    // Vérifier la disponibilité
-                    bool disponible = repo.IsContenuDisponible(idContenu);
-                    string statutDispo = disponible ? "✓ Disponible" : "✗ Non disponible";
+                    int? nbPages = null;
+                    if (dataGridViewCatalogue.Columns.Contains("nombre_page") && row.Cells["nombre_page"].Value != DBNull.Value)
+                        nbPages = Convert.ToInt32(row.Cells["nombre_page"].Value);
 
-                    string message = $"📚 DÉTAILS DU CONTENU\n\n" +
-                                   $"Titre : {titre}\n" +
-                                   $"Auteur : {auteur}\n" +
-                                   $"Éditeur : {editeur}\n" +
-                                   $"Catégories : {categories}\n" +
-                                   $"Date de publication : {datePubli}\n" +
-                                   $"Quantité en stock : {quantite}\n" +
-                                   $"Statut : {statutDispo}";
+                    int nbMorceaux = 1;
+                    if (dataGridViewCatalogue.Columns.Contains("nombre_morceau") && row.Cells["nombre_morceau"].Value != DBNull.Value)
+                    {
+                        int valeurBrute = Convert.ToInt32(row.Cells["nombre_morceau"].Value);
+                        if (valeurBrute > 0) nbMorceaux = valeurBrute;
+                    }
 
-                    MessageBox.Show(message, "Détails du contenu",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int? dureeCd = null;
+                    if (dataGridViewCatalogue.Columns.Contains("duree_cd") && row.Cells["duree_cd"].Value != DBNull.Value)
+                        dureeCd = Convert.ToInt32(row.Cells["duree_cd"].Value);
+
+                    int? dureeDvd = null;
+                    if (dataGridViewCatalogue.Columns.Contains("duree_dvd") && row.Cells["duree_dvd"].Value != DBNull.Value)
+                        dureeDvd = Convert.ToInt32(row.Cells["duree_dvd"].Value);
+
+                    PageArticleForm pageArticle = new PageArticleForm();
+
+                    pageArticle.ChargerDonnees(titre, auteur, editeur, categories, datePubli, urlFichier, urlImage, nbPages, nbMorceaux, dureeCd, dureeDvd);
+
+                    pageArticle.ShowDialog();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erreur lors de l'affichage des détails : {ex.Message}",
-                        "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erreur : {ex.Message}");
                 }
             }
+        }
+        private void btnAfficherPDF(object sender, EventArgs e)
+        {
+            string cheminPdf = "C:\\Users\\DEBROIZE\\Downloads\\fichier.pdf";
+
+            LecteurPdfForm pdfForm = new LecteurPdfForm(cheminPdf);
+
+            pdfForm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

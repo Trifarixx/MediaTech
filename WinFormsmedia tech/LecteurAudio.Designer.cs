@@ -28,81 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnPlay = new Button();
-            btnStop = new Button();
-            btnPrecedent = new Button();
-            btnSuivant = new Button();
-            pictureBoxPochette = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPochette).BeginInit();
+            BtnPlayPause = new Button();
+            BtnStop = new Button();
+            FondPanel = new Panel();
+            lbl_TempsCourant = new Label();
             SuspendLayout();
             // 
-            // btnPlay
+            // BtnPlayPause
             // 
-            btnPlay.Location = new Point(375, 279);
-            btnPlay.Name = "btnPlay";
-            btnPlay.Size = new Size(75, 23);
-            btnPlay.TabIndex = 0;
-            btnPlay.Text = "Lecture";
-            btnPlay.UseVisualStyleBackColor = true;
+            BtnPlayPause.Location = new Point(292, 241);
+            BtnPlayPause.Name = "BtnPlayPause";
+            BtnPlayPause.Size = new Size(88, 25);
+            BtnPlayPause.TabIndex = 0;
+            BtnPlayPause.Text = "PlayPause";
+            BtnPlayPause.UseVisualStyleBackColor = true;
+            BtnPlayPause.Click += BtnPlay_Click;
             // 
-            // btnStop
+            // BtnStop
             // 
-            btnStop.Location = new Point(471, 279);
-            btnStop.Name = "btnStop";
-            btnStop.Size = new Size(75, 23);
-            btnStop.TabIndex = 1;
-            btnStop.Text = "Pause";
-            btnStop.UseVisualStyleBackColor = true;
+            BtnStop.Location = new Point(342, 299);
+            BtnStop.Name = "BtnStop";
+            BtnStop.Size = new Size(75, 23);
+            BtnStop.TabIndex = 1;
+            BtnStop.Text = "Stop";
+            BtnStop.UseVisualStyleBackColor = true;
+            BtnStop.Click += BtnStop_Click;
             // 
-            // btnPrecedent
+            // FondPanel
             // 
-            btnPrecedent.Location = new Point(225, 279);
-            btnPrecedent.Name = "btnPrecedent";
-            btnPrecedent.Size = new Size(75, 23);
-            btnPrecedent.TabIndex = 2;
-            btnPrecedent.Text = "Précédent";
-            btnPrecedent.UseVisualStyleBackColor = true;
+            FondPanel.Location = new Point(324, 141);
+            FondPanel.Name = "FondPanel";
+            FondPanel.Size = new Size(200, 100);
+            FondPanel.TabIndex = 2;
             // 
-            // btnSuivant
+            // lbl_TempsCourant
             // 
-            btnSuivant.Location = new Point(629, 279);
-            btnSuivant.Name = "btnSuivant";
-            btnSuivant.Size = new Size(75, 23);
-            btnSuivant.TabIndex = 3;
-            btnSuivant.Text = "Suivant";
-            btnSuivant.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxPochette
-            // 
-            pictureBoxPochette.Location = new Point(356, 58);
-            pictureBoxPochette.Name = "pictureBoxPochette";
-            pictureBoxPochette.Size = new Size(100, 100);
-            pictureBoxPochette.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxPochette.TabIndex = 4;
-            pictureBoxPochette.TabStop = false;
+            lbl_TempsCourant.AutoSize = true;
+            lbl_TempsCourant.Location = new Point(124, 367);
+            lbl_TempsCourant.Name = "lbl_TempsCourant";
+            lbl_TempsCourant.Size = new Size(34, 15);
+            lbl_TempsCourant.TabIndex = 3;
+            lbl_TempsCourant.Text = "00:00";
             // 
             // LecteurAudio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(pictureBoxPochette);
-            Controls.Add(btnSuivant);
-            Controls.Add(btnPrecedent);
-            Controls.Add(btnStop);
-            Controls.Add(btnPlay);
+            Controls.Add(lbl_TempsCourant);
+            Controls.Add(FondPanel);
+            Controls.Add(BtnStop);
+            Controls.Add(BtnPlayPause);
             Name = "LecteurAudio";
             Text = "LecteurAudio";
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPochette).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button btnPlay;
-        private Button btnStop;
-        private Button btnPrecedent;
-        private Button btnSuivant;
-        private PictureBox pictureBoxPochette;
+        private Button BtnPlayPause;
+        private Button BtnStop;
+        private Panel FondPanel;
+        private Label lbl_TempsCourant;
     }
 }

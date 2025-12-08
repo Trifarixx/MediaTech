@@ -55,7 +55,6 @@
             labelTitre.TabIndex = 0;
             labelTitre.Text = "Connexion";
             labelTitre.TextAlign = ContentAlignment.TopCenter;
-            labelTitre.Click += label1_Click;
             // 
             // labelNom
             // 
@@ -73,7 +72,6 @@
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(256, 46);
             textBoxEmail.TabIndex = 2;
-            textBoxEmail.TextChanged += textBox1_TextChanged;
             // 
             // textBoxMdp
             // 
@@ -84,7 +82,6 @@
             textBoxMdp.Size = new Size(256, 46);
             textBoxMdp.TabIndex = 3;
             textBoxMdp.UseSystemPasswordChar = true;
-            textBoxMdp.TextChanged += textBox2_TextChanged;
             // 
             // labelEmail
             // 
@@ -131,11 +128,11 @@
             labelPropositionConnexion.TabIndex = 7;
             labelPropositionConnexion.Text = "Vous n'avez pas de compte ? \r\n";
             labelPropositionConnexion.TextAlign = ContentAlignment.BottomCenter;
-            labelPropositionConnexion.Click += label1_Click_1;
             // 
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top;
+            dataGridView1.BackgroundColor = Color.FromArgb(75, 86, 93);
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -171,7 +168,6 @@
             linkLabelInscription.TabStop = true;
             linkLabelInscription.Text = "Créez-en un !";
             linkLabelInscription.VisitedLinkColor = Color.Red;
-            linkLabelInscription.LinkClicked += linkLabelInscription_LinkClicked;
             // 
             // ConnexionForm
             // 

@@ -1,4 +1,6 @@
-
+using System;
+using System.Windows.Forms;
+using LibVLCSharp.Shared;
 
 namespace WinFormsmedia_tech
 {
@@ -12,10 +14,10 @@ namespace WinFormsmedia_tech
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            Core.Initialize();
             ApplicationConfiguration.Initialize();
-            Application.Run(new LecteurAudio());
+            Application.Run(new AccueilForm());
         }
     }
 }
-  
            

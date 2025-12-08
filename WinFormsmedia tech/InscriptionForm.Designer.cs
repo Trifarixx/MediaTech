@@ -99,7 +99,6 @@
             textBoxNom.Name = "textBoxNom";
             textBoxNom.Size = new Size(256, 46);
             textBoxNom.TabIndex = 12;
-            textBoxNom.UseSystemPasswordChar = true;
             // 
             // textBoxPrenom
             // 
@@ -175,6 +174,7 @@
             // dataGridView2
             // 
             dataGridView2.Anchor = AnchorStyles.Top;
+            dataGridView2.BackgroundColor = Color.FromArgb(75, 86, 93);
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(457, 339);
             dataGridView2.Name = "dataGridView2";
@@ -194,7 +194,6 @@
             linkLabelConnexion.TabStop = true;
             linkLabelConnexion.Text = "Connectez-vous !";
             linkLabelConnexion.VisitedLinkColor = Color.Red;
-            linkLabelConnexion.LinkClicked += linkLabelConnexion_LinkClicked;
             // 
             // InscriptionForm
             // 
