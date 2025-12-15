@@ -70,7 +70,7 @@ Se rendre sur le lien suivant : https://fonts.google.com/specimen/DM+Sans
 
 ### 4. Installation SQL SERVER 
 
-1. Installation & Configuration Réseau du Serveur SQL
+## 1. Installation & Configuration Réseau du Serveur SQL
 Se rendre sur le site https://www.microsoft.com/fr-fr/sql-server/sql-server-downloads et installer la version "SQL Server 2025 Express"
 
 Cliquez sur l'installation Basique de SQL Server
@@ -108,7 +108,7 @@ Service SQL Browser :
 Assurez-vous que le service SQL Server Browser est activé. S'il est grisé, changez le mode de lancement en "Automatique" dans les propriétés, puis activez-le.
 
 
-2. Configuration de la Sécurité & Pare-feu
+## 2. Configuration de la Sécurité & Pare-feu
 Pare-feu Windows :
 
 Créez une règle entrante pour autoriser les communications TCP sur le port 1433.
@@ -172,7 +172,7 @@ net start MSSQL$SQLEXPRESS
 - Se connecter en Authentification Windows.
 - Tester Server and Windows Authentication mode (Mixed Mode) et cliquez sur OK
 
-3. Gestion des Utilisateurs
+## 3. Gestion des Utilisateurs
 Création d'un utilisateur dédié pour l'application.
 
 Dans SSMS, dépliez le dossier Sécurité, puis clic droit sur Connexions > Nouvelle connexion.
@@ -181,7 +181,7 @@ Créez l'utilisateur (Exemple : User yohan, Mot de passe yohan1234).
 
 Dans les rôles du serveur ou mappage de l'utilisateur, attribuez le droit db_owner si nécessaire pour la base concernée quand elle sera créer.
 
-4. Connexion au Serveur (Côté Client)
+## 4. Connexion au Serveur (Côté Client)
 Pour se connecter au serveur depuis un poste distant :
 
 
