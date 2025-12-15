@@ -27,6 +27,7 @@ namespace WinFormsmedia_tech
             this.Controls.SetChildIndex(header, 0);
             this.AutoScroll = true;
             this.WindowState = FormWindowState.Maximized;
+            
 
 
 
@@ -530,19 +531,6 @@ namespace WinFormsmedia_tech
                     MessageBox.Show($"Erreur : {ex.Message}");
                 }
             }
-        }
-        private void btnAfficherPDF(object sender, EventArgs e)
-        {
-            string cheminPdf = "C:\\Users\\DEBROIZE\\Downloads\\fichier.pdf";
-
-            LecteurPdfForm pdfForm = new LecteurPdfForm(cheminPdf);
-
-            pdfForm.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

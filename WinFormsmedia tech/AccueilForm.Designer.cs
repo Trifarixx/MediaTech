@@ -48,7 +48,6 @@
             box_genre = new ComboBox();
             box_trier = new ComboBox();
             dataGridViewCatalogue = new DataGridView();
-            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ImageAccueil1).BeginInit();
             panel2.SuspendLayout();
@@ -266,22 +265,11 @@
             dataGridViewCatalogue.TabIndex = 11;
             dataGridViewCatalogue.CellContentClick += dataGridViewCatalogue_CellContentClick;
             // 
-            // button1
-            // 
-            button1.Location = new Point(163, 864);
-            button1.Name = "button1";
-            button1.Size = new Size(86, 23);
-            button1.TabIndex = 13;
-            button1.Text = "AfficherPdf";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += btnAfficherPDF;
-            // 
             // AccueilForm
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2547, 1159);
-            Controls.Add(button1);
             Controls.Add(dataGridViewCatalogue);
             Controls.Add(panel2);
             Controls.Add(btn_filter4);
@@ -326,6 +314,5 @@
         private Button btn_filter;
         private TextBox txtRecherche;
         private DataGridView dataGridViewCatalogue;
-        private Button button1;
     }
 }
