@@ -149,7 +149,7 @@
             // 
             // button10
             // 
-            button10.Location = new Point(680, 417);
+            button10.Location = new Point(561, 417);
             button10.Name = "button10";
             button10.Size = new Size(133, 43);
             button10.TabIndex = 14;
@@ -165,7 +165,7 @@
             // 
             // button7
             // 
-            button7.Location = new Point(680, 195);
+            button7.Location = new Point(561, 195);
             button7.Name = "button7";
             button7.Size = new Size(133, 43);
             button7.TabIndex = 11;
@@ -184,7 +184,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("DM Sans 14pt Medium", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(606, 348);
+            label3.Location = new Point(538, 348);
             label3.Name = "label3";
             label3.Size = new Size(143, 25);
             label3.TabIndex = 6;
@@ -194,7 +194,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("DM Sans 14pt Medium", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(606, 135);
+            label5.Location = new Point(538, 135);
             label5.Name = "label5";
             label5.Size = new Size(58, 25);
             label5.TabIndex = 5;
