@@ -178,7 +178,7 @@
             button4.Size = new Size(133, 43);
             button4.TabIndex = 8;
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            
             // 
             // label3
             // 

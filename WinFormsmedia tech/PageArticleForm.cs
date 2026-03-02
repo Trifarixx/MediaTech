@@ -138,12 +138,13 @@ namespace WinFormsmedia_tech
                 switch (_typeMedia)
                 {
                     case "Video":
-                    case "Audio":
                         // Ouvre le lecteur VLC
                         LecteurVideoForm lecteur = new LecteurVideoForm();
                         lecteur.LoadMedia(_urlFichier);
                         lecteur.Show();
                         break;
+                    case "Audio":
+                      
 
                     case "Livre":
                         LecteurPdfForm lecteurL = new LecteurPdfForm();
