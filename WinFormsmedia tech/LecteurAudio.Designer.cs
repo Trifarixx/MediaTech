@@ -32,11 +32,12 @@
             BtnStop = new Button();
             FondPanel = new Panel();
             lbl_TempsCourant = new Label();
+            lbl_Duree = new Label();
             SuspendLayout();
             // 
             // BtnPlayPause
             // 
-            BtnPlayPause.Location = new Point(292, 241);
+            BtnPlayPause.Location = new Point(324, 261);
             BtnPlayPause.Name = "BtnPlayPause";
             BtnPlayPause.Size = new Size(88, 25);
             BtnPlayPause.TabIndex = 0;
@@ -46,7 +47,7 @@
             // 
             // BtnStop
             // 
-            BtnStop.Location = new Point(342, 299);
+            BtnStop.Location = new Point(449, 261);
             BtnStop.Name = "BtnStop";
             BtnStop.Size = new Size(75, 23);
             BtnStop.TabIndex = 1;
@@ -64,17 +65,28 @@
             // lbl_TempsCourant
             // 
             lbl_TempsCourant.AutoSize = true;
-            lbl_TempsCourant.Location = new Point(124, 367);
+            lbl_TempsCourant.Location = new Point(262, 271);
             lbl_TempsCourant.Name = "lbl_TempsCourant";
             lbl_TempsCourant.Size = new Size(34, 15);
             lbl_TempsCourant.TabIndex = 3;
             lbl_TempsCourant.Text = "00:00";
+            lbl_TempsCourant.Click += lbl_TempsCourant_Click;
+            // 
+            // lbl_Duree
+            // 
+            lbl_Duree.AutoSize = true;
+            lbl_Duree.Location = new Point(568, 266);
+            lbl_Duree.Name = "lbl_Duree";
+            lbl_Duree.Size = new Size(34, 15);
+            lbl_Duree.TabIndex = 4;
+            lbl_Duree.Text = "00:00";
             // 
             // LecteurAudio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lbl_Duree);
             Controls.Add(lbl_TempsCourant);
             Controls.Add(FondPanel);
             Controls.Add(BtnStop);
@@ -91,5 +103,6 @@
         private Button BtnStop;
         private Panel FondPanel;
         private Label lbl_TempsCourant;
+        private Label lbl_Duree;
     }
 }
