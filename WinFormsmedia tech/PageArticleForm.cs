@@ -144,13 +144,20 @@ namespace WinFormsmedia_tech
                         lecteur.Show();
                         break;
                     case "Audio":
-                      
+                        // Ouvre le lecteur audio et lui demande de charger la ressource (URL ou fichier)
+                        LecteurAudio lecteurAudio = new LecteurAudio();
+                        lecteurAudio.Show();
+                        lecteurAudio.LoadAndPlay(_urlFichier);
+                        break;
 
                     case "Livre":
-                        LecteurPdfForm lecteurL = new LecteurPdfForm();
-                        lecteurL.LoadPDF(_urlFichier);
-                        lecteurL.Show();
+
+                        LecteurPdfForm lecteurPdf = new LecteurPdfForm();
+                        lecteurPdf.Show();
+                        lecteurPdf.LoadPDFAsync(_urlFichier);
                         break;
+
+
                 }
             }
             catch (Exception ex)

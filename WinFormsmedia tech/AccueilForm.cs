@@ -314,6 +314,8 @@ namespace WinFormsmedia_tech
         // Bouton "Créer un compte"
         private void btn_creer_compte(object sender, EventArgs e)
         {
+            InscriptionForm formInscription = new InscriptionForm();
+            formInscription.Show();
             InscriptionForm inscription = new InscriptionForm();
             inscription.Show();
 

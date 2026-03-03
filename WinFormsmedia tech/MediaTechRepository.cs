@@ -11,6 +11,7 @@ namespace WinFormsmedia_tech
     {
         string connectionString = @"Server=172.16.119.32,1433;Database=MediaTech;User Id=flav;Password=chpuk;Encrypt=False;";
 
+
         private const int SaltSize = 16; // 16 octets = 128 bits
         private const int HashSize = 32; // 32 octets = 256 bits (pour SHA256)
         private const int Iterations = 10000; // Nombre d'itérations pour PBKDF2
@@ -56,7 +57,7 @@ namespace WinFormsmedia_tech
 
 
         // Récupérer tous les contenus avec leurs catégories
-        public DataTable GetAllContenus()
+        public DataTable GetAllContenus() 
         {
             string query = @"
                 SELECT 
@@ -165,13 +166,15 @@ namespace WinFormsmedia_tech
                     c.editeur,
                     c.date_publication,
                     c.quantite,
+                    c.image_url,
+                    c.url_fichier,
                     l.nombre_page,
                     ISNULL(STRING_AGG(cat.nom_categorie, ', '), 'Non catégorisé') AS categories
                 FROM Contenu c
                 INNER JOIN Livres l ON c.id = l.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, l.nombre_page
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier, l.nombre_page
                 ORDER BY c.titre";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
