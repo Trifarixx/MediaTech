@@ -50,7 +50,7 @@
             labelPropositionConnexion.Anchor = AnchorStyles.Top;
             labelPropositionConnexion.AutoSize = true;
             labelPropositionConnexion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPropositionConnexion.Location = new Point(615, 744);
+            labelPropositionConnexion.Location = new Point(675, 744);
             labelPropositionConnexion.Name = "labelPropositionConnexion";
             labelPropositionConnexion.Size = new Size(238, 21);
             labelPropositionConnexion.TabIndex = 16;
@@ -62,7 +62,7 @@
             buttonCreationCompte.Anchor = AnchorStyles.Top;
             buttonCreationCompte.BackColor = Color.FromArgb(192, 255, 192);
             buttonCreationCompte.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            buttonCreationCompte.Location = new Point(657, 669);
+            buttonCreationCompte.Location = new Point(717, 669);
             buttonCreationCompte.Name = "buttonCreationCompte";
             buttonCreationCompte.Size = new Size(276, 49);
             buttonCreationCompte.TabIndex = 15;
@@ -74,7 +74,7 @@
             labelNomFamille.Anchor = AnchorStyles.Top;
             labelNomFamille.AutoSize = true;
             labelNomFamille.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelNomFamille.Location = new Point(493, 507);
+            labelNomFamille.Location = new Point(553, 507);
             labelNomFamille.Name = "labelNomFamille";
             labelNomFamille.Size = new Size(95, 40);
             labelNomFamille.TabIndex = 14;
@@ -85,7 +85,7 @@
             labelPrenom.Anchor = AnchorStyles.Top;
             labelPrenom.AutoSize = true;
             labelPrenom.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPrenom.Location = new Point(493, 368);
+            labelPrenom.Location = new Point(553, 368);
             labelPrenom.Name = "labelPrenom";
             labelPrenom.Size = new Size(130, 40);
             labelPrenom.TabIndex = 13;
@@ -95,7 +95,7 @@
             // 
             textBoxNom.Anchor = AnchorStyles.Top;
             textBoxNom.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxNom.Location = new Point(493, 572);
+            textBoxNom.Location = new Point(553, 572);
             textBoxNom.Name = "textBoxNom";
             textBoxNom.Size = new Size(256, 46);
             textBoxNom.TabIndex = 12;
@@ -104,7 +104,7 @@
             // 
             textBoxPrenom.Anchor = AnchorStyles.Top;
             textBoxPrenom.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxPrenom.Location = new Point(493, 433);
+            textBoxPrenom.Location = new Point(553, 433);
             textBoxPrenom.Name = "textBoxPrenom";
             textBoxPrenom.Size = new Size(256, 46);
             textBoxPrenom.TabIndex = 11;
@@ -123,7 +123,7 @@
             labelTitre.AutoSize = true;
             labelTitre.Font = new Font("Sans Serif Collection", 47.9999924F, FontStyle.Regular, GraphicsUnit.Point, 0);
             labelTitre.ImageAlign = ContentAlignment.TopCenter;
-            labelTitre.Location = new Point(588, 121);
+            labelTitre.Location = new Point(648, 121);
             labelTitre.Name = "labelTitre";
             labelTitre.Size = new Size(417, 217);
             labelTitre.TabIndex = 9;
@@ -135,7 +135,7 @@
             labelMail.Anchor = AnchorStyles.Top;
             labelMail.AutoSize = true;
             labelMail.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelMail.Location = new Point(818, 368);
+            labelMail.Location = new Point(878, 368);
             labelMail.Name = "labelMail";
             labelMail.Size = new Size(86, 40);
             labelMail.TabIndex = 18;
@@ -145,7 +145,7 @@
             // 
             textBoxMail.Anchor = AnchorStyles.Top;
             textBoxMail.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxMail.Location = new Point(818, 433);
+            textBoxMail.Location = new Point(878, 433);
             textBoxMail.Name = "textBoxMail";
             textBoxMail.Size = new Size(256, 46);
             textBoxMail.TabIndex = 19;
@@ -155,7 +155,7 @@
             labelMdp.Anchor = AnchorStyles.Top;
             labelMdp.AutoSize = true;
             labelMdp.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelMdp.Location = new Point(818, 507);
+            labelMdp.Location = new Point(878, 507);
             labelMdp.Name = "labelMdp";
             labelMdp.Size = new Size(203, 40);
             labelMdp.TabIndex = 20;
@@ -165,7 +165,7 @@
             // 
             textBox2.Anchor = AnchorStyles.Top;
             textBox2.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(818, 572);
+            textBox2.Location = new Point(878, 572);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(256, 46);
             textBox2.TabIndex = 21;
@@ -176,7 +176,7 @@
             dataGridView2.Anchor = AnchorStyles.Top;
             dataGridView2.BackgroundColor = Color.FromArgb(75, 86, 93);
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(457, 339);
+            dataGridView2.Location = new Point(517, 339);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.Size = new Size(655, 460);
             dataGridView2.TabIndex = 22;
@@ -187,7 +187,7 @@
             linkLabelConnexion.AutoSize = true;
             linkLabelConnexion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             linkLabelConnexion.LinkColor = Color.Black;
-            linkLabelConnexion.Location = new Point(847, 744);
+            linkLabelConnexion.Location = new Point(907, 744);
             linkLabelConnexion.Name = "linkLabelConnexion";
             linkLabelConnexion.Size = new Size(130, 21);
             linkLabelConnexion.TabIndex = 23;
@@ -199,7 +199,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1496, 758);
+            ClientSize = new Size(1617, 858);
             Controls.Add(linkLabelConnexion);
             Controls.Add(textBox2);
             Controls.Add(labelMdp);

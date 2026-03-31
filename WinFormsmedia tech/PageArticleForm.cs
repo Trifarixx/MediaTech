@@ -152,10 +152,13 @@ namespace WinFormsmedia_tech
                         break;
 
                     case "Livre":
-                        LecteurPdfForm lecteurL = new LecteurPdfForm();
-                        lecteurL.LoadPDF(_urlFichier);
-                        lecteurL.Show();
+
+                        LecteurPdfForm lecteurPdf = new LecteurPdfForm();
+                        lecteurPdf.Show();
+                        lecteurPdf.LoadPDFAsync(_urlFichier);
                         break;
+
+
                 }
             }
             catch (Exception ex)

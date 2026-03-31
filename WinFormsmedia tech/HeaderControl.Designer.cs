@@ -57,7 +57,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(2574, 87);
+            panel1.Size = new Size(2577, 87);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint_2;
             // 
@@ -66,9 +66,9 @@
             btn_LogProfil.BackgroundImage = (Image)resources.GetObject("btn_LogProfil.BackgroundImage");
             btn_LogProfil.BackgroundImageLayout = ImageLayout.Zoom;
             btn_LogProfil.InitialImage = (Image)resources.GetObject("btn_LogProfil.InitialImage");
-            btn_LogProfil.Location = new Point(2417, -3);
+            btn_LogProfil.Location = new Point(2383, 15);
             btn_LogProfil.Name = "btn_LogProfil";
-            btn_LogProfil.Size = new Size(142, 55);
+            btn_LogProfil.Size = new Size(121, 69);
             btn_LogProfil.TabIndex = 3;
             btn_LogProfil.TabStop = false;
             btn_LogProfil.Visible = false;
@@ -86,10 +86,10 @@
             // 
             // Se_Connecter
             // 
-            Se_Connecter.Location = new Point(2184, 26);
+            Se_Connecter.Location = new Point(2077, 23);
             Se_Connecter.Margin = new Padding(3, 2, 3, 2);
             Se_Connecter.Name = "Se_Connecter";
-            Se_Connecter.Size = new Size(205, 45);
+            Se_Connecter.Size = new Size(207, 50);
             Se_Connecter.TabIndex = 4;
             Se_Connecter.Text = "Se Connecter";
             Se_Connecter.UseVisualStyleBackColor = true;
@@ -146,10 +146,11 @@
             // comboProfil
             // 
             comboProfil.FormattingEnabled = true;
-            comboProfil.Location = new Point(2428, 58);
+            comboProfil.Location = new Point(2383, 92);
             comboProfil.Name = "comboProfil";
             comboProfil.Size = new Size(121, 23);
             comboProfil.TabIndex = 2;
+            comboProfil.Visible = false;
             comboProfil.SelectedIndexChanged += comboProfil_SelectedIndexChanged;
             // 
             // HeaderControl

@@ -28,7 +28,6 @@ namespace WinFormsmedia_tech
             repo = new MediaTechRepository();
             comboProfil.Items.Add("Gérer mon profil");
             comboProfil.Items.Add("Se déconnecter");
-
             comboProfil.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
@@ -151,37 +150,52 @@ namespace WinFormsmedia_tech
 
         private void btnLogProfil(object sender, EventArgs e)
         {
-
-
+            comboProfil.DroppedDown = true;
+            comboProfil.Visible = !comboProfil.Visible;  // Affiche ou cache
+            if (comboProfil.Visible)
+                comboProfil.DroppedDown = true; // Ouvre la liste automatiquement
+            ProfilForm profilForm = new ProfilForm();
+            profilForm.ShowDialog();
         }
 
+
+
+
         private void comboProfil_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboProfil.SelectedIndex == 0)
-                return;
-
-            string selection = comboProfil.SelectedItem.ToString();
-
-            if (selection == "Gérer mon profil")
+        { 
+            switch (comboProfil.SelectedIndex)
             {
-                ProfilForm profilForm = new ProfilForm();
-                profilForm.Show();
-               
+                case 1: // Gérer mon profil
+                    using (ProfilForm profilForm = new ProfilForm())
+                    {
+                        profilForm.ShowDialog();
+                    }
+                    break;
 
+                case 2: // Se déconnecter
+                    btn_LogProfil.Visible = false;
+                    Se_Connecter.Visible = true;
+
+                    MessageBox.Show(
+                        "Vous avez été déconnecté avec succès",
+                        "Déconnexion",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                    break;
             }
-            else if (selection == "Se déconnecter")
-            {
-                btn_LogProfil.Visible = false;   // Cache bouton profil
-                Se_Connecter.Visible = true;    // Affiche bouton connexion
-                comboProfil.SelectedIndex = 0; // Réinitialise la sélection
 
-                MessageBox.Show("Vous avez été déconnecté avec succès.", "Déconnexion",
-                  MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
+            comboProfil.SelectedIndex = 0;
         }
     }
 }
+
+
+        
+
+        
+    
+
 
     
 

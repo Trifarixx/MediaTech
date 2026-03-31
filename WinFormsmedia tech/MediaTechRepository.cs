@@ -166,13 +166,15 @@ namespace WinFormsmedia_tech
                     c.editeur,
                     c.date_publication,
                     c.quantite,
+                    c.image_url,
+                    c.url_fichier,
                     l.nombre_page,
                     ISNULL(STRING_AGG(cat.nom_categorie, ', '), 'Non catégorisé') AS categories
                 FROM Contenu c
                 INNER JOIN Livres l ON c.id = l.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, l.nombre_page
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier, l.nombre_page
                 ORDER BY c.titre";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
