@@ -93,6 +93,10 @@ namespace WinFormsmedia_tech
             }
         }
 
+        // STRING_AGG est une fonction SQL qui permet de fusionner plusieurs lignes en une seule chaîne de caractères,
+        // séparées par une virgule. Je l'ai utilisée pour regrouper toutes les catégories d'un même contenu directement côté serveur,
+        // ce qui evite de faire des boucles complexes et gourmandes en mémoire sur le code.
+
         // Filtrer les contenus par catégorie
         public DataTable GetContenusByCategorie(string nomCategorie)
         {
@@ -115,6 +119,9 @@ namespace WinFormsmedia_tech
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, connection))
             {
+                // AddWithValue permet d'envoyer des variables à une requête SQL de manière totalement sécurisée.
+                // Au lieu de concaténer du texte (ce qui est dangereux), le framework se charge lui-même de traiter et de 'nettoyer' la donnée,
+                // ce qui bloque complètement les failles d'injection SQL.
                 cmd.Parameters.AddWithValue("@categorie", nomCategorie);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
