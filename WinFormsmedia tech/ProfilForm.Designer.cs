@@ -39,7 +39,7 @@
             panel2 = new Panel();
             button10 = new Button();
             button8 = new Button();
-            button7 = new Button();
+            mailUser = new Button();
             button4 = new Button();
             label3 = new Label();
             label5 = new Label();
@@ -134,26 +134,27 @@
             panel2.BackColor = SystemColors.AppWorkspace;
             panel2.Controls.Add(button10);
             panel2.Controls.Add(button8);
-            panel2.Controls.Add(button7);
+            panel2.Controls.Add(mailUser);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(button3);
-            panel2.Location = new Point(465, 139);
+            panel2.Location = new Point(465, 125);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1209, 812);
+            panel2.Size = new Size(1209, 826);
             panel2.TabIndex = 3;
             panel2.Paint += panel2_Paint;
             // 
             // button10
             // 
-            button10.Location = new Point(561, 417);
+            button10.Location = new Point(538, 417);
             button10.Name = "button10";
             button10.Size = new Size(133, 43);
             button10.TabIndex = 14;
             button10.UseVisualStyleBackColor = true;
+            button10.Click += mdpUser_Click;
             // 
             // button8
             // 
@@ -162,14 +163,16 @@
             button8.Size = new Size(133, 43);
             button8.TabIndex = 12;
             button8.UseVisualStyleBackColor = true;
+            button8.Click += prenomUser_Click;
             // 
-            // button7
+            // mailUser
             // 
-            button7.Location = new Point(561, 195);
-            button7.Name = "button7";
-            button7.Size = new Size(133, 43);
-            button7.TabIndex = 11;
-            button7.UseVisualStyleBackColor = true;
+            mailUser.Location = new Point(538, 195);
+            mailUser.Name = "mailUser";
+            mailUser.Size = new Size(133, 43);
+            mailUser.TabIndex = 11;
+            mailUser.UseVisualStyleBackColor = true;
+            mailUser.Click += mailUser_Click;
             // 
             // button4
             // 
@@ -178,7 +181,7 @@
             button4.Size = new Size(133, 43);
             button4.TabIndex = 8;
             button4.UseVisualStyleBackColor = true;
-            
+            button4.Click += nomUser_Click;
             // 
             // label3
             // 
@@ -224,7 +227,7 @@
             // button3
             // 
             button3.Font = new Font("DM Sans 14pt Medium", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(40, 21);
+            button3.Location = new Point(53, 28);
             button3.Name = "button3";
             button3.Size = new Size(202, 36);
             button3.TabIndex = 0;
@@ -267,7 +270,7 @@
         private Label label5;
         private Button button4;
         private Button button8;
-        private Button button7;
+        private Button mailUser;
         private Button button10;
     }
 }

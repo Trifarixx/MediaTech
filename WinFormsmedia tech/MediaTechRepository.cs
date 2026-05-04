@@ -57,7 +57,7 @@ namespace WinFormsmedia_tech
 
 
         // Récupérer tous les contenus avec leurs catégories
-        public DataTable GetAllContenus() 
+        public DataTable GetAllContenus()
         {
             string query = @"
                 SELECT 
@@ -65,7 +65,7 @@ namespace WinFormsmedia_tech
                     c.titre,
                     c.auteur,
                     c.editeur,
-                    c.date_publication,
+                    c.date_publication, 
                     c.quantite,
                     c.image_url,
                     c.url_fichier,
@@ -80,7 +80,7 @@ namespace WinFormsmedia_tech
                 LEFT JOIN DVD d ON c.id = d.id_1
                 LEFT JOIN à a ON c.id = a.id
                 LEFT JOIN Categorie cat ON a.id_1 = cat.id
-                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier, 
+                GROUP BY c.id, c.titre, c.auteur, c.editeur, c.date_publication, c.quantite, c.image_url, c.url_fichier,
                          l.nombre_page, cd.nombre_morceau, cd.durée, d.duree
                 ORDER BY c.titre";
 
@@ -122,6 +122,7 @@ namespace WinFormsmedia_tech
                 return dt;
             }
         }
+
 
         // Rechercher des contenus par titre, auteur ou éditeur
         public DataTable SearchContenu(string recherche)
@@ -279,7 +280,7 @@ namespace WinFormsmedia_tech
         // Récupérer les emprunts d'un membre
         public DataTable GetEmpruntsMembre(int idMembre)
         {
-            string query = @"
+            string query = @" 
                 SELECT 
                     e.id,
                     c.titre,
@@ -631,5 +632,9 @@ namespace WinFormsmedia_tech
                 return dt;
             }
         }
+        
+       
+
+
     }
 }   

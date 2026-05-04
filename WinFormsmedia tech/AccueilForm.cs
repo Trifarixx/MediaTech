@@ -522,7 +522,7 @@ namespace WinFormsmedia_tech
                     if (dataGridViewCatalogue.Columns.Contains("duree_dvd") && row.Cells["duree_dvd"].Value != DBNull.Value)
                         dureeDvd = Convert.ToInt32(row.Cells["duree_dvd"].Value);
 
-                    PageArticleForm pageArticle = new PageArticleForm();
+                    PageArticleForm pageArticle = new PageArticleForm(this.IdMembreConnecte);
 
                     pageArticle.ChargerDonnees(titre, auteur, editeur, categories, datePubli, urlFichier, urlImage, nbPages, nbMorceaux, dureeCd, dureeDvd);
 

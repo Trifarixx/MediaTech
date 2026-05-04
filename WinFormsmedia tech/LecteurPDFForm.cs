@@ -33,11 +33,12 @@ namespace WinFormsmedia_tech
             pdfViewer.Dock = DockStyle.Fill;
             pdfViewer.ShowToolbar = true;
             pdfViewer.ShowBookmarks = false;
-           
+
 
             this.Controls.Add(pdfViewer);
         }
 
+        //Affiche le PDF à partir d'une URL ou d'un chemin local
         public async Task LoadPDFAsync(string urlOuChemin)
         {
             try
@@ -67,11 +68,11 @@ namespace WinFormsmedia_tech
                 var ms = new MemoryStream(pdfBytes);
                 var document = PdfiumViewer.PdfDocument.Load(ms);
 
-              // Force le rendu après chargement
+                // Force le rendu après chargement
                 Action afficher = () =>
                 {
                     pdfViewer.Document = document;
-                    
+
                     pdfViewer.Refresh();
                 };
 

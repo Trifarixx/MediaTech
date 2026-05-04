@@ -37,14 +37,14 @@
             panelViewer.Dock = DockStyle.Fill;
             panelViewer.Location = new Point(0, 0);
             panelViewer.Name = "panelViewer";
-            panelViewer.Size = new Size(800, 450);
+            panelViewer.Size = new Size(839, 491);
             panelViewer.TabIndex = 1;
             // 
             // LecteurPdfForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(839, 491);
             Controls.Add(panelViewer);
             Name = "LecteurPdfForm";
             Text = "LecteurPdfForm";

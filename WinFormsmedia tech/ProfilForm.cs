@@ -12,14 +12,17 @@ namespace WinFormsmedia_tech
 {
     public partial class ProfilForm : Form
     {
+       
         public ProfilForm()
         {
             InitializeComponent();
-
+           
         }
 
         private void ProfilForm_Load(object sender, EventArgs e)
         {
+           
+            
 
         }
 
@@ -60,7 +63,24 @@ namespace WinFormsmedia_tech
 
         }
 
-       
-  
+        private void mailUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nomUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void prenomUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mdpUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

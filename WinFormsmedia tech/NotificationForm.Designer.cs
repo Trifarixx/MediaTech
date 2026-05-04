@@ -1,6 +1,6 @@
 ﻿namespace WinFormsmedia_tech
 {
-    partial class HistoriqueForm
+    partial class NotificationForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,35 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            dataGridViewNotifications = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewNotifications).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // dataGridViewNotifications
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("DM Sans 14pt Black", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(409, 48);
-            label1.Name = "label1";
-            label1.Size = new Size(427, 35);
-            label1.TabIndex = 0;
-            label1.Text = "CONSULTATION DES EMPRUNTS";
-            label1.Click += label1_Click;
+            dataGridViewNotifications.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewNotifications.Location = new Point(260, 120);
+            dataGridViewNotifications.Name = "dataGridViewNotifications";
+            dataGridViewNotifications.Size = new Size(240, 150);
+            dataGridViewNotifications.TabIndex = 0;
+          
             // 
-            // HistoriqueForm
+            // NotificationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDarkDark;
-            ClientSize = new Size(1324, 786);
-            Controls.Add(label1);
-            Name = "HistoriqueForm";
-            Text = "HistoriqueForm";
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(800, 450);
+            Controls.Add(dataGridViewNotifications);
+            Name = "NotificationForm";
+            Text = "NotificationForm";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewNotifications).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private DataGridView dataGridViewNotifications;
     }
 }

@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavorisForm));
             label1 = new Label();
-            pictureBox1 = new PictureBox();
             panel1 = new Panel();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,25 +46,13 @@
             label1.TabIndex = 1;
             label1.Text = "MES FAVORIS";
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(123, 27);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(70, 63);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
             // panel1
             // 
-            panel1.BackColor = Color.DarkKhaki;
+            panel1.BackColor = SystemColors.ScrollBar;
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
+            panel1.ForeColor = SystemColors.ControlDarkDark;
             panel1.Location = new Point(-19, 110);
             panel1.Name = "panel1";
             panel1.Size = new Size(1341, 50);
@@ -86,7 +71,7 @@
             // button2
             // 
             button2.ForeColor = Color.Black;
-            button2.Location = new Point(812, 3);
+            button2.Location = new Point(833, 3);
             button2.Name = "button2";
             button2.Size = new Size(111, 44);
             button2.TabIndex = 5;
@@ -111,11 +96,9 @@
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(1302, 797);
             Controls.Add(panel1);
-            Controls.Add(pictureBox1);
             Controls.Add(label1);
             Name = "FavorisForm";
             Text = "FavorisForm";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -124,7 +107,6 @@
         #endregion
 
         private Label label1;
-        private PictureBox pictureBox1;
         private Panel panel1;
         private Button button1;
         private Button button3;

@@ -134,6 +134,7 @@
             favoris.TabIndex = 57;
             favoris.Text = "favoris";
             favoris.UseVisualStyleBackColor = false;
+            favoris.Click += favoris_Click;
             // 
             // Emprunter
             // 

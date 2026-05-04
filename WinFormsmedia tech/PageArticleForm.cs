@@ -13,18 +13,22 @@ namespace WinFormsmedia_tech
 {
     public partial class PageArticleForm : Form
     {
+        
+    
         private string _urlFichier;
         private string _typeMedia;
-        public PageArticleForm()
+        public PageArticleForm(int idMembre)
         {
             InitializeComponent();
+          
         }
         public void ChargerDonnees(string titre, string auteur, string editeur, string categories,
                                    string date, string urlFichier, string imageUrl,
-                                   int? nbPages, int nbMorceaux, int? dureeCd, int? dureeDvd)
+                                   int? nbPages, int nbMorceaux, int? dureeCd, int? dureeDvd )
         {
 
             _urlFichier = urlFichier;
+            
 
 
             if (lbl_Titre != null) lbl_Titre.Text = "Titre : " + titre;
@@ -127,6 +131,9 @@ namespace WinFormsmedia_tech
 
         private void Emprunter_Click_1(object sender, EventArgs e)
         {
+
+          
+
             if (string.IsNullOrEmpty(_urlFichier))
             {
                 MessageBox.Show("Le fichier numérique n'est pas disponible pour ce contenu.", "Indisponible");
@@ -135,6 +142,7 @@ namespace WinFormsmedia_tech
 
             try
             {
+
                 switch (_typeMedia)
                 {
                     case "Video":
@@ -158,12 +166,17 @@ namespace WinFormsmedia_tech
                         break;
 
 
+
                 }
+              
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de l'ouverture du lecteur : " + ex.Message);
             }
+
+         
+
 
         }
 
@@ -172,7 +185,10 @@ namespace WinFormsmedia_tech
 
         }
 
+        private void favoris_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 }

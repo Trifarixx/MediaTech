@@ -20,21 +20,12 @@ namespace WinFormsmedia_tech
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
 
         }
 
-        private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
+        
 
-        private void autoLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
