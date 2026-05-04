@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # 📚 Média-Tech
-=======
-# # 📚 Média-Tech
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 
 ![Status](https://img.shields.io/badge/Status-En_Développement-yellow) ![Platform](https://img.shields.io/badge/Platform-Windows-blue) ![Language](https://img.shields.io/badge/Language-C%23-green)
 
@@ -28,13 +24,8 @@
 Pour faire tourner le projet, vous avez besoin de :
 
 * **OS :** Windows 10 ou 11 (x64 recommandé).
-<<<<<<< HEAD
-* **IDE :** Visual Studio 2019 ou 2022.
-* **Base de données :** Microsoft SQL Server (Express ou LocalDB).
-=======
 * **IDE :** Visual Studio 2022 ou 2026.
 * **Base de données :** Microsoft SQL Server.
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 * **Framework :** .NET Framework 4.7.2 ou supérieur (ou .NET 6/8 selon la configuration du projet).
 
 ## ⚙️ Installation et Configuration
@@ -45,29 +36,16 @@ git clone https://github.com/Zainabe10/MediaTech.git
 ```
 ### 2. Installation des dépendances (NuGet)
 Le projet utilise plusieurs paquets externes. Visual Studio devrait les restaurer automatiquement, mais si ce n'est pas le cas, exécutez ces commandes dans la Console du Gestionnaire de package :
-<<<<<<< HEAD
-Install-Package LibVLCSharp.WinForms
-Install-Package VideoLAN.LibVLC.Windows
-Install-Package LivVLCSharp
-Install-Package NAudio
-Install-Package YoutubeExplode
-Install-Package System.Data.SqlClient
-Install-Package IronPDF
-Install-Package Microsoft.Data.SqlClient
-Install-Package PdfiumViewer
-Install-Package syncfusion.pdfviewer.windows
-=======
-** Install-Package LibVLCSharp.WinForms
-** Install-Package VideoLAN.LibVLC.Windows
-** Install-Package LivVLCSharp
-** Install-Package NAudio
-** Install-Package YoutubeExplode
-** Install-Package System.Data.SqlClient
-** Install-Package IronPDF
-** Install-Package Microsoft.Data.SqlClient
-** Install-Package PdfiumViewer
-** Install-Package syncfusion.pdfviewer.windows
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
+**Install-Package LibVLCSharp.WinForms**\
+**Install-Package VideoLAN.LibVLC.Windows**\
+**Install-Package LivVLCSharp**\
+**Install-Package NAudio**\
+**Install-Package YoutubeExplode**\
+**Install-Package System.Data.SqlClient**\
+**Install-Package IronPDF**\
+**Install-Package Microsoft.Data.SqlClient**\
+**Install-Package PdfiumViewer**\
+**Install-Package syncfusion.pdfviewer.windows**
 
 ### 3. 📦 Architecture & Technologies
 Langage : C#
@@ -84,11 +62,6 @@ YoutubeExplode : Extraction de métadonnées et flux YouTube.
 
 NAudio : Gestion audio bas niveau.
 
-<<<<<<< HEAD
-### 4. Installation SQL SERVER 
-
-1. Configuration Réseau du Serveur SQL
-=======
 ### 3.5 Installer la bonne police d'écriture
 Se rendre sur le lien suivant : https://fonts.google.com/specimen/DM+Sans
 - Cliquez sur Get Font puis download all.
@@ -108,20 +81,17 @@ Pour compléter l'installation relancez le PC
 
 Ensuite se rendre sur votre Visual Studio Installer, cliquez sur modifier la version 2022, scrollez tout en bas dans la section "Autres Ensembles d'Outils" et Cliquez sur le package d'installation "Stockage et Traitement des données" puis Modifier pour installer.
 
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 Cette étape permet de rendre la base de données accessible sur le réseau.
 
 Ouvrir le Gestionnaire de configuration :
 
-<<<<<<< HEAD
-Lancez une invite de commande (cmd) et tapez SQLServerManager16.msc.
+Lancez une invite de commande (cmd) et tapez :
 
-=======
-Lancez une invite de commande (cmd) et tapez 
+
 ```bash
-SQLServerManager17.msc.
+SQLServerManager16.msc (ou 17 en fonction de la version)
 ```
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
+
 Activer TCP/IP :
 
 Allez dans Configuration du réseau SQL Server > Protocoles pour SQLEXPRESS.
@@ -140,25 +110,17 @@ Service SQL Browser :
 
 Assurez-vous que le service SQL Server Browser est activé. S'il est grisé, changez le mode de lancement en "Automatique" dans les propriétés, puis activez-le.
 
-<<<<<<< HEAD
-Redémarrage :
+
 
 Redémarrez le service SQL Server pour appliquer les changements.
 
-2. Configuration de la Sécurité & Pare-feu
-=======
-
 ## 2. Configuration de la Sécurité & Pare-feu
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 Pare-feu Windows :
 
 Créez une règle entrante pour autoriser les communications TCP sur le port 1433.
 
-<<<<<<< HEAD
-=======
 Nouvelle règle -> Port -> TCP port spécifiques 1433 -> Autoriser la connexion -> laisser tout cocher -> [nom] -> Terminer
 
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 Activer l'Authentification Mixte (SSMS) :
 
 Dans SQL Server Management Studio (SSMS), faites un clic droit sur le Serveur > Propriétés.
@@ -167,31 +129,25 @@ Allez dans l'onglet Sécurité (Security).
 
 Cochez SQL Server and Windows Authentication mode (Mixed Mode) et cliquez sur OK.
 
-<<<<<<< HEAD
-
-Important : Redémarrez le service SQL Server (via services.msc ou le Configuration Manager).
-
-3. Gestion des Utilisateurs
-=======
 Important : Redémarrez le service SQL Server (via services.msc ou le Configuration Manager).
 
 IMPORTANT : si l'étape précédente ne fonctionne pas : 
 
-## 1. Identifier l'utilisateur
+### 1. Identifier l'utilisateur
 Ouvrir une invite de commandes (`cmd`) en tant qu'administrateur et taper :
 
 ```cmd
 whoami
 ```
 
-## 2. Redémarrer en mode "Mono-Utilisateur"
+### 2. Redémarrer en mode "Mono-Utilisateur"
 Arrêter le service et le relancer avec l'option /m pour autoriser la maintenance.
 
 ```cmd
 net stop MSSQL$SQLEXPRESS
 net start MSSQL$SQLEXPRESS /m
 ```
-## 3. Connexion via SQLCMD
+### 3. Connexion via SQLCMD
 Se connecter au serveur en ligne de commande. L'option -C est obligatoire pour ignorer les erreurs de certificat SSL (ODBC Driver 18).
 
 ```cmd
@@ -199,7 +155,7 @@ sqlcmd -S .\SQLEXPRESS -E -C
 ```
 Si l'invite 1> s'affiche, la connexion est réussie.
 
-## 4. Attribution des droits (Attention à la syntaxe)
+### 4. Attribution des droits (Attention à la syntaxe)
 Exécuter les commandes suivantes une par une. IMPORTANT : Remplacez [DOMAINE\UTILISATEUR] par votre résultat de l'étape 1. Les crochets [] sont obligatoires.
 
 ```cmd
@@ -210,50 +166,38 @@ GO
 EXIT
 ```
 
-## 5. Retour au mode normal
+### 5. Retour au mode normal
 Redémarrer le service en mode standard pour permettre la connexion via SSMS.
 
 ```cmd
 net stop MSSQL$SQLEXPRESS
 net start MSSQL$SQLEXPRESS
 ```
-## 6. Vérification
+### 6. Vérification
 - Ouvrir SSMS.
 - Se connecter en Authentification Windows.
 - Tester Server and Windows Authentication mode (Mixed Mode) et cliquez sur OK
 
 ## 3. Gestion des Utilisateurs
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
+
 Création d'un utilisateur dédié pour l'application.
 
 Dans SSMS, dépliez le dossier Sécurité, puis clic droit sur Connexions > Nouvelle connexion.
 
 Créez l'utilisateur (Exemple : User yohan, Mot de passe yohan1234).
 
-<<<<<<< HEAD
 Dans les rôles du serveur ou mappage de l'utilisateur, attribuez le droit db_owner si nécessaire pour chaque base concernée.
 
-4. Connexion au Serveur (Côté Client)
-=======
-Dans les rôles du serveur ou mappage de l'utilisateur, attribuez le droit db_owner si nécessaire pour la base concernée quand elle sera créer.
-
 ## 4. Connexion au Serveur (Côté Client)
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 Pour se connecter au serveur depuis un poste distant :
 
-
 Nom du serveur : Adresse_IP_du_LAN,1433 (La virgule est importante pour spécifier le port).
-
 
 Authentification : Choisir Authentification SQL Server.
 
 Identifiants : Utilisez le login et mot de passe créés précédemment.
 
-<<<<<<< HEAD
-5. Un petit jeu de données à insérer dans la bases de données :
-
-=======
-### 4. Création de la base de donnée avec requète SQL complète
+## 5. Création de la base de donnée avec requète SQL complète
 Clique droit sur Bases de données -> Nouvelle bases de données -> mettre un nom à votre base puis créer 
 Collez la requète pour créer les tables : 
 ```bash
@@ -355,9 +299,8 @@ CREATE TABLE Asso_6(
 );
 ```
 
-### 5. Un petit jeu de données à insérer dans la bases de données :
+## 6. Un petit jeu de données à insérer dans la bases de données :
 ```bash
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 DECLARE @NewContenuID INT;
 DECLARE @NewCDAudioID INT;
 DECLARE @CategorieID VARCHAR(50);
@@ -369,47 +312,22 @@ SELECT @NewContenuID = ISNULL(MAX(id), 0) + 1 FROM Contenu;
 INSERT INTO Contenu (id, titre, auteur, editeur, date_publication, quantite, image_url, url_fichier)
 VALUES (
     @NewContenuID, 
-<<<<<<< HEAD
-    LEFT('Die For You (ft. Grabbitz)', 50),      -- Titre
-    'Grabbitz',                                  -- Auteur (Artiste principal)
-    'Riot Games / VALORANT',                     -- Éditeur
-    '2021-11-22',                                -- Date de publication
-    5,                                           -- Quantité
-    'https://img.youtube.com/vi/h7MYJghRWt0/maxresdefault.jpg', -- Miniature
-    'https://www.youtube.com/watch?v=h7MYJghRWt0' -- Lien YouTube
-);
-
--- 3. Insertion dans CD_Audio (Single)
-=======
     LEFT('Sofia', 50),                           -- Titre
     'Clairo',                                    -- Auteur (Artiste principal)
     'Fader Label',                               -- Éditeur
     '2019-07-26',                                -- Date de publication (Sortie de l'album Immunity)
     5,                                           -- Quantité
-    'https://img.youtube.com/vi/L9l8zCOwEII/maxresdefault.jpg', -- Miniature
+    'https://i.scdn.co/image/ab67616d0000b273556adb8ceb7aa0097a415b1b', -- Miniature
     '\\172.16.119.32\MediaTech\Clairo - Sofia.mp3' -- Lien YouTube
 );
 
 -- 3. Insertion dans CD_Audio (Single/Morceau)
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 SELECT @NewCDAudioID = ISNULL(MAX(id), 0) + 1 FROM CD_Audio;
 
 INSERT INTO CD_Audio (id, nombre_morceau, durée, titre_album, id_1)
 VALUES (
     @NewCDAudioID,
     1,                  -- 1 Morceau
-<<<<<<< HEAD
-    4,                  -- Durée (3min38 arrondi à 4)
-    'VALORANT Champions 2021', -- Album / Event
-    @NewContenuID       -- Lien vers Contenu
-);
-
--- 4. Liaison avec la catégorie (Priorité : Électro > Rock > Musique)
-SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Électro';
-
-IF @CategorieID IS NULL
-    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Rock';
-=======
     3,                  -- Durée (3min08 arrondi à 3)
     'Immunity',         -- Album
     @NewContenuID       -- Lien vers Contenu
@@ -420,7 +338,6 @@ SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Pop';
 
 IF @CategorieID IS NULL
     SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Indie';
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
 
 IF @CategorieID IS NULL
     SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Musique';
@@ -440,15 +357,6 @@ BEGIN
     PRINT 'Ajouté sans catégorie (Aucune trouvée).';
 END
 
-<<<<<<< HEAD
-6 - modifier dans le MediaTechRepository le "connectionString" et mettre les informations par rapport a votre identifiant, mdp, nom de base de donnée et votre adresse ip (celle en 172.)
-Ce qui aura pour effet d'effectuer la connexion vers la base de donnée et récupérer le clip vidéo die for you que vous pourrez visionner.
-
-📝 Auteurs
-Thomas - Lead Dev
-Flavie - Dev 
-Zainabe - Dev 
-=======
 DECLARE @NewContenuID INT;
 DECLARE @NewLivreID VARCHAR(20); -- Modifié en VARCHAR pour accepter 'LIV-XXX'
 DECLARE @MaxLivreNum INT;        -- Variable temporaire pour l'incrémentation
@@ -576,9 +484,8 @@ END
 ### 6 - modifier dans le MediaTechRepository le "connectionString" et mettre les informations par rapport a votre identifiant, mdp, nom de base de donnée et votre adresse ip (celle en 172.)
 Ce qui aura pour effet d'effectuer la connexion vers la base de donnée et récupérer le clip vidéo die for you que vous pourrez visionner.
 
-📝 Auteurs
-Thomas - Dev
-Flavie - Dev 
-Zainabe - Dev 
-
->>>>>>> ba2e56176490b882526f541ae5fbf4f789cc57e0
+📝 Auteurs\
+Thomas - Dev  
+Flavie - Dev  
+Zainabe - Dev  
+Leny - Consultant
