@@ -12,12 +12,11 @@ namespace WinFormsmedia_tech
         {
             InitializeComponent();
             repo = new MediaTechRepository();
+            buttonCreationCompte.Click += ButtonCreationCompte_Click;
         }
 
         private void InscriptionForm_Load(object sender, EventArgs e)
         {
-            // Ajouter les gestionnaires d'événements
-            buttonCreationCompte.Click += ButtonCreationCompte_Click;
             linkLabelConnexion.LinkClicked += LinkLabelConnexion_LinkClicked;
 
             // Masquer le DataGridView
@@ -146,10 +145,14 @@ namespace WinFormsmedia_tech
 
         private void LinkLabelConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Ouvrir le formulaire de connexion
             ConnexionForm connexionForm = new ConnexionForm();
             connexionForm.Show();
-            this.Close();
+
+            // On cache la fenêtre d'inscription
+            this.Hide();
+
+            // Quand on fermera la connexion, on réaffichera l'inscription
+            connexionForm.FormClosed += (s, args) => this.Show();
         }
     }
 }

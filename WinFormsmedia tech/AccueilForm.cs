@@ -316,12 +316,12 @@ namespace WinFormsmedia_tech
         {
             InscriptionForm formInscription = new InscriptionForm();
             formInscription.Show();
-            InscriptionForm inscription = new InscriptionForm();
-            inscription.Show();
 
+            // On cache la fenêtre d'accueil
             this.Hide();
 
-            inscription.FormClosed += (s, args) =>
+            // On attache l'événement à cette instance
+            formInscription.FormClosed += (s, args) =>
             {
                 if (Application.OpenForms["ConnexionForm"] == null && !this.Visible)
                 {
