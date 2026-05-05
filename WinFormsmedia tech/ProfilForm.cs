@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +13,22 @@ namespace WinFormsmedia_tech
 {
     public partial class ProfilForm : Form
     {
-       
+        private MediaTechRepository repo;
+     
+
         public ProfilForm()
         {
             InitializeComponent();
+            repo = new MediaTechRepository();
            
+
+
         }
 
         private void ProfilForm_Load(object sender, EventArgs e)
         {
-           
-            
+            // Charger les informations du membre
+                 
 
         }
 
@@ -37,50 +43,22 @@ namespace WinFormsmedia_tech
             historique.Show();
         }
 
-        private void Favoris_Click(object sender, EventArgs e)
+        private void favoris_Click(object sender, EventArgs e)
         {
             FavorisForm favoris = new FavorisForm();
             favoris.Show();
         }
 
-        private void Param_Click(object sender, EventArgs e)
-        {
-
-        }
+   
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mailUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nomUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void prenomUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mdpUser_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
+
+
+
 }

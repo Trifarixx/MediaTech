@@ -6,6 +6,7 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+      
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,20 +33,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfilForm));
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
+            mdpUser = new Button();
             colorPickerButton1 = new Syncfusion.Windows.Forms.ColorPickerButton();
             Profil = new Button();
             panel2 = new Panel();
-            button10 = new Button();
-            button8 = new Button();
-            mailUser = new Button();
-            button4 = new Button();
             label3 = new Label();
             label5 = new Label();
             label2 = new Label();
             label1 = new Label();
-            button3 = new Button();
+            txtNom = new TextBox();
+            txtPrenom = new TextBox();
+            txtMail = new TextBox();
+            txtmdp = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -65,8 +64,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.AppWorkspace;
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(mdpUser);
             panel1.Controls.Add(colorPickerButton1);
             panel1.Controls.Add(Profil);
             panel1.Controls.Add(pictureBox1);
@@ -77,31 +75,18 @@
             panel1.Size = new Size(337, 1018);
             panel1.TabIndex = 2;
             // 
-            // button2
+            // mdpUser
             // 
-            button2.BackColor = SystemColors.AppWorkspace;
-            button2.Font = new Font("DM Sans 14pt SemiBold", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = SystemColors.ActiveCaptionText;
-            button2.Location = new Point(45, 654);
-            button2.Name = "button2";
-            button2.Size = new Size(220, 43);
-            button2.TabIndex = 4;
-            button2.Text = "Paramètres";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += Param_Click;
-            // 
-            // button1
-            // 
-            button1.BackColor = SystemColors.AppWorkspace;
-            button1.Font = new Font("DM Sans 14pt SemiBold", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.ActiveCaptionText;
-            button1.Location = new Point(45, 528);
-            button1.Name = "button1";
-            button1.Size = new Size(220, 43);
-            button1.TabIndex = 3;
-            button1.Text = "Favoris";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += Favoris_Click;
+            mdpUser.BackColor = SystemColors.AppWorkspace;
+            mdpUser.Font = new Font("DM Sans 14pt SemiBold", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            mdpUser.ForeColor = SystemColors.ActiveCaptionText;
+            mdpUser.Location = new Point(45, 528);
+            mdpUser.Name = "mdpUser";
+            mdpUser.Size = new Size(220, 43);
+            mdpUser.TabIndex = 3;
+            mdpUser.Text = "Favoris";
+            mdpUser.UseVisualStyleBackColor = false;
+            mdpUser.Click += favoris_Click;
             // 
             // colorPickerButton1
             // 
@@ -132,56 +117,19 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.AppWorkspace;
-            panel2.Controls.Add(button10);
-            panel2.Controls.Add(button8);
-            panel2.Controls.Add(mailUser);
-            panel2.Controls.Add(button4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(button3);
+            panel2.Controls.Add(txtNom);
+            panel2.Controls.Add(txtPrenom);
+            panel2.Controls.Add(txtMail);
+            panel2.Controls.Add(txtmdp);
             panel2.Location = new Point(465, 125);
             panel2.Name = "panel2";
             panel2.Size = new Size(1209, 826);
             panel2.TabIndex = 3;
             panel2.Paint += panel2_Paint;
-            // 
-            // button10
-            // 
-            button10.Location = new Point(538, 417);
-            button10.Name = "button10";
-            button10.Size = new Size(133, 43);
-            button10.TabIndex = 14;
-            button10.UseVisualStyleBackColor = true;
-            button10.Click += mdpUser_Click;
-            // 
-            // button8
-            // 
-            button8.Location = new Point(73, 417);
-            button8.Name = "button8";
-            button8.Size = new Size(133, 43);
-            button8.TabIndex = 12;
-            button8.UseVisualStyleBackColor = true;
-            button8.Click += prenomUser_Click;
-            // 
-            // mailUser
-            // 
-            mailUser.Location = new Point(538, 195);
-            mailUser.Name = "mailUser";
-            mailUser.Size = new Size(133, 43);
-            mailUser.TabIndex = 11;
-            mailUser.UseVisualStyleBackColor = true;
-            mailUser.Click += mailUser_Click;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(73, 195);
-            button4.Name = "button4";
-            button4.Size = new Size(133, 43);
-            button4.TabIndex = 8;
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += nomUser_Click;
             // 
             // label3
             // 
@@ -222,18 +170,38 @@
             label1.Size = new Size(62, 25);
             label1.TabIndex = 1;
             label1.Text = "Nom :";
-            label1.Click += label1_Click;
             // 
-            // button3
+            // txtNom
             // 
-            button3.Font = new Font("DM Sans 14pt Medium", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(53, 28);
-            button3.Name = "button3";
-            button3.Size = new Size(202, 36);
-            button3.TabIndex = 0;
-            button3.Text = "Mon profil";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            txtNom.Font = new Font("DM Sans 14pt Medium", 11F);
+            txtNom.Location = new Point(53, 170);
+            txtNom.Name = "txtNom";
+            txtNom.Size = new Size(300, 27);
+            txtNom.TabIndex = 7;
+            // 
+            // txtPrenom
+            // 
+            txtPrenom.Font = new Font("DM Sans 14pt Medium", 11F);
+            txtPrenom.Location = new Point(53, 383);
+            txtPrenom.Name = "txtPrenom";
+            txtPrenom.Size = new Size(300, 27);
+            txtPrenom.TabIndex = 8;
+            // 
+            // txtMail
+            // 
+            txtMail.Font = new Font("DM Sans 14pt Medium", 11F);
+            txtMail.Location = new Point(538, 170);
+            txtMail.Name = "txtMail";
+            txtMail.Size = new Size(300, 27);
+            txtMail.TabIndex = 9;
+            // 
+            // txtmdp
+            // 
+            txtmdp.Font = new Font("DM Sans 14pt Medium", 11F);
+            txtmdp.Location = new Point(538, 383);
+            txtmdp.Name = "txtmdp";
+            txtmdp.Size = new Size(300, 27);
+            txtmdp.TabIndex = 10;
             // 
             // ProfilForm
             // 
@@ -259,18 +227,17 @@
         private PictureBox pictureBox1;
         private Panel panel1;
         private Button Profil;
-        private Button button1;
+        private Button mdpUser;
         private Syncfusion.Windows.Forms.ColorPickerButton colorPickerButton1;
-        private Button button2;
         private Panel panel2;
-        private Button button3;
         private Label label2;
         private Label label1;
         private Label label3;
         private Label label5;
-        private Button button4;
-        private Button button8;
-        private Button mailUser;
-        private Button button10;
+        private TextBox txtNom;
+        private TextBox txtPrenom;
+        private TextBox txtMail;
+        private TextBox txtmdp;
+
     }
 }
