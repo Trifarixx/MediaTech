@@ -62,7 +62,7 @@ YoutubeExplode : Extraction de métadonnées et flux YouTube.
 
 NAudio : Gestion audio bas niveau.
 
-### 3.5 Installer la bonne police d'écriture
+### 3.5 Installer la bonne police d'écriture (optionnel mais nécessaire pour respecter notre charte graphique) 
 Se rendre sur le lien suivant : https://fonts.google.com/specimen/DM+Sans
 - Cliquez sur Get Font puis download all.
 - Déziper le fichier dans vos téléchargements, cliquez sur vos 2 fichier (DMSans-Italic-VariableFont_opsz,wght.ttf et DMSans-VariableFont_opsz,wght.ttf) et cliquez sur installer.
