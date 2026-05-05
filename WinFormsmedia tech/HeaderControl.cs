@@ -15,13 +15,7 @@ namespace WinFormsmedia_tech
 
     public partial class HeaderControl : UserControl
     {
-
-
-
         private MediaTechRepository repo;
-
-
-
         public HeaderControl()
         {
             InitializeComponent();
@@ -29,16 +23,7 @@ namespace WinFormsmedia_tech
             comboProfil.Items.Add("Gérer mon profil");
             comboProfil.Items.Add("Se déconnecter");
             comboProfil.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-
-
-
         }
-
-
-
-
 
         private void btnLogo_Click(object sender, EventArgs e)
         {
@@ -116,10 +101,7 @@ namespace WinFormsmedia_tech
                 {
                     btn_LogProfil.Visible = false;   // Cache bouton profil
                 }
-
             }
-
-
         }
 
 
@@ -134,12 +116,9 @@ namespace WinFormsmedia_tech
         private void btnApropos_Click(object sender, EventArgs e)
         {
 
-
         }
         private void panel1_Paint_2(object sender, PaintEventArgs e)
         {
-
-
 
         }
 
@@ -157,9 +136,6 @@ namespace WinFormsmedia_tech
             ProfilForm profilForm = new ProfilForm();
             profilForm.ShowDialog();
         }
-
-
-
 
         private void comboProfil_SelectedIndexChanged(object sender, EventArgs e)
         { 
@@ -189,36 +165,3 @@ namespace WinFormsmedia_tech
         }
     }
 }
-
-
-        
-
-        
-    
-
-
-    
-
-
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

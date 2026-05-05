@@ -21,18 +21,13 @@ namespace WinFormsmedia_tech
 
             textBoxMdp.PasswordChar = '●';
 
-            // Ajouter les gestionnaires d'événements
             buttonValider.Click += ButtonValider_Click;
-            linkLabelInscription.LinkClicked += LinkLabelInscription_LinkClicked;
             this.Load += ConnexionForm_Load;
         }
 
         private void ConnexionForm_Load(object sender, EventArgs e)
         {
-            // Ajouter les gestionnaires d'événements
-            buttonValider.Click += ButtonValider_Click;
             linkLabelInscription.LinkClicked += LinkLabelInscription_LinkClicked;
-
             // Masquer le DataGridView
             if (dataGridView1 != null)
                 dataGridView1.Visible = false;
@@ -115,10 +110,14 @@ namespace WinFormsmedia_tech
 
         private void LinkLabelInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Ouvrir le formulaire d'inscription
             InscriptionForm inscriptionForm = new InscriptionForm();
             inscriptionForm.Show();
-            this.Close();
+
+            // On cache la fenêtre de connexion
+            this.Hide();
+
+            // Quand on fermera l'inscription, on réaffichera la connexion
+            inscriptionForm.FormClosed += (s, args) => this.Show();
         }
     }
 }

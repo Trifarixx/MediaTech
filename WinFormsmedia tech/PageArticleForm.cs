@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YoutubeExplode.Common;
 
 namespace WinFormsmedia_tech
 {
@@ -17,7 +19,11 @@ namespace WinFormsmedia_tech
     
         private string _urlFichier;
         private string _typeMedia;
-        public PageArticleForm(int idMembre)
+
+        private string _titre;
+        private string _auteur;
+        private string _imageUrl;
+        public PageArticleForm()
         {
             InitializeComponent();
           
@@ -28,7 +34,10 @@ namespace WinFormsmedia_tech
         {
 
             _urlFichier = urlFichier;
-            
+            _titre = titre;
+            _auteur = auteur;
+            _imageUrl = imageUrl;
+
 
 
             if (lbl_Titre != null) lbl_Titre.Text = "Titre : " + titre;
@@ -155,7 +164,7 @@ namespace WinFormsmedia_tech
                         // Ouvre le lecteur audio et lui demande de charger la ressource (URL ou fichier)
                         LecteurAudio lecteurAudio = new LecteurAudio();
                         lecteurAudio.Show();
-                        lecteurAudio.LoadAndPlay(_urlFichier);
+                        lecteurAudio.LoadAndPlay(_urlFichier, _titre, _auteur, _imageUrl);
                         break;
 
                     case "Livre":
