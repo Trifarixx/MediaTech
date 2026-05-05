@@ -299,7 +299,9 @@ CREATE TABLE Asso_6(
 );
 ```
 
-## 6. Un petit jeu de données à insérer dans la bases de données :
+## 6. Jeu de données à insérer dans la bases de données par lecteur:
+
+#### 1 : CD Audio
 ```bash
 DECLARE @NewContenuID INT;
 DECLARE @NewCDAudioID INT;
@@ -357,6 +359,124 @@ BEGIN
     PRINT 'Ajouté sans catégorie (Aucune trouvée).';
 END
 
+
+
+DECLARE @NewContenuID INT;
+DECLARE @NewCDAudioID INT;
+DECLARE @CategorieID VARCHAR(50);
+
+-- 1. Calcul du nouvel ID Contenu
+SELECT @NewContenuID = ISNULL(MAX(id), 0) + 1 FROM Contenu;
+
+-- 2. Insertion dans Contenu
+INSERT INTO Contenu (id, titre, auteur, editeur, date_publication, quantite, image_url, url_fichier)
+VALUES (
+    @NewContenuID, 
+    LEFT('Creep', 50),                           -- Titre
+    'Radiohead',                                 -- Auteur (Artiste principal)
+    'EMI / Parlophone',                          -- Éditeur
+    '1992-09-21',                                -- Date de publication (Sortie du single)
+    5,                                           -- Quantité
+    'https://cdn-images.dzcdn.net/images/cover/1dd56fd8824492e1a5106c99a00a85ec/1900x1900-000000-80-0-0.jpg', -- Miniature
+    '\\172.16.119.32\MediaTech\Creep - Radiohead.mp3' -- Lien YouTube
+);
+
+-- 3. Insertion dans CD_Audio (Single / Morceau)
+SELECT @NewCDAudioID = ISNULL(MAX(id), 0) + 1 FROM CD_Audio;
+
+INSERT INTO CD_Audio (id, nombre_morceau, durée, titre_album, id_1)
+VALUES (
+    @NewCDAudioID,
+    1,                  -- 1 Morceau
+    4,                  -- Durée (3min59 arrondi à 4)
+    'Pablo Honey',      -- Album
+    @NewContenuID       -- Lien vers Contenu
+);
+
+-- 4. Liaison avec la catégorie (Priorité : Rock > Alternatif > Musique)
+SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Rock';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Alternatif';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Musique';
+
+-- Si aucune catégorie spécifique n'est trouvée, sélection d'une catégorie Audio par défaut
+IF @CategorieID IS NULL
+    SELECT TOP 1 @CategorieID = id FROM Categorie WHERE type_contenu = 'Audio';
+
+-- Insertion du lien final
+IF @CategorieID IS NOT NULL
+BEGIN
+    INSERT INTO à (id, id_1) VALUES (@NewContenuID, @CategorieID);
+    PRINT 'Ajouté avec succès dans la catégorie : ' + @CategorieID;
+END
+ELSE
+BEGIN
+    PRINT 'Ajouté sans catégorie (Aucune trouvée).';
+END
+
+
+
+DECLARE @NewContenuID INT;
+DECLARE @NewCDAudioID INT;
+DECLARE @CategorieID VARCHAR(50);
+
+-- 1. Calcul du nouvel ID Contenu
+SELECT @NewContenuID = ISNULL(MAX(id), 0) + 1 FROM Contenu;
+
+-- 2. Insertion dans Contenu
+INSERT INTO Contenu (id, titre, auteur, editeur, date_publication, quantite, image_url, url_fichier)
+VALUES (
+    @NewContenuID, 
+    LEFT('Heartbeat', 50),                       -- Titre
+    'Childish Gambino',                          -- Auteur (Artiste principal)
+    'Glassnote Records',                         -- Éditeur
+    '2011-11-15',                                -- Date de publication (Sortie de l'album Camp)
+    5,                                           -- Quantité
+    'https://cdn-images.dzcdn.net/images/cover/088fd9b28af9a786c9d61e1e1fd89462/1900x1900-000000-81-0-0.jpg', -- Miniature
+    '\\172.16.119.32\MediaTech\Heartbeat - Childish Gambino.mp3' -- Lien YouTube
+);
+
+-- 3. Insertion dans CD_Audio (Single / Morceau)
+SELECT @NewCDAudioID = ISNULL(MAX(id), 0) + 1 FROM CD_Audio;
+
+INSERT INTO CD_Audio (id, nombre_morceau, durée, titre_album, id_1)
+VALUES (
+    @NewCDAudioID,
+    1,                  -- 1 Morceau
+    5,                  -- Durée (4min31 arrondi à 5)
+    'Camp',             -- Album
+    @NewContenuID       -- Lien vers Contenu
+);
+
+-- 4. Liaison avec la catégorie (Priorité : Rap > Hip-Hop > Musique)
+SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Rap';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Hip-Hop';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Musique';
+
+-- Si aucune catégorie spécifique n'est trouvée, sélection d'une catégorie Audio par défaut
+IF @CategorieID IS NULL
+    SELECT TOP 1 @CategorieID = id FROM Categorie WHERE type_contenu = 'Audio';
+
+-- Insertion du lien final
+IF @CategorieID IS NOT NULL
+BEGIN
+    INSERT INTO à (id, id_1) VALUES (@NewContenuID, @CategorieID);
+    PRINT 'Ajouté avec succès dans la catégorie : ' + @CategorieID;
+END
+ELSE
+BEGIN
+    PRINT 'Ajouté sans catégorie (Aucune trouvée).';
+END
+```
+#### 2 : Livres
+```bash
 DECLARE @NewContenuID INT;
 DECLARE @NewLivreID VARCHAR(20); -- Modifié en VARCHAR pour accepter 'LIV-XXX'
 DECLARE @MaxLivreNum INT;        -- Variable temporaire pour l'incrémentation
@@ -420,6 +540,135 @@ BEGIN
 END
 
 DECLARE @NewContenuID INT;
+DECLARE @NewLivreID VARCHAR(20);
+DECLARE @MaxLivreNum INT;
+DECLARE @CategorieID VARCHAR(50);
+
+-- 1. Calcul du nouvel ID Contenu
+SELECT @NewContenuID = ISNULL(MAX(id), 0) + 1 FROM Contenu;
+
+-- 2. Insertion dans Contenu
+INSERT INTO Contenu (id, titre, auteur, editeur, date_publication, quantite, image_url, url_fichier)
+VALUES (
+    @NewContenuID, 
+    LEFT('Récits de Bêtes', 50),                 -- Titre
+    'Élise Chedeville',                          -- Auteur
+    'Édition Indépendante',                      -- Éditeur (à adapter si besoin)
+    '2020-01-01',                                -- Date de publication (à adapter)
+    5,                                           -- Quantité
+    'https://m.media-amazon.com/images/I/71sRxbkwysL._AC_UF1000,1000_QL80_.jpg', -- Miniature générique
+    '\\172.16.119.32\MediaTech\Récits de Bêtes - Élise Chedeville.pdf' -- Lien local PDF
+);
+
+-- 3. Insertion dans la table Livres
+-- Extraction du numéro max (ex: on prend '001' de 'LIV-001', on le convertit en entier)
+SELECT @MaxLivreNum = ISNULL(MAX(CAST(SUBSTRING(id, 5, LEN(id)) AS INT)), 0) 
+FROM Livres 
+WHERE id LIKE 'LIV-%';
+
+-- Formatage du nouvel ID (ex: 'LIV-002')
+SET @NewLivreID = 'LIV-' + RIGHT('000' + CAST(@MaxLivreNum + 1 AS VARCHAR), 3);
+
+INSERT INTO Livres(id, nombre_page, id_1)
+VALUES (
+    @NewLivreID,
+    150,                -- Nombre de pages approximatif (à adapter)
+    @NewContenuID       -- Lien vers la table Contenu
+);
+
+-- 4. Liaison avec la catégorie (Priorité : Récit > Littérature > Livre)
+SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Jeunesse';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Littérature';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Livre';
+
+-- Si toujours rien, une catégorie PDF ou Texte au hasard
+IF @CategorieID IS NULL
+    SELECT TOP 1 @CategorieID = id FROM Categorie WHERE type_contenu = 'PDF' OR type_contenu = 'Texte';
+
+-- Insertion du lien
+IF @CategorieID IS NOT NULL
+BEGIN
+    INSERT INTO à (id, id_1) VALUES (@NewContenuID, @CategorieID);
+    PRINT 'Ajouté avec succès dans la catégorie : ' + @CategorieID;
+END
+ELSE
+BEGIN
+    PRINT 'Ajouté sans catégorie (Aucune trouvée).';
+END
+
+
+
+DECLARE @NewContenuID INT;
+DECLARE @NewLivreID VARCHAR(20);
+DECLARE @MaxLivreNum INT;
+DECLARE @CategorieID VARCHAR(50);
+
+-- 1. Calcul du nouvel ID Contenu
+SELECT @NewContenuID = ISNULL(MAX(id), 0) + 1 FROM Contenu;
+
+-- 2. Insertion dans Contenu
+INSERT INTO Contenu (id, titre, auteur, editeur, date_publication, quantite, image_url, url_fichier)
+VALUES (
+    @NewContenuID, 
+    LEFT('Les Misérables', 50),                  -- Titre
+    'Victor Hugo',                               -- Auteur
+    'Albert Lacroix',                            -- Éditeur (Éditeur historique de 1862)
+    '1862-04-03',                                -- Date de publication (Parution de la 1ère partie)
+    5,                                           -- Quantité
+    'https://www.gallimard-jeunesse.fr/assets/media/cache/cover_medium/gallimard_img/image/J02031.jpg', -- Miniature classique de Cosette
+    '\\172.16.119.32\MediaTech\Les misérables - Victor Hugo.pdf' -- Lien PDF local
+);
+
+-- 3. Insertion dans la table Livres
+-- Extraction du numéro max (ex: on prend '001' de 'LIV-001', on le convertit en entier)
+SELECT @MaxLivreNum = ISNULL(MAX(CAST(SUBSTRING(id, 5, LEN(id)) AS INT)), 0) 
+FROM Livres 
+WHERE id LIKE 'LIV-%';
+
+-- Formatage du nouvel ID (ex: 'LIV-002')
+SET @NewLivreID = 'LIV-' + RIGHT('000' + CAST(@MaxLivreNum + 1 AS VARCHAR), 3);
+
+INSERT INTO Livres(id, nombre_page, id_1)
+VALUES (
+    @NewLivreID,
+    1500,               -- Nombre de pages approximatif (c'est un gros pavé !)
+    @NewContenuID       -- Lien vers la table Contenu
+);
+
+-- 4. Liaison avec la catégorie (Priorité : Classique > Roman > Littérature)
+SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Classique';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Roman';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Littérature';
+
+-- Si toujours rien, une catégorie PDF ou Texte au hasard
+IF @CategorieID IS NULL
+    SELECT TOP 1 @CategorieID = id FROM Categorie WHERE type_contenu = 'PDF' OR type_contenu = 'Texte';
+
+-- Insertion du lien
+IF @CategorieID IS NOT NULL
+BEGIN
+    INSERT INTO à (id, id_1) VALUES (@NewContenuID, @CategorieID);
+    PRINT 'Ajouté avec succès dans la catégorie : ' + @CategorieID;
+END
+ELSE
+BEGIN
+    PRINT 'Ajouté sans catégorie (Aucune trouvée).';
+END
+```
+
+#### 3 : DVD 
+
+```bash
+
+DECLARE @NewContenuID INT;
 DECLARE @NewDVDID VARCHAR(20);
 DECLARE @MaxDVDNum INT;
 DECLARE @CategorieID VARCHAR(50);
@@ -479,10 +728,136 @@ ELSE
 BEGIN
     PRINT 'Ajouté sans catégorie (Aucune trouvée).';
 END
+
+
+
+DECLARE @NewContenuID INT;
+DECLARE @NewVideoID VARCHAR(20);
+DECLARE @MaxVideoNum INT;
+DECLARE @CategorieID VARCHAR(50);
+
+-- 1. Calcul du nouvel ID Contenu
+SELECT @NewContenuID = ISNULL(MAX(id), 0) + 1 FROM Contenu;
+
+-- 2. Insertion dans Contenu
+INSERT INTO Contenu (id, titre, auteur, editeur, date_publication, quantite, image_url, url_fichier)
+VALUES (
+    @NewContenuID, 
+    LEFT('[4K] | Arcane Season 2 | Warwick First Appearance', 50), -- Titre ajusté à 50 caractères
+    'Netflix',                                   -- Auteur (Chaîne YouTube)
+    'Riot Games / Fortiche',                     -- Éditeur (Studios d'Arcane)
+    '2024-11-16',                                -- Date de publication de la vidéo
+    5,                                           -- Quantité
+    'https://m.media-amazon.com/images/M/MV5BYjA2NzhlMDItNWRmZC00MzRjLWE3ZjAtZjBlZDAwOWY2ODdjXkEyXkFqcGc@._V1_.jpg', -- Miniature YouTube
+    'https://www.youtube.com/watch?v=S4knhwSctm0' -- Lien YouTube
+);
+
+-- 3. Insertion dans la table spécifique au lecteur vidéo (ex: Videos)
+-- Extraction du numéro max (ex: on prend '001' de 'VID-001', on le convertit en entier)
+SELECT @MaxVideoNum = ISNULL(MAX(CAST(SUBSTRING(id, 5, LEN(id)) AS INT)), 0) 
+FROM DVD
+WHERE id LIKE 'VID-%';
+
+-- Formatage du nouvel ID (ex: 'VID-002')
+SET @NewVideoID = 'VID-' + RIGHT('000' + CAST(@MaxVideoNum + 1 AS VARCHAR), 3);
+
+INSERT INTO DVD(id, duree, id_1)
+VALUES (
+    @NewVideoID,
+    3,                  -- Durée (2min57 arrondie à 3)
+    @NewContenuID       -- Lien vers la table Contenu
+);
+
+-- 4. Liaison avec la catégorie (Priorité : Animation > Action > Vidéo)
+SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Animation';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Action';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Série';
+
+-- Si toujours rien, une catégorie Vidéo au hasard
+IF @CategorieID IS NULL
+    SELECT TOP 1 @CategorieID = id FROM Categorie WHERE type_contenu = 'Vidéo';
+
+-- Insertion du lien
+IF @CategorieID IS NOT NULL
+BEGIN
+    INSERT INTO à (id, id_1) VALUES (@NewContenuID, @CategorieID);
+    PRINT 'Ajouté avec succès dans la catégorie : ' + @CategorieID;
+END
+ELSE
+BEGIN
+    PRINT 'Ajouté sans catégorie (Aucune trouvée).';
+END
+
+
+
+DECLARE @NewContenuID INT;
+DECLARE @NewVideoID VARCHAR(20);
+DECLARE @MaxVideoNum INT;
+DECLARE @CategorieID VARCHAR(50);
+
+-- 1. Calcul du nouvel ID Contenu
+SELECT @NewContenuID = ISNULL(MAX(id), 0) + 1 FROM Contenu;
+
+-- 2. Insertion dans Contenu
+INSERT INTO Contenu (id, titre, auteur, editeur, date_publication, quantite, image_url, url_fichier)
+VALUES (
+    @NewContenuID, 
+    LEFT('Darth Vader Hallway Fight Scene [4k UltraHD]', 50), -- Titre (limité à 50 caractères)
+    'George Lucas',                        -- Auteur (Chaîne YouTube)
+    'Lucasfilm',                                 -- Éditeur (Studio de Rogue One)
+    '2020-12-24',                                -- Date de publication de la vidéo
+    5,                                           -- Quantité
+    'https://fr.web.img6.acsta.net/pictures/16/10/19/14/33/069648.jpg', -- Miniature YouTube
+    'https://www.youtube.com/watch?v=9Z8mgkqjq90' -- Lien YouTube
+);
+
+-- 3. Insertion dans la table spécifique au lecteur vidéo (ex: Videos)
+-- Extraction du numéro max (ex: on prend '001' de 'VID-001', on le convertit en entier)
+SELECT @MaxVideoNum = ISNULL(MAX(CAST(SUBSTRING(id, 5, LEN(id)) AS INT)), 0) 
+FROM DVD 
+WHERE id LIKE 'VID-%';
+
+-- Formatage du nouvel ID (ex: 'VID-002')
+SET @NewVideoID = 'VID-' + RIGHT('000' + CAST(@MaxVideoNum + 1 AS VARCHAR), 3);
+
+INSERT INTO DVD(id, duree, id_1)
+VALUES (
+    @NewVideoID,
+    3,                  -- Durée (2min39 arrondie à 3)
+    @NewContenuID       -- Lien vers la table Contenu
+);
+
+-- 4. Liaison avec la catégorie (Priorité : Science-Fiction > Action > Cinéma)
+SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Science-Fiction';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Action';
+
+IF @CategorieID IS NULL
+    SELECT @CategorieID = id FROM Categorie WHERE nom_categorie = 'Cinéma';
+
+-- Si toujours rien, une catégorie Vidéo au hasard
+IF @CategorieID IS NULL
+    SELECT TOP 1 @CategorieID = id FROM Categorie WHERE type_contenu = 'Vidéo';
+
+-- Insertion du lien
+IF @CategorieID IS NOT NULL
+BEGIN
+    INSERT INTO à (id, id_1) VALUES (@NewContenuID, @CategorieID);
+    PRINT 'Ajouté avec succès dans la catégorie : ' + @CategorieID;
+END
+ELSE
+BEGIN
+    PRINT 'Ajouté sans catégorie (Aucune trouvée).';
+END
 ```
 
 ### 6 - modifier dans le MediaTechRepository le "connectionString" et mettre les informations par rapport a votre identifiant, mdp, nom de base de donnée et votre adresse ip (celle en 172.)
-Ce qui aura pour effet d'effectuer la connexion vers la base de donnée et récupérer le clip vidéo die for you que vous pourrez visionner.
+Ce qui aura pour effet d'effectuer la connexion vers la base de donnée et récupérer les diffèrents jeu de données que vous pourrez visionner.
 
 📝 Auteurs\
 Thomas - Dev  
