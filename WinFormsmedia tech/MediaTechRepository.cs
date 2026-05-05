@@ -26,6 +26,11 @@ namespace WinFormsmedia_tech
             return salt;
         }
 
+        // ============================================================
+        //  Vérifie si un mot de passe est correct
+        //  On re-hache le mot de passe entré avec le même sel
+        //  et on compare avec le hachage stocké en base.
+        // ============================================================
         private bool VerifyPassword(string password, byte[] storedHash, byte[] storedSalt)
         {
             // Hache le mot de passe fourni avec le *même* sel
@@ -405,7 +410,7 @@ namespace WinFormsmedia_tech
 
         // ===== GESTION DES MEMBRES =====
 
-        // Créer un nouveau membre
+        // Créer un nouveau membre en base
         public bool CreerMembre(string nom, string prenom, string email, string motDePasse, out string message)
         {
             message = "";
@@ -536,7 +541,7 @@ namespace WinFormsmedia_tech
                     cmd.Parameters.AddWithValue("@email", email);
                     connection.Open();
                     int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
+                    return count > 0;   // true = email déjà pris
                 }
             }
             catch
@@ -582,11 +587,12 @@ namespace WinFormsmedia_tech
                                 return 0;
                             }
 
+                            // Lit le hachage et le sel stockés en base
                             // LIRE EN TANT QUE byte[] (ET NON GetString)
                             byte[] storedHash = (byte[])reader["PasswordHash"];
                             byte[] storedSalt = (byte[])reader["PasswordSalt"];
 
-                            // 3. Vérifier le mot de passe
+                            // 3. Compare le mot de passe entré avec le hachage stocké
                             if (VerifyPassword(motDePasse, storedHash, storedSalt))
                             {
                                 message = "Connexion réussie !";
@@ -616,6 +622,7 @@ namespace WinFormsmedia_tech
         }
 
         // Récupérer les informations d'un membre
+        //  Utilisé pour afficher le profil de l'utilisateur connecté.
         public DataTable GetMembreInfo(int idMembre)
         {
             string query = @"
