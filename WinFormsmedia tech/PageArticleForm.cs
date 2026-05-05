@@ -161,7 +161,7 @@ namespace WinFormsmedia_tech
                         lecteur.Show();
                         break;
                     case "Audio":
-                        // Ouvre le lecteur audio et lui demande de charger la ressource (URL ou fichier)
+                        // Ouvre le lecteur audio et lui demande de charger la ressource (fichier)
                         LecteurAudio lecteurAudio = new LecteurAudio();
                         lecteurAudio.Show();
                         lecteurAudio.LoadAndPlay(_urlFichier, _titre, _auteur, _imageUrl);
