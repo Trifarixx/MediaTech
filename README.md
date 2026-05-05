@@ -856,7 +856,7 @@ BEGIN
 END
 ```
 
-### 6 - modifier dans le MediaTechRepository le "connectionString" et mettre les informations par rapport a votre identifiant, mdp, nom de base de donnée et votre adresse ip (celle en 172.)
+### 7 - modifier dans le MediaTechRepository le "connectionString" et mettre les informations par rapport a votre identifiant, mdp, nom de base de donnée et votre adresse ip (celle en 172.)
 Ce qui aura pour effet d'effectuer la connexion vers la base de donnée et récupérer les diffèrents jeu de données que vous pourrez visionner.
 
 📝 Auteurs\
